@@ -1,0 +1,596 @@
+<dashboard version="1.1" theme="light" script="tabs.js" stylesheet="tabs.css">
+   <label>Introduction to Data Compliance Implementation</label>
+   <description>Implementing Data Compliance Controls During Splunk Data Ingestion.</description>
+   <row>
+      <panel>
+         <html>
+            <h1>
+               <!-- Placeholder: Update icon path -->
+               <img width="40"
+                  src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+               <b>INTRODUCTION: Implementing Data Compliance with Splunk Data Management</b>
+            </h1>
+            <ul>
+               <!-- Updated Introduction Text -->
+               <p>Meeting today's complex web of global and regional data compliance mandates -
+                  spanning security-focused frameworks like <a href="https://www.pcisecuritystandards.org/" target="_blank" rel="noopener noreferrer">PCI DSS</a>, operational regulations like
+                  <a href="https://www.congress.gov/bill/107th-congress/house-bill/3763" target="_blank" rel="noopener noreferrer">SOX</a>, and privacy-centric laws such as <a href="https://gdpr-info.eu/" target="_blank" rel="noopener noreferrer">GDPR</a> and <a href="https://oag.ca.gov/privacy/ccpa" target="_blank" rel="noopener noreferrer">CCPA</a>, alongside numerous
+                  <a href="https://en.wikipedia.org/wiki/Financial_services" target="_blank" rel="noopener noreferrer">FSI-specific</a> requirements - is a non-negotiable aspect of modern business. A
+                  critical element of achieving and maintaining compliance is effectively managing
+                  the vast amounts of data generated across your environment, particularly at the
+                  point of ingestion into your analytics platform.</p>
+               <p>Splunk's powerful data management capabilities, including <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/IngestActions" target="_blank" rel="noopener noreferrer">Ingest Actions</a> and <a href="https://docs.splunk.com/Documentation/EdgeProcessor/latest/InstallEdge/AboutEdge" target="_blank" rel="noopener noreferrer">Edge
+                  Processor</a>, provide the foundational tools to implement compliance requirements
+                  <b>before</b> data is even indexed. These capabilities enable organizations to
+                  preprocess, filter, mask, and enrich data based on compliance policies, ensuring
+                  that only relevant and compliant data is stored and analyzed. This Solution
+                  Accelerator focuses on leveraging these Splunk features to help you integrate data
+                  compliance controls directly into your data ingestion pipelines.</p>
+            </ul>
+         </html>
+      </panel>
+   </row>
+   <row id="tabs">
+      <panel>
+         <html>
+            <p>
+               <ul id="tabs" class="nav nav-tabs">
+                  <li>
+                     <!-- Placeholder: Update nav button image -->
+                     <img width="200"
+                        src="/static/app/Data_Compliance/SA_image_icon_navi_gr_button.png" />
+                  </li>
+                  <li class="active">
+                     <a href="#" class="toggle-tab" data-toggle="tab" data-elements="tab_objective">1
+                        | OBJECTIVE</a>
+                  </li>
+                  <li>
+                     <a href="#" class="toggle-tab" data-toggle="tab" data-elements="tab_dmx">2 |
+                        DATA PIPELINE MANAGEMENT (DMX) </a>
+                  </li>
+                  <li>
+                     <a href="#" class="toggle-tab" data-toggle="tab" data-elements="tab_ia">3 |
+                        INGEST ACTIONS</a>
+                  </li>
+                  <li>
+                     <a href="#" class="toggle-tab" data-toggle="tab" data-elements="tab_ip">4 |
+                        INGEST PROCESSOR</a>
+                  </li>
+                  <li>
+                     <a href="#" class="toggle-tab" data-toggle="tab" data-elements="tab_ep">5 |
+                        EDGE PROCESSOR</a>
+                  </li>
+                  <li>
+                     <a href="#" class="toggle-tab" data-toggle="tab" data-elements="tab_next">6 |
+                        HELP</a>
+                  </li>
+               </ul>
+            </p>
+         </html>
+      </panel>
+   </row>
+   <row id="tab_objective">
+      <panel>
+         <html>
+            <ul>
+               <h1>
+                  <!-- Placeholder: Update icon path -->
+                  <img width="35"
+                     src="/static/app/Data_Compliance/SA_image_icon_bulb.png" />
+                  <b>OBJECTIVE: Implement Data Compliance During Splunk Data Ingestion</b>
+               </h1>
+               <!-- Updated Objective Text -->
+               <p>The primary objective of this section of the Data Compliance Solution Accelerator
+                  is to guide customers in implementing essential data compliance controls directly
+                  during the data ingestion process into Splunk. By leveraging Splunk's <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/IngestActions" target="_blank" rel="noopener noreferrer">Ingest
+                  Actions</a>, <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/Ingestprocessor" target="_blank" rel="noopener noreferrer">Ingest Processor</a>, and <a href="https://docs.splunk.com/Documentation/EdgeProcessor/latest/InstallEdge/AboutEdge" target="_blank" rel="noopener noreferrer">Edge Processor</a>, organizations can enforce data security and privacy
+                  requirements, such as masking sensitive information, filtering irrelevant data,
+                  and adding compliance-specific metadata, before the data reaches the Splunk index.</p>
+               <p>This approach ensures that data entering Splunk already aligns with regulatory
+                  mandates (like <a href="https://gdpr-info.eu/" target="_blank" rel="noopener noreferrer">GDPR</a>, <a href="https://www.pcisecuritystandards.org/" target="_blank" rel="noopener noreferrer">PCI DSS</a>, etc.), enhances data privacy by reducing the amount
+                  of sensitive data stored, improves efficiency by filtering noise, and provides a
+                  built-in layer of compliance enforcement from the moment data is collected. The
+                  goal is to streamline compliance efforts, reduce risk, and build a more robust
+                  data governance framework powered by Splunk's ingestion-time capabilities.</p>
+            </ul>
+            <hr width="100%" />
+            <ul>
+               <h1>
+                  <!-- Placeholder: Update icon path -->
+                  <img width="35"
+                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                  <b>PREREQUISITES: Splunk Data Management Capabilities</b>
+               </h1>
+               <!-- Updated Prerequisites Text -->
+               <p>To utilize the data compliance implementation workflows demonstrated in this
+                  Solution Accelerator, your Splunk environment must leverage either <b>Splunk
+                     <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/IngestActions" target="_blank" rel="noopener noreferrer">Ingest Actions</a></b>, <b>Splunk <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/Ingestprocessor" target="_blank" rel="noopener noreferrer">Ingest Processor</a></b>, or <b>Splunk <a href="https://docs.splunk.com/Documentation/EdgeProcessor/latest/InstallEdge/AboutEdge" target="_blank" rel="noopener noreferrer">Edge Processor</a></b>.
+                  These capabilities are the fundamental prerequisites as they provide the necessary
+                  tools to apply compliance controls to data at the point of ingestion, as
+                  highlighted by this accelerator.</p>
+               <ul>
+                  <li>
+                     <p><b>Splunk <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/IngestActions" target="_blank" rel="noopener noreferrer">Ingest Actions</a>:</b> Requires a <a href="https://www.splunk.com/en_us/software/splunk-cloud-platform.html" target="_blank" rel="noopener noreferrer">Splunk Cloud Platform</a> environment
+                        that supports <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/IngestActions" target="_blank" rel="noopener noreferrer">Ingest Actions</a>, which allows for schema on ingest and data
+                        transformation pipelines directly within <a href="https://www.splunk.com/en_us/software/splunk-cloud-platform.html" target="_blank" rel="noopener noreferrer">Splunk Cloud</a>.</p>
+                  </li>
+                  <li>
+                     <p><b>Splunk <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/Ingestprocessor" target="_blank" rel="noopener noreferrer">Ingest Processor</a>:</b> Requires a <a href="https://www.splunk.com/en_us/software/splunk-cloud-platform.html" target="_blank" rel="noopener noreferrer">Splunk Cloud Platform</a> environment
+                        that supports <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/Ingestprocessor" target="_blank" rel="noopener noreferrer">Ingest Processor</a>, which allows you to configure data flows,
+                        control data format, apply transformation rules prior to indexing, and route
+                        to destinations.</p>
+                  </li>
+                  <li>
+                     <p><b>Splunk <a href="https://docs.splunk.com/Documentation/EdgeProcessor/latest/InstallEdge/AboutEdge" target="_blank" rel="noopener noreferrer">Edge Processor</a>:</b> Requires deployment of the Splunk <a href="https://docs.splunk.com/Documentation/EdgeProcessor/latest/InstallEdge/AboutEdge" target="_blank" rel="noopener noreferrer">Edge
+                        Processor</a> for distributed data processing and filtering closer to the data
+                        source, enabling compliance transformations before data is sent to <a href="https://www.splunk.com/en_us/software/splunk-cloud-platform.html" target="_blank" rel="noopener noreferrer">Splunk
+                        Cloud</a> or <a href="https://www.splunk.com/en_us/software/splunk-enterprise.html" target="_blank" rel="noopener noreferrer">Splunk Enterprise</a>. </p>
+                  </li>
+               </ul>
+               <p>Understanding and having access to one of these Splunk data management components
+                  is essential for implementing the ingestion-time compliance techniques covered in
+                  the subsequent sections of this accelerator.</p>
+            </ul>
+            <hr width="100%" />
+            <ul>
+               <h1>
+                  <img width="35"
+                     src="/static/app/Data_Compliance/SA_image_icon_tool.png" />
+                  <b>ACCESS DATA: Foundation for Compliance Monitoring and Auditing</b>
+               </h1>
+               <div style="text-align: center; margin-top: 20px;">
+                  <img src="/static/app/Data_Compliance/dmx.png"
+                     alt="DMX Overview Diagram Placeholder" style="max-width: 70%; height: auto;" />
+                  <p>
+                     <em>Diagram illustrating Splunk's Data Pipeline Management strategy for
+                        compliance.</em>
+                  </p>
+               </div>
+            </ul>
+         </html>
+      </panel>
+   </row>
+   <row id="tab_dmx">
+      <panel>
+         <html>
+            <ul>
+               <h1>
+                  <img width="35"
+                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                  <b>DATA PIPELINE MANAGEMENT (DMX): Strategic Data Control for <a href="https://en.wikipedia.org/wiki/Financial_services" target="_blank" rel="noopener noreferrer">FSI</a> Compliance</b>
+               </h1>
+               <p>
+                  <h2>What is Data Pipeline Management?</h2>
+               </p>
+               <p>Data Pipeline Management refers to the comprehensive strategy and set of processes
+                  for controlling the flow of data from its source to its destination, including its
+                  collection, processing, transformation, and routing. It involves designing,
+                  building, and maintaining efficient and reliable pathways for data movement,
+                  ensuring data quality, integrity, and timely delivery for analytics, reporting,
+                  and operational use cases. Effective data pipeline management is crucial for
+                  handling the ever-increasing volume, velocity, and variety of data generated by
+                  modern organizations.</p>
+               <p>
+                  <h2>Why is it Important?</h2>
+               </p>
+               <p>Robust Data Pipeline Management is vital for several reasons. It ensures that data
+                  is accurate, consistent, and trustworthy, which is foundational for making
+                  informed business decisions. It optimizes data flow, reducing latency and
+                  processing overhead, leading to more efficient operations. Furthermore, it
+                  provides the necessary visibility and control over data, which is essential for
+                  security, governance, and meeting regulatory obligations. Without it,
+                  organizations risk data silos, poor data quality, inefficient processes, and an
+                  inability to effectively leverage their data assets.</p>
+               <p>
+                  <h2>How Does it Apply to Data Compliance for <a href="https://en.wikipedia.org/wiki/Financial_services" target="_blank" rel="noopener noreferrer">Financial Services Institutions
+                     (FSI)</a>?</h2>
+               </p>
+               <p>For <a href="https://en.wikipedia.org/wiki/Financial_services" target="_blank" rel="noopener noreferrer">Financial Services Institutions</a>, Data Pipeline Management takes on heightened
+                  importance due to the stringent and complex regulatory environment. <a href="https://en.wikipedia.org/wiki/Financial_services" target="_blank" rel="noopener noreferrer">FSI</a>
+                  organizations handle vast amounts of highly sensitive data, including <a href="https://csrc.nist.gov/glossary/term/personally_identifiable_information" target="_blank" rel="noopener noreferrer">Personally
+                  Identifiable Information (PII)</a>, financial transaction details, and cardholder
+                  data, all ofwhich are subject to numerous compliance mandates like <a href="https://gdpr-info.eu/" target="_blank" rel="noopener noreferrer">GDPR</a>, <a href="https://www.pcisecuritystandards.org/" target="_blank" rel="noopener noreferrer">PCI DSS</a>,
+                  <a href="https://www.congress.gov/bill/107th-congress/house-bill/3763" target="_blank" rel="noopener noreferrer">SOX</a>, <a href="https://www.fatf-gafi.org/en/topics/anti-money-laundering-and-counter-terrorist-financing.html" target="_blank" rel="noopener noreferrer">AML/CFT</a> regulations, and specific directives from financial authorities.</p>
+               <p>Effective data pipeline management allows <a href="https://en.wikipedia.org/wiki/Financial_services" target="_blank" rel="noopener noreferrer">FSIs</a> to:</p>
+               <ul>
+                  <li>
+                     <b>Enforce Data Minimization:</b> Filter out irrelevant or excessive data early
+                     in the pipeline, reducing the compliance scope and the risk associated with
+                     storing unnecessary sensitive information. </li>
+                  <li>
+                     <b>Implement Data Masking and Tokenization:</b> Obscure or replace sensitive
+                     data fields (e.g., account numbers, <a href="https://csrc.nist.gov/glossary/term/personally_identifiable_information" target="_blank" rel="noopener noreferrer">PII</a>) as data flows through the pipeline,
+                     protecting it from unauthorized exposure while still allowing for certain
+                     types_of analysis. </li>
+                  <li>
+                     <b>Ensure Data Integrity and Auditability:</b> Maintain a clear chain of
+                     custody for data, track transformations, and ensure that data used for
+                     compliance reporting is accurate and unaltered. </li>
+                  <li>
+                     <b>Facilitate Data Sovereignty and Residency:</b> Route data appropriately
+                     based on its origin and regulatory requirements, ensuring it is processed and
+                     stored in compliant locations. </li>
+                  <li>
+                     <b>Streamline Compliance Reporting:</b> Prepare and transform data into formats
+                     suitable for audit and regulatory reporting, often automating parts of this
+                     process. </li>
+               </ul>
+               <p>By embedding compliance controls directly into the data pipeline, <a href="https://en.wikipedia.org/wiki/Financial_services" target="_blank" rel="noopener noreferrer">FSIs</a> can
+                  proactively manage risks, reduce the manual effort associated with compliance, and
+                  demonstrate adherence to regulatory requirements more effectively.</p>
+               <p>
+                  <h2>Splunk's Solutions for Data Pipeline Management: <a href="https://docs.splunk.com/Documentation/EdgeProcessor/latest/InstallEdge/AboutEdge" target="_blank" rel="noopener noreferrer">Edge Processor</a> and <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/IngestActions" target="_blank" rel="noopener noreferrer">Ingest
+                     Actions</a></h2>
+               </p>
+               <p>Splunk provides powerful, integrated solutions for Data Pipeline Management that
+                  are particularly well-suited for addressing the compliance challenges faced by
+                  <a href="https://en.wikipedia.org/wiki/Financial_services" target="_blank" rel="noopener noreferrer">FSIs</a>. These capabilities allow organizations to control and process data <b>before</b>
+                  it is indexed, ensuring that compliance is addressed at the earliest possible
+                  stage:</p>
+               <ul>
+                  <li>
+                     <b>Splunk <a href="https://docs.splunk.com/Documentation/EdgeProcessor/latest/InstallEdge/AboutEdge" target="_blank" rel="noopener noreferrer">Edge Processor</a>:</b> This solution allows <a href="https://en.wikipedia.org/wiki/Financial_services" target="_blank" rel="noopener noreferrer">FSIs</a> to deploy data
+                     processing capabilities closer to the data source, whether on-premises or in
+                     distributed environments. <a href="https://docs.splunk.com/Documentation/EdgeProcessor/latest/InstallEdge/AboutEdge" target="_blank" rel="noopener noreferrer">Edge Processor</a> can filter, mask, route, and transform
+                     data at the edge, reducing data volume sent to the central Splunk instance,
+                     optimizing bandwidth, and enabling compliance actions (like <a href="https://csrc.nist.gov/glossary/term/personally_identifiable_information" target="_blank" rel="noopener noreferrer">PII</a> masking) before
+                     sensitive data even leaves the source network segment. This is crucial for
+                     managing data from diverse systems and meeting data residency requirements. </li>
+                  <li>
+                     <b>Splunk <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/IngestActions" target="_blank" rel="noopener noreferrer">Ingest Actions</a>:</b> For data flowing directly into <a href="https://www.splunk.com/en_us/software/splunk-cloud-platform.html" target="_blank" rel="noopener noreferrer">Splunk Cloud
+                     Platform</a>, <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/IngestActions" target="_blank" rel="noopener noreferrer">Ingest Actions</a> provide a centralized way to define and apply data
+                     transformations and compliance controls. Administrators can create pipelines to
+                     mask sensitive fields, filter out unnecessary events, enrich data with
+                     compliance-relevant metadata, and route data to specific indexes based on its
+                     content or compliance category. This ensures that data stored in <a href="https://www.splunk.com/en_us/software/splunk-cloud-platform.html" target="_blank" rel="noopener noreferrer">Splunk Cloud</a>
+                     is already processed according to compliance policies. </li>
+               </ul>
+               <p>Together, Splunk <a href="https://docs.splunk.com/Documentation/EdgeProcessor/latest/InstallEdge/AboutEdge" target="_blank" rel="noopener noreferrer">Edge Processor</a> and <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/IngestActions" target="_blank" rel="noopener noreferrer">Ingest Actions</a> offer a comprehensive data
+                  pipeline management strategy, giving <a href="https://en.wikipedia.org/wiki/Financial_services" target="_blank" rel="noopener noreferrer">FSIs</a> the flexibility and control needed to
+                  manage their data effectively and implement robust compliance measures from the
+                  point of collection through to analysis and reporting. This Solution Accelerator
+                  will explore how these tools can be leveraged for specific data compliance use
+                  cases.</p>
+            </ul>
+            <hr />
+            <ul>
+            </ul>
+         </html>
+      </panel>
+   </row>
+   <row id="tab_ia">
+      <panel>
+         <html>
+            <ul>
+               <h1>
+                  <!-- Placeholder: Update icon path -->
+                  <img width="35"
+                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                  <b>INGEST ACTIONS: Centralized Data Transformation for Compliance in <a href="https://www.splunk.com/en_us/software/splunk-cloud-platform.html" target="_blank" rel="noopener noreferrer">Splunk Cloud</a></b>
+               </h1>
+               <p>
+                  <h2>Overview of <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/IngestActions" target="_blank" rel="noopener noreferrer">Ingest Actions</a>:</h2>
+               </p>
+               <p>Splunk <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/IngestActions" target="_blank" rel="noopener noreferrer">Ingest Actions</a> are a powerful, native capability within the <a href="https://www.splunk.com/en_us/software/splunk-cloud-platform.html" target="_blank" rel="noopener noreferrer">Splunk Cloud
+                  Platform</a> that allows administrators to define and apply data transformations and
+                  processing rules as data is being ingested and before it is written to an index.
+                  This "schema-on-ingest" approach provides a centralized point of control for
+                  modifying, filtering, routing, and enriching incoming data streams. Using a visual
+                  pipeline builder or direct configuration, users can create sophisticated data
+                  processing pipelines that execute a series of actions on events based on their
+                  content or source. These actions can include masking specific fields, extracting
+                  new fields, filtering out unwanted events, routing data to different indexes, and
+                  adding metadata.</p>
+               <p>
+                  <h2>Why are <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/IngestActions" target="_blank" rel="noopener noreferrer">Ingest Actions</a> Important?</h2>
+               </p>
+               <ul>
+                  <li>
+                     <b>Data Quality and Consistency:</b> They enable the standardization and
+                     normalization of data from diverse sources, improving the overall quality and
+                     consistency of data within Splunk, which is vital for accurate analytics and
+                     reporting. </li>
+                  <li>
+                     <b>Efficiency and Performance:</b> By filtering out irrelevant data or
+                     transforming data into more optimal formats at ingest time, <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/IngestActions" target="_blank" rel="noopener noreferrer">Ingest Actions</a> can
+                     reduce storage costs, improve search performance, and make the platform more
+                     efficient. </li>
+                  <li>
+                     <b>Centralized Governance:</b> They provide a central point of control and
+                     visibility over data processing rules, making it easier to manage, audit, and
+                     update data handling policies across the <a href="https://www.splunk.com/en_us/software/splunk-cloud-platform.html" target="_blank" rel="noopener noreferrer">Splunk Cloud</a> environment. </li>
+                  <li>
+                     <b>Flexibility and Agility:</b> The ability to modify data pipelines quickly
+                     allows organizations to adapt to changing data sources, new analytical
+                     requirements, and evolving compliance needs without extensive re-architecting. </li>
+               </ul>
+               <p>
+                  <h2>How <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/IngestActions" target="_blank" rel="noopener noreferrer">Ingest Actions</a> Apply to Data Compliance for <a href="https://en.wikipedia.org/wiki/Financial_services" target="_blank" rel="noopener noreferrer">FSI</a>:</h2>
+               </p>
+               <p>For <a href="https://en.wikipedia.org/wiki/Financial_services" target="_blank" rel="noopener noreferrer">Financial Services Institutions</a>, Splunk <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/IngestActions" target="_blank" rel="noopener noreferrer">Ingest Actions</a> offer significant
+                  advantages in meeting stringent data compliance obligations:</p>
+               <ul>
+                  <li>
+                     <b><a href="https://csrc.nist.gov/glossary/term/personally_identifiable_information" target="_blank" rel="noopener noreferrer">PII</a>/Sensitive Data Masking:</b> <a href="https://en.wikipedia.org/wiki/Financial_services" target="_blank" rel="noopener noreferrer">FSIs</a> can configure <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/IngestActions" target="_blank" rel="noopener noreferrer">Ingest Actions</a> to
+                     automatically identify and mask or obfuscate sensitive data elements like
+                     account numbers, social security numbers, or other <a href="https://csrc.nist.gov/glossary/term/personally_identifiable_information" target="_blank" rel="noopener noreferrer">PII</a> directly within the
+                     ingestion pipeline. This ensures that such data is protected before it's
+                     stored, aligning with regulations like <a href="https://gdpr-info.eu/" target="_blank" rel="noopener noreferrer">GDPR</a>, <a href="https://oag.ca.gov/privacy/ccpa" target="_blank" rel="noopener noreferrer">CCPA</a>, and <a href="https://www.ftc.gov/business-guidance/privacy-security/gramm-leach-bliley-act" target="_blank" rel="noopener noreferrer">GLBA</a>, and reducing the
+                     risk associated with data breaches. </li>
+                  <li>
+                     <b>Data Minimization and Filtering:</b> <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/IngestActions" target="_blank" rel="noopener noreferrer">Ingest Actions</a> can be used to filter
+                     out unnecessary or irrelevant log data that falls outside the scope of
+                     compliance requirements (e.g., debug logs not needed for audit). This helps
+                     <a href="https://en.wikipedia.org/wiki/Financial_services" target="_blank" rel="noopener noreferrer">FSIs</a> adhere to the principle of data minimization, reduces storage costs, and
+                     simplifies compliance by narrowing the dataset under scrutiny. </li>
+                  <li>
+                     <b>Compliance-Specific Routing:</b> Data can be routed to specific indexes
+                     based on its sensitivity, source, or regulatory relevance (e.g., routing all
+                     <a href="https://www.pcisecuritystandards.org/" target="_blank" rel="noopener noreferrer">PCI</a>-relevant logs to a dedicated <a href="https://www.pcisecuritystandards.org/" target="_blank" rel="noopener noreferrer">PCI</a> index). This facilitates targeted access
+                     controls, retention policies, and audit scoping. </li>
+                  <li>
+                     <b>Enrichment with Compliance Context:</b> Events can be enriched with metadata
+                     indicating their compliance relevance, data classification, or source system
+                     criticality. This added context aids in compliance monitoring, reporting, and
+                     incident investigation. For example, tagging events related to specific <a href="https://www.congress.gov/bill/107th-congress/house-bill/3763" target="_blank" rel="noopener noreferrer">SOX</a>
+                     controls. </li>
+                  <li>
+                     <b>Audit Trail for Data Handling:</b> The configurations of <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/IngestActions" target="_blank" rel="noopener noreferrer">Ingest Actions</a>
+                     themselves can serve as part of the audit trail, demonstrating how data is
+                     being processed and transformed to meet compliance policies. </li>
+               </ul>
+               <p>By leveraging <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/IngestActions" target="_blank" rel="noopener noreferrer">Ingest Actions</a>, <a href="https://en.wikipedia.org/wiki/Financial_services" target="_blank" rel="noopener noreferrer">FSIs</a> can build proactive compliance controls
+                  directly into their <a href="https://www.splunk.com/en_us/software/splunk-cloud-platform.html" target="_blank" rel="noopener noreferrer">Splunk Cloud</a> data pipelines, ensuring that data is handled in
+                  a compliant manner from the moment it enters the platform.</p>
+            </ul>
+            <hr width="100%" />
+            <ul>
+               <h1>
+                  <!-- Placeholder: Update icon path -->
+                  <img width="35"
+                     src="/static/app/Data_Compliance/SA_image_icon_tool.png" />
+                  <b>ACCESS DATA: Foundation for Compliance Monitoring and Auditing</b>
+               </h1>
+               <!-- Placeholder for Ingest Actions Diagram -->
+               <div style="text-align: center; margin-top: 20px;">
+                  <img src="/static/app/Data_Compliance/IngestProcessor-architecture-diagram.jpg"
+                     alt="Ingest Actions Diagram Placeholder" style="max-width: 70%; height: auto;" />
+                  <p>
+                     <em>Diagram illustrating Ingest Actions workflow for compliance.</em>
+                  </p>
+               </div>
+            </ul>
+         </html>
+      </panel>
+   </row>
+   <row id="tab_ip">
+      <panel>
+         <html>
+            <ul>
+               <h1>
+                  <img width="35"
+                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                  <b>INGEST PROCESSOR: Centralized Data Control for Compliance at Ingest</b>
+               </h1>
+               <p>
+                  <h2>Overview of <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/Ingestprocessor" target="_blank" rel="noopener noreferrer">Ingest Processor</a>:</h2>
+               </p>
+               <p>
+                  Splunk <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/Ingestprocessor" target="_blank" rel="noopener noreferrer">Ingest Processor</a> is a cloud-native service that enables organizations to process, transform, and route data as it is ingested into Splunk Cloud Platform. It provides a centralized way to define pipelines that can filter, mask, enrich, and normalize data before it is indexed, ensuring compliance and data quality from the moment data enters Splunk.
+               </p>
+               <p>
+                  <h2>Why is <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/Ingestprocessor" target="_blank" rel="noopener noreferrer">Ingest Processor</a> Important?</h2>
+               </p>
+               <ul>
+                  <li>
+                     <b>Centralized Data Processing:</b> Ingest Processor allows you to manage and apply data transformations, filtering, and enrichment rules in a single place, simplifying governance and compliance.
+                  </li>
+                  <li>
+                     <b>Data Privacy and Security:</b> Sensitive data can be masked or removed before indexing, reducing compliance risk and exposure of regulated information.
+                  </li>
+                  <li>
+                     <b>Improved Data Quality:</b> Normalize and enrich data at ingest, ensuring consistency and reliability for downstream analytics and compliance reporting.
+                  </li>
+                  <li>
+                     <b>Flexible Routing:</b> Route events to different indexes or destinations based on content, source, or compliance requirements.
+                  </li>
+                  <li>
+                     <b>Scalability:</b> As a cloud-native service, Ingest Processor scales automatically to handle varying data volumes and sources.
+                  </li>
+               </ul>
+               <p>
+                  <h2>How <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/Ingestprocessor" target="_blank" rel="noopener noreferrer">Ingest Processor</a> Applies to Data Compliance for <a href="https://en.wikipedia.org/wiki/Financial_services" target="_blank" rel="noopener noreferrer">FSI</a>:</h2>
+               </p>
+               <p>
+                  For <a href="https://en.wikipedia.org/wiki/Financial_services" target="_blank" rel="noopener noreferrer">Financial Services Institutions</a>, Splunk Ingest Processor is a key tool for implementing compliance controls at the point of data ingestion:
+               </p>
+               <ul>
+                  <li>
+                     <b>Masking and Filtering Sensitive Data:</b> Automatically identify and mask or filter out <a href="https://csrc.nist.gov/glossary/term/personally_identifiable_information" target="_blank" rel="noopener noreferrer">PII</a>, cardholder data, or other regulated information before it is indexed, helping to meet requirements such as <a href="https://gdpr-info.eu/" target="_blank" rel="noopener noreferrer">GDPR</a>, <a href="https://oag.ca.gov/privacy/ccpa" target="_blank" rel="noopener noreferrer">CCPA</a>, and <a href="https://www.pcisecuritystandards.org/" target="_blank" rel="noopener noreferrer">PCI DSS</a>.
+                  </li>
+                  <li>
+                     <b>Data Minimization:</b> Filter out unnecessary or irrelevant data at ingest, reducing storage costs and compliance scope.
+                  </li>
+                  <li>
+                     <b>Compliance-Specific Routing:</b> Route data to specific indexes or destinations based on compliance category, sensitivity, or regulatory requirements.
+                  </li>
+                  <li>
+                     <b>Auditability:</b> Maintain an audit trail of data processing and transformation rules applied at ingest, supporting compliance audits and investigations.
+                  </li>
+                  <li>
+                     <b>Consistent Data Enrichment:</b> Add compliance-relevant metadata or tags to events as they are ingested, improving traceability and reporting.
+                  </li>
+               </ul>
+               <p>
+                  By leveraging Splunk Ingest Processor, FSIs can enforce compliance policies, improve data quality, and reduce risk at the earliest stage of the data lifecycle—directly at ingest into Splunk Cloud Platform.
+               </p>
+            </ul>
+            <hr width="100%" />
+            <ul>
+               <h1>
+                  <!-- Placeholder: Update icon path -->
+                  <img width="35"
+                     src="/static/app/Data_Compliance/SA_image_icon_tool.png" />
+                  <b>ACCESS DATA: Foundation for Compliance Monitoring and Auditing</b>
+               </h1>
+               <!-- Placeholder for Ingest Processor Diagram -->
+               <div style="text-align: center; margin-top: 20px;">
+                  <img src="/static/app/Data_Compliance/IngestProcessor-architecture-diagram.jpg"
+                     alt="Ingest Processor Diagram" style="max-width: 70%; height: auto;" />
+                  <p>
+                     <em>Diagram illustrating Ingest Processor workflow for compliance.</em>
+                  </p>
+               </div>
+            </ul>
+         </html>
+      </panel>
+   </row>
+   <row id="tab_ep">
+      <panel>
+         <html>
+            <ul>
+               <h1>
+                  <!-- Placeholder: Update icon path -->
+                  <img width="35"
+                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                  <b>EDGE PROCESSOR: Distributed Data Control for Compliance at the Source</b>
+               </h1>
+               <p>
+                  <h2>Overview of <a href="https://docs.splunk.com/Documentation/EdgeProcessor/latest/InstallEdge/AboutEdge" target="_blank" rel="noopener noreferrer">Edge Processor</a>:</h2>
+               </p>
+               <p>Splunk <a href="https://docs.splunk.com/Documentation/EdgeProcessor/latest/InstallEdge/AboutEdge" target="_blank" rel="noopener noreferrer">Edge Processor</a> is a solution that extends Splunk's data processing
+                  capabilities to the edge of the network, closer to where data is generated. It
+                  allows organizations to deploy lightweight, distributed instances that can receive
+                  data from various sources (like <a href="https://docs.splunk.com/Documentation/Forwarder/latest/Forwarder/Abouttheuniversalforwarder" target="_blank" rel="noopener noreferrer">Universal Forwarders</a> or direct <a href="https://en.wikipedia.org/wiki/API" target="_blank" rel="noopener noreferrer">API</a> inputs),
+                  process it according to defined pipelines, and then route the modified data to
+                  <a href="https://www.splunk.com/en_us/software/splunk-cloud-platform.html" target="_blank" rel="noopener noreferrer">Splunk Cloud Platform</a> or <a href="https://www.splunk.com/en_us/software/splunk-enterprise.html" target="_blank" rel="noopener noreferrer">Splunk Enterprise</a>. <a href="https://docs.splunk.com/Documentation/EdgeProcessor/latest/InstallEdge/AboutEdge" target="_blank" rel="noopener noreferrer">Edge Processor</a> enables filtering,
+                  masking, aggregation, transformation, and intelligent routing of data before it
+                  traverses the network to the central Splunk deployment.</p>
+               <p>
+                  <h2>Why is <a href="https://docs.splunk.com/Documentation/EdgeProcessor/latest/InstallEdge/AboutEdge" target="_blank" rel="noopener noreferrer">Edge Processor</a> Important?</h2>
+               </p>
+               <ul>
+                  <li>
+                     <b>Reduced Data Volume and Network Traffic:</b> By processing and filtering
+                     data at the source, <a href="https://docs.splunk.com/Documentation/EdgeProcessor/latest/InstallEdge/AboutEdge" target="_blank" rel="noopener noreferrer">Edge Processor</a> can significantly reduce the volume of data
+                     sent to the central Splunk instance, leading to lower bandwidth consumption,
+                     reduced ingestion costs, and more efficient use of network resources. </li>
+                  <li>
+                     <b>Enhanced Data Privacy and Security at the Edge:</b> Performing actions like
+                     data masking or filtering of sensitive information before it leaves the source
+                     environment or a trusted network segment enhances data security and privacy by
+                     minimizing the exposure of raw sensitive data. </li>
+                  <li>
+                     <b>Improved Data Quality and Relevance:</b> It allows for early-stage data
+                     normalization and enrichment, ensuring that only high-quality, relevant data is
+                     forwarded for indexing and analysis. </li>
+                  <li>
+                     <b>Scalability and Flexibility for Distributed Environments:</b> <a href="https://docs.splunk.com/Documentation/EdgeProcessor/latest/InstallEdge/AboutEdge" target="_blank" rel="noopener noreferrer">Edge Processor</a>
+                     is designed for distributed architectures, making it ideal for organizations
+                     with many remote sites, <a href="https://en.wikipedia.org/wiki/Internet_of_things" target="_blank" rel="noopener noreferrer">IoT</a> deployments, or complex on-premises and cloud
+                     hybrid environments. </li>
+                  <li>
+                     <b>Resilience:</b> It can provide local buffering and intelligent routing,
+                     improving the resilience of data collection in case of network disruptions. </li>
+               </ul>
+               <p>
+                  <h2>How <a href="https://docs.splunk.com/Documentation/EdgeProcessor/latest/InstallEdge/AboutEdge" target="_blank" rel="noopener noreferrer">Edge Processor</a> Applies to Data Compliance for <a href="https://en.wikipedia.org/wiki/Financial_services" target="_blank" rel="noopener noreferrer">FSI</a>:</h2>
+               </p>
+               <p>For <a href="https://en.wikipedia.org/wiki/Financial_services" target="_blank" rel="noopener noreferrer">Financial Services Institutions</a>, Splunk <a href="https://docs.splunk.com/Documentation/EdgeProcessor/latest/InstallEdge/AboutEdge" target="_blank" rel="noopener noreferrer">Edge Processor</a> provides a powerful
+                  tool for implementing compliance controls in complex, distributed environments:</p>
+               <ul>
+                  <li>
+                     <b>Early-Stage Sensitive Data Reduction:</b> <a href="https://en.wikipedia.org/wiki/Financial_services" target="_blank" rel="noopener noreferrer">FSIs</a> can use <a href="https://docs.splunk.com/Documentation/EdgeProcessor/latest/InstallEdge/AboutEdge" target="_blank" rel="noopener noreferrer">Edge Processor</a> to
+                     identify and mask or filter out <a href="https://csrc.nist.gov/glossary/term/personally_identifiable_information" target="_blank" rel="noopener noreferrer">PII</a>, cardholder data, or other sensitive
+                     financial information directly at branch offices, data centers, or within
+                     specific application environments before this data is transmitted over the <a href="https://en.wikipedia.org/wiki/Wide_area_network" target="_blank" rel="noopener noreferrer">WAN</a>
+                     to a central Splunk instance. This significantly reduces the compliance
+                     footprint and risk. </li>
+                  <li>
+                     <b>Meeting Data Residency and Sovereignty Requirements:</b> <a href="https://docs.splunk.com/Documentation/EdgeProcessor/latest/InstallEdge/AboutEdge" target="_blank" rel="noopener noreferrer">Edge Processor</a> can
+                     be configured to process data locally and route it according to specific
+                     jurisdictional rules, helping <a href="https://en.wikipedia.org/wiki/Financial_services" target="_blank" rel="noopener noreferrer">FSIs</a> comply with data residency and sovereignty
+                     mandates that dictate where certain types of data can be processed or stored. </li>
+                  <li>
+                     <b>Optimizing Ingestion for Compliance Data:</b> By pre-processing and
+                     filtering logs at the edge, <a href="https://en.wikipedia.org/wiki/Financial_services" target="_blank" rel="noopener noreferrer">FSIs</a> can ensure that only data relevant to
+                     compliance (e.g., security logs, transaction logs for <a href="https://www.fatf-gafi.org/en/topics/anti-money-laundering-and-counter-terrorist-financing.html" target="_blank" rel="noopener noreferrer">AML</a>, access logs for <a href="https://www.pcisecuritystandards.org/" target="_blank" rel="noopener noreferrer">PCI
+                     DSS</a>) is sent for central analysis, making compliance monitoring more focused
+                     and efficient. </li>
+                  <li>
+                     <b>Secure Data Collection from Diverse Sources:</b> In environments with
+                     numerous legacy systems or specialized financial applications, <a href="https://docs.splunk.com/Documentation/EdgeProcessor/latest/InstallEdge/AboutEdge" target="_blank" rel="noopener noreferrer">Edge Processor</a>
+                     can act as a secure aggregation and processing point, normalizing data and
+                     applying initial compliance transformations before forwarding. </li>
+                  <li>
+                     <b>Reducing Scope for Sensitive Environments:</b> For systems within highly
+                     sensitive network segments (e.g., cardholder data environments), <a href="https://docs.splunk.com/Documentation/EdgeProcessor/latest/InstallEdge/AboutEdge" target="_blank" rel="noopener noreferrer">Edge Processor</a>
+                     can ensure that only absolutely necessary, and potentially masked, data leaves
+                     that segment, simplifying <a href="https://www.pcisecuritystandards.org/" target="_blank" rel="noopener noreferrer">PCI DSS</a> scope. </li>
+               </ul>
+               <p>By deploying <a href="https://docs.splunk.com/Documentation/EdgeProcessor/latest/InstallEdge/AboutEdge" target="_blank" rel="noopener noreferrer">Edge Processor</a>, <a href="https://en.wikipedia.org/wiki/Financial_services" target="_blank" rel="noopener noreferrer">FSIs</a> can extend their data compliance strategy to the
+                  very edge of their operations, ensuring that data is managed securely and in
+                  accordance with regulatory requirements from its point of origin.</p>
+            </ul>
+            <hr width="100%" />
+            <ul>
+               <h1>
+                  <!-- Placeholder: Update icon path -->
+                  <img width="35"
+                     src="/static/app/Data_Compliance/SA_image_icon_tool.png" />
+                  <b>ACCESS DATA: Foundation for Compliance Monitoring and Auditing</b>
+               </h1>
+               <!-- Placeholder for Edge Processor Diagram -->
+               <div style="text-align: center; margin-top: 20px;">
+                  <img src="/static/app/Data_Compliance/EP-Diagram_HF-to-all.png"
+                     alt="Edge Processor Diagram Placeholder" style="max-width: 70%; height: auto;" />
+                  <p>
+                     <em>Diagram illustrating Edge Processor workflow for compliance.</em>
+                  </p>
+               </div>
+            </ul>
+         </html>
+      </panel>
+   </row>
+   <row id="tab_next">
+      <panel>
+         <html tokens="true">
+            <ul>
+               <h1>
+                  <!-- Placeholder: Update icon path -->
+                  <img width="45"
+                     src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                  <!-- Updated Help Header -->
+                  <b>Do you need help? Ask a Data Compliance Expert.</b>
+               </h1>
+               <p> Need help with your environment or requirements? Send us your questions, and
+                  we’ll get back to you as soon as possible. <ul>
+                     <li> For detailed step-by-step instructions on implementing the solution using
+                  this Solutions Accelerator, visit our <a
+                           href="https://lantern.splunk.com/@go/page/Data_Compliance" target="_blank" rel="noopener noreferrer">
+                           <b>Solutions Accelerator</b>
+                        </a> page.</li>
+                     <li> To expedite implementation with professional services, please reach out to
+                  our sales team by clicking <a
+                           href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
+                           target="_ask_expert">
+                           <b>Contact Us</b>
+                        </a>
+                     </li>
+                     <li> If you need immediate assistance, explore our community forum, <a
+                           href="http://answers.splunk.com/" target="_blank" rel="noopener noreferrer">
+                           <b>Splunk Answers</b>
+                        </a>.</li>
+                  </ul>
+               </p>
+               <!-- Placeholder: Update bullet image path -->
+               <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+               <a
+                  href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
+                  class="btn" target="_ask_expert">Contact Us</a>
+            </ul>
+
+         </html>
+      </panel>
+   </row>
+</dashboard>

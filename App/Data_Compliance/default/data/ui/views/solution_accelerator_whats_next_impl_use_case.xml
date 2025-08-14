@@ -1,0 +1,108 @@
+<dashboard version="1.1">
+    <label>Data Compliance once in Splunk</label>
+    <description>Use Case - Staying Compliant with Data in Splunk</description>
+    <row>
+        <panel>
+            <html>
+                <ul>
+                    <h1>
+                        <img width="35" src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                        <font color="#8B0000">Ensuring Ongoing Data Compliance once in Splunk</font>
+                    </h1>
+                    <p>
+                        Achieving and maintaining compliance is a continuous process that extends beyond initial data onboarding. Once your sensitive or regulated data is in Splunk, you must ensure it remains protected, monitored, and managed according to regulatory and organizational requirements throughout its lifecycle.
+                    </p>
+                    <p>
+                        <b>Key steps for ongoing compliance in Splunk:</b>
+                    </p>
+                    <ul>
+                        <li>
+                            <b>Establish Foundational Visibility:</b> Ensure you have comprehensive visibility into all relevant data sources, including logs, events, and audit trails. Use Splunk’s data onboarding best practices to guarantee data completeness and integrity.
+                        </li>
+                        <li>
+                            <b>Classify and Tag Data:</b> Identify and label sensitive or regulated data using Splunk’s tagging, event types, and field extractions. This enables targeted monitoring, alerting, and reporting for compliance-relevant data.
+                        </li>
+                        <li>
+                            <b>Monitor Access and Usage:</b> Use Splunk’s audit logs and access controls to track who is accessing sensitive data, when, and for what purpose. Set up alerts for unauthorized or suspicious access attempts.
+                        </li>
+                        <li>
+                            <b>Automate Compliance Reporting:</b> Leverage Splunk’s dashboards, scheduled reports, and summary indexes to provide evidence of compliance, track key metrics, and support audits.
+                        </li>
+                        <li>
+                            <b>Enforce Data Retention and Deletion:</b> Configure index retention policies to ensure data is retained only as long as required. Use Splunk’s data aging and deletion features to automatically remove data past its retention period.
+                        </li>
+                        <li>
+                            <b>Respond to Compliance Events:</b> Set up real-time alerts for policy violations, unusual activity, or data handling errors. Use Splunk’s investigation and workflow tools to respond quickly and document actions taken.
+                        </li>
+                        <li>
+                            <b>Continuously Review and Improve:</b> Regularly review your Splunk environment, update controls as regulations evolve, and document your compliance posture. Engage stakeholders and auditors to validate your approach.
+                        </li>
+                    </ul>
+                    <hr />
+                    <h1>
+                        <font color="#000000">Splunk Features That Support Compliance</font>
+                    </h1>
+                    <ul>
+                        <li><b>Role-based Access Control (RBAC):</b> Restrict access to sensitive data using Splunk roles and capabilities.</li>
+                        <li><b>Index Retention Policies:</b> Automatically manage data lifecycle according to compliance requirements.</li>
+                        <li><b>Audit Index:</b> Track user and system activity for traceability and investigations.</li>
+                        <li><b>Data Models &amp; CIM:</b> Normalize and enrich data for consistent compliance reporting.</li>
+                        <li><b>Search-time Field Masking:</b> Obfuscate or redact sensitive fields in search results and dashboards.</li>
+                        <li><b>Alerting &amp; Reporting:</b> Automate compliance monitoring and evidence collection.</li>
+                    </ul>
+                    <hr />
+                    <h1>
+                        <font color="#000000">Splunk Apps &amp; Lantern Articles</font>
+                    </h1>
+                    <ul>
+                        <li>
+                            <b>Compliance Essentials for Splunk:</b> Provides prebuilt content for compliance for several regional regulations, and use cases. <a href="https://splunkbase.splunk.com/app/6696/" target="_blank">View on Splunkbase</a>
+                        </li>
+                        <li>
+                            <b>Splunk Security Essentials:</b> Provides prebuilt content for compliance, monitoring, and security use cases. <a href="https://splunkbase.splunk.com/app/3435/" target="_blank">View on Splunkbase</a>
+                        </li>
+                        <li>
+                            <b>Splunk Essentials for the Financial Services Industry:</b> Splunk Essentials Framework to showcase use cases and examples that are relevant to the Financial Services Industry. <a href="https://splunkbase.splunk.com/app/4145/" target="_blank">View on Splunkbase</a>
+                        </li>                        
+                        <li>
+                            <b>Splunk App for PCI Compliance:</b> Delivers dashboards, reports, and alerts to help meet PCI DSS requirements. <a href="https://splunkbase.splunk.com/app/1143/" target="_blank">View on Splunkbase</a>
+                        </li>
+                        <li>
+                            <b>Splunk Lantern Compliance Guide:</b> Practical guidance for compliance use cases in Splunk. <a href="https://lantern.splunk.com/Security/UCE/Foundational_Visibility/Compliance" target="_blank">Read on Splunk Lantern</a>
+                        </li>
+                        <li>
+                            <b>Splunk Lantern Financial Services and Insurance:</b> A collection of use cases that provide insights specifically for financial services organizations. <a href="https://lantern.splunk.com/Splunk_Platform/UCE/Financial_Services_and_Insurance" target="_blank">Read on Splunk Lantern</a>
+                        </li>
+                    </ul>
+                    <hr />
+                    <p>
+                        <b>Compliance is not a one-time project, but an ongoing journey.</b> By leveraging Splunk’s visibility, automation, and reporting capabilities, you can confidently demonstrate compliance and quickly adapt to new regulatory requirements.
+                    </p>
+                </ul>
+            </html>
+        </panel>
+    </row>
+    <row id="tab_next">
+        <panel>
+            <html tokens="true">
+                <ul>
+                    <h1>
+                        <img width="45" src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                        <b>Need Help with Compliance?</b>
+                    </h1>
+                    <p>
+                        If you need guidance or support for your compliance journey in Splunk:
+                        <ul>
+                            <li>Visit the <a href="https://lantern.splunk.com/Security/UCE/Foundational_Visibility/Compliance"><b>Splunk Lantern Compliance Guide</b></a> for best practices and step-by-step assistance.
+                            </li>
+                            <li>Contact Splunk Support or your account representative for help tailored to your specific environment and compliance needs.</li>
+                            <li>Explore our community forum, <a href="http://answers.splunk.com/"><b>Splunk Answers</b></a>, for additional insights and assistance from the Splunk community.</li>
+                        </ul>
+                    </p>
+                    <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+                    <a href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=ot_security" class="btn" target="_ask_expert">Contact Us</a>
+                </ul>
+            </html>
+        </panel>
+    </row>
+</dashboard>

@@ -1,0 +1,307 @@
+<dashboard version="1.1" theme="light">
+    <label>Defining Ingest Actions</label>
+    <description>Defining what Splunk Ingest Actions are, and how they work.</description>
+    <row>
+        <panel>
+            <html>
+                <ul>
+                    <h1>
+                        <img width="35" src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                        <font color="#8B0000">Introduction to Ingest Actions</font>
+                    </h1>
+                    <p><a
+                            href="https://docs.splunk.com/Documentation/SVA/current/Architectures/IngestActions#Ingest_Actions_for_Splunk_platform">Splunk
+                        Ingest Actions</a> provides a streamlined way to apply immediate, rule-based
+                        data transformations and routing decisions directly upon data ingestion
+                        within your Splunk Cloud Platform. This capability allows you to define
+                        quick actions, such as extracting fields, masking simple patterns, or
+                        conditionally dropping events, often without building complex data
+                        pipelines.</p>
+
+                    <p>Ingest Actions are ideal for common, immediate data hygiene tasks. They are
+                        seamlessly integrated and accessible directly from your Splunk Cloud
+                        environment, requiring no additional infrastructure. This enables rapid
+                        deployment and configuration, simplifying the process of getting data into
+                        the right format and to the right destinations, all while operating
+                        efficiently within your existing Splunk Cloud Platform resources.</p>
+                    <hr />
+                    <h1>
+                        <img width="35" src="/static/app/Data_Compliance/SA_image_icon_tool.png" />
+                        <font color="#000000">Ingest Actions Reference Architecture</font>
+                    </h1>
+                    <div style="text-align: center; margin-top: 10px;">
+                        <img src="/static/app/Data_Compliance/ingest_action_diagram.png"
+                            alt="Ingest Action Arch Diagram Placeholder"
+                            style="max-width: 60%; height: auto;" />
+                        <p style="margin-top: 10px;">
+                            <em>Splunk Ingest Actions Arch Diagram.</em>
+                        </p>
+                    </div>
+
+                    <hr />
+                    <h1>
+                        <img width="35" src="/static/app/Data_Compliance/SA_image_icon_tool.png" />
+                        <font color="#000000">Getting Started with Splunk
+                            Ingest Actions</font>
+                    </h1>
+                    <table>
+                        <tr>
+                            <td>
+                                <h2>
+                                    <font color="#000000">Introducing the Ingest Actions in UI</font>
+                                </h2>
+                                <p>
+                                    Managing data ingestion in Splunk—ensuring you collect necessary
+                                    data
+                                    efficiently
+                                    and comply with various regulations—has historically required
+                                    manual
+                                    configuration
+                                    file editing. Splunk 9 and later versions introduce the Ingest
+                                    Actions user
+                                    interface, a significant improvement that provides a
+                                    user-friendly way to
+                                    define, preview, and manage ingest-time data transformations
+                                    directly within
+                                    the Splunk Web interface. This UI simplifies the process of
+                                    implementing
+                                    data
+                                    compliance controls like masking, filtering, and routing, making
+                                    it more
+                                    accessible and less error-prone than manual configuration.
+                                </p>
+                                <p>Starting with Splunk 9+, the innovative Ingest Actions are
+                                    brought directly to the user interface, found under <b>Settings</b>
+                                    &gt; <b>Data </b> &gt; <b>Ingest Actions</b>.</p>
+                            </td>
+                            <td style="width: 30%; vertical-align: top; padding: 15px;">
+                                <img width="300"
+                                    src="/static/app/Data_Compliance/ingest_datasettings.jpg" />
+                            </td>
+                        </tr>
+                    </table>
+                    <h2>
+                        <font color="#000000">
+                            Rulesets for Ingest Actions
+                        </font>
+                    </h2>
+                    <p>At the core of Splunk's Ingest Actions UI is the powerful concept of a <strong>
+                            <a
+                                href="https://docs.splunk.com/Documentation/SVA/current/Architectures/IngestActions#Rulesets">
+                        Ruleset</a>
+                        </strong>. A ruleset defines and applies
+                        a set of transformation rules to a specific incoming data stream, allowing
+                        you to implement business logic to data prior to indexing.</p>
+
+                    <p>The Ingest Actions UI makes defining these rulesets intuitive. You can easily
+                        specify the event stream by selecting existing indexed data (based on <code>
+                        sourcetype</code>, with support for wildcards for broader application,
+                        though syntax considerations apply when saving), uploading a sample file, or
+                        pasting text directly from your clipboard. A key advantage of the UI is its
+                        ability to preview how your defined rules will impact the data before
+                        saving, providing immediate feedback and significantly easing the testing
+                        process.</p>
+
+                    <p>Ingest Actions introduces this ruleset processing directly into Splunk heavy
+                        forwarder and indexer pipelines, adding a critical layer of capability.
+                        While traditional <strong>TRANSFORMS</strong> are limited to affecting
+                        unparsed data and are processed at most once per pipeline, <strong>RULESETS</strong>
+                        offer enhanced flexibility. They can be used at <em>each stage</em> of
+                        processing, allowing for re-parsing of data that has already gone through
+                        initial parsing. In most other ways, rulesets function similarly to
+                        transforms, empowering users to apply business logic to their data before it
+                        is indexed.</p>
+
+                    <p>Understanding how <strong>TRANSFORMS</strong> and <strong>RULESETS</strong>
+                        work together and their order of operations is crucial. Remember that
+                        transforms can be processed at most one time per event, whereas rulesets
+                        offer the versatility to process data at any point along the data path.</p>
+                    <div style="text-align: center; margin-top: 10px; margin-bottom: 10px;">
+                        <img src="/static/app/Data_Compliance/ruleset_ia.jpg"
+                            alt="Ingest Action Ruleset Placeholder"
+                            style="max-width: 80%; height: auto;" />
+                        <p style="margin-top: 10px;">
+                            <em>Splunk Ingest Actions ruleset configuration.</em>
+                        </p>
+                    </div>
+                    <h2>
+                        <font color="#000000">Key Ingest Action Techniques for Data Compliance via
+                            UI</font>
+                    </h2>
+                    <p>
+                        The Ingest Actions UI empowers you to apply crucial data compliance controls
+                        at the point of ingestion:
+                    </p>
+
+                    <p>
+                        <b>1. Masking Sensitive Information (<a href="https://csrc.nist.gov/glossary/term/personally_identifiable_information" target="_blank" rel="noopener noreferrer">PII</a>, <a href="https://www.pcisecuritystandards.org/glossary/cardholder-data/" target="_blank" rel="noopener noreferrer">CHD</a>, etc.):</b>
+                    </p>
+                    <ul>
+                        <li>
+                            <b>Purpose:</b> To protect sensitive data by obscuring or replacing it
+                            with non-sensitive placeholders <em>before</em> it is written to disk.
+                            This is critical for privacy regulations and reducing the risk of data
+                            exposure. </li>
+                        <li>
+                            <b>Application:</b> Masking Social Security Numbers (<a href="https://en.wikipedia.org/wiki/Social_Security_number" target="_blank" rel="noopener noreferrer">SSNs</a>), credit card
+                            numbers (<a href="https://www.pcisecuritystandards.org/glossary/primary-account-number-pan/" target="_blank" rel="noopener noreferrer">PANs</a>), names, addresses, or other <a href="https://csrc.nist.gov/glossary/term/personally_identifiable_information" target="_blank" rel="noopener noreferrer">PII</a>. </li>
+                        <li>
+                            <b>Implementation via UI:</b> The UI provides a straightforward
+                            interface to define masking rules using regular expressions. You can
+                            upload or paste sample data containing the sensitive information, then
+                            create a rule using a regex pattern to identify the data (e.g., <code>
+                            ("account_number"\s*:\s*")(\d+)(\d{4}")</code> for an account number)
+                            and specify a replacement format (e.g., <code>\1XXXXXXXX\3</code>). The UI
+                            visually previews the masking effect on your sample data and provides
+                            statistics on the amount of data being masked. </li>
+                    </ul>
+                    <div style="text-align: center; margin-top: 10px; margin-bottom: 10px;">
+                        <img src="/static/app/Data_Compliance/ruleset_post_ia.jpg"
+                            alt="Ingest Action Ruleset Placeholder"
+                            style="max-width: 80%; height: auto;" />
+                        <p style="margin-top: 10px;">
+                            <em>Splunk Ingest Actions ruleset for masking Account Number Example.</em>
+                        </p>
+                    </div>
+                    <p>
+                        <b>2. Filtering Irrelevant Data:</b>
+                    </p>
+                    <ul>
+                        <li>
+                            <b>Purpose:</b> To selectively discard events that are not required for
+                            compliance analysis, are excessively noisy, or do not need to be stored,
+                            thereby adhering to data minimization principles and reducing
+                            license/storage costs. </li>
+                        <li>
+                            <b>Application:</b> Filtering out verbose debug messages, health checks
+                            not relevant for audit, or events from non-critical systems. </li>
+                        <li>
+                            <b>Implementation via UI:</b> The UI allows you to define filtering
+                            rules using either regular expressions or eval expressions. <ul>
+                                <li> Using a <b>Regular Expression Filter</b>: Apply a regex to
+                            fields like <code>_raw</code>, <code>index</code>, <code>sourcetype</code>
+                            , <code>source</code>, or <code>host</code>. Events matching the regex
+                            will not be indexed. </li>
+                                <li> Using an <b>Eval Expression Filter</b>: Use an eval-compatible
+                            expression (like a conditional statement in an <code>if</code> function)
+                            that evaluates to <code>true</code> or <code>false</code>. Events for
+                            which the expression evaluates to <code>true</code> will not be indexed. </li>
+                            </ul>
+                            The UI provides a preview of which events would be filtered based on
+                            your rule. </li>
+                    </ul>
+                    <div style="text-align: center; margin-top: 10px; margin-bottom: 10px;">
+                        <img src="/static/app/Data_Compliance/ruleset_filter_ia.jpg"
+                            alt="Ingest Action Ruleset Placeholder"
+                            style="max-width: 80%; height: auto;" />
+                        <p style="margin-top: 10px;">
+                            <em>Splunk Ingest Actions ruleset for filtering Account Number Example.</em>
+                        </p>
+                    </div>
+                    <p>
+                        <b>3. Routing Data Based on Compliance Needs:</b>
+                    </p>
+                    <ul>
+                        <li>
+                            <b>Purpose:</b> To direct specific data streams to different Splunk
+                            indexes based on their sensitivity, source, or regulatory relevance, or
+                            even route data to external <a href="https://aws.amazon.com/s3/" target="_blank" rel="noopener noreferrer">S3</a>-compliant storage. </li>
+                        <li>
+                            <b>Application:</b> Sending logs containing <a href="https://www.pcisecuritystandards.org/" target="_blank" rel="noopener noreferrer">PCI</a> data to a dedicated,
+                            secured <a href="https://www.pcisecuritystandards.org/" target="_blank" rel="noopener noreferrer">PCI</a> index. Routing data from different geographical regions to
+                            indexes that comply with data residency requirements. Sending copies of
+                            logs to an external archive for long-term storage requirements. </li>
+                        <li>
+                            <b>Implementation via UI:</b> Within a ruleset, you can define routing
+                            actions. Data can be filtered for routing using a regular expression or
+                            an eval expression, or no filter can be applied (routing all data in the
+                            ruleset's stream). You specify the target destination, which can be
+                            another Splunk index or a pre-configured external <a href="https://aws.amazon.com/s3/" target="_blank" rel="noopener noreferrer">S3</a> compliant
+                            destination. The UI also includes a "clone event" option, allowing the
+                            data to be routed to the new destination <em>in addition to</em> being
+                            indexed normally, if desired. </li>
+                    </ul>
+                    <div style="text-align: center; margin-top: 10px; margin-bottom: 10px;">
+                        <img src="/static/app/Data_Compliance/ruleset_route_ia.png"
+                            alt="Ingest Action Ruleset Placeholder"
+                            style="max-width: 80%; height: auto;" />
+                        <p style="margin-top: 10px;">
+                            <em>Splunk Ingest Actions ruleset for routing Account Number Example.</em>
+                        </p>
+                    </div>
+                    <hr />
+                    <h1>
+                        <img width="35" src="/static/app/Data_Compliance/SA_image_bullet_01.png" />
+                        <font color="#000000">NEXT STEPS</font>
+                    </h1>
+                    <ul>
+                        <li>
+                            <b>Identify Sensitive Data:</b> Analyze your data sources to pinpoint
+                            <a href="https://csrc.nist.gov/glossary/term/personally_identifiable_information" target="_blank" rel="noopener noreferrer">PII</a>, financial data, health records, or other regulated information. </li>
+                        <li>
+                            <b>Define Compliance Policies:</b> Determine your organization's
+                            specific requirements for filtering, masking, and routing based on
+                            applicable regulations. </li>
+                        <li>
+                            <b>Develop and Test Regex:</b> Create and thoroughly test regular
+                            expressions to accurately identify and transform data as intended. </li>
+                        <li>
+                            <b>Implement Incrementally:</b> Start with a specific data source or use
+                            case, test in a non-production environment, and then roll out changes
+                            gradually. </li>
+                        <li>
+                            <b>Monitor and Validate:</b> Continuously monitor the effectiveness of
+                            your Ingest Actions and validate that they are meeting compliance
+                            objectives. </li>
+                        <li>
+                            <b>Consult Splunk Documentation:</b> Refer to the official Splunk
+                            documentation for detailed guidance on configuring Ingest Actions, <code>
+                            transforms.conf</code>, <code>props.conf</code>, and best practices. </li>
+                    </ul>
+                </ul>
+            </html>
+        </panel>
+    </row>
+    <row id="tab_next">
+        <panel>
+            <html tokens="true">
+                <ul>
+                    <h1>
+                        <!-- Placeholder: Update icon path -->
+                        <img width="45"
+                            src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                        <!-- Updated Help Header -->
+                        <b>Do you need help? Ask a Data Compliance Expert.</b>
+                    </h1>
+                    <p> Need help with your environment or requirements? Send us your questions, and
+                        we’ll get back to you as soon as possible. <ul>
+                            <li> For detailed step-by-step instructions on implementing the solution
+                        using this Solutions Accelerator, visit our <a
+                                    href="https://lantern.splunk.com/@go/page/Data_Compliance">
+                                    <b>Solutions Accelerator</b>
+                                </a>
+                        page.</li>
+                            <li> To expedite implementation with professional services, please reach
+                        out to our sales team by clicking <a
+                                    href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
+                                    target="_ask_expert">
+                                    <b>Contact Us</b>
+                                </a>
+                            </li>
+                            <li> If you need immediate assistance, explore our community forum, <a
+                                    href="http://answers.splunk.com/">
+                                    <b>Splunk Answers</b>
+                                </a>.</li>
+                        </ul>
+                    </p>
+                    <!-- Placeholder: Update bullet image path -->
+                    <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+                    <a
+                        href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
+                        class="btn" target="_ask_expert">Contact Us</a>
+                </ul>
+
+            </html>
+        </panel>
+    </row>
+</dashboard>

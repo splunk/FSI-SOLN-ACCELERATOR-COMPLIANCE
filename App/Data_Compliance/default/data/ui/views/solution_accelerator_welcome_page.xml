@@ -1,0 +1,537 @@
+<!-- 
+  Dashboard Refactored for: Solution Accelerator for Data Compliance
+  Focus: General Data Compliance, PCI DSS, FSI Regulations
+  Original Structure: Retained (Tabs, JS/CSS)
+  Content: Completely rewritten for compliance focus.
+  Placeholders: Update image paths, Lantern links, and expert codes.
+-->
+<dashboard version="1.1" theme="light" script="tabs.js" stylesheet="tabs.css">
+    <label>Introduction</label>
+    <row>
+        <panel>
+            <html>
+                <img height="500" usemap="#nav_banner_map"
+                    src="/static/app/Data_Compliance/FSI_Data_Compliance_banner.jpg" />
+                <h1>
+                    <img width="45" src="/static/app/Data_Compliance/SA_image_icon_07.png" />
+                    WELCOME TO SPLUNK SOLUTIONS ACCELERATOR: <font color="#006d9c">Data Compliance</font>
+                </h1>
+                <p> Explore the <b>Solution Accelerator for Data Compliance</b> to access solution
+                    components designed to jump-start your journey to monitor, audit, and report on
+                    compliance mandates like <a href="https://www.pcisecuritystandards.org/"
+                        target="_blank" rel="noopener noreferrer">PCI DSS</a> and <a
+                        href="https://en.wikipedia.org/wiki/Financial_services" target="_blank"
+                        rel="noopener noreferrer">FSI</a> regulations.</p>
+                <p> Use the <b>navigation tab</b> to understand the challenges, discover how Splunk
+                    helps, and find ready-to-use examples.</p>
+            </html>
+        </panel>
+    </row>
+    <row id="tabs">
+        <panel>
+            <html>
+                <ul id="tabs" class="nav nav-tabs">
+                    <li>
+                        <!-- Placeholder: Update nav button image -->
+                        <img width="200"
+                            src="/static/app/Data_Compliance/SA_image_icon_navi_gr_button.png" />
+                    </li>
+                    <li class="active">
+                        <a href="#" class="toggle-tab" data-toggle="tab" data-elements="tab_01">
+                            1 | INTRODUCTION TO DATA COMPLIANCE
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="toggle-tab" data-toggle="tab" data-elements="tab_02">
+                            2 | WHY SPLUNK FOR COMPLIANCE?
+                        </a>
+                    </li>
+                    <!-- Add more tabs here if needed for specific regulations like PCI, FSI -->
+                    <li>
+                        <a href="#" class="toggle-tab" data-toggle="tab" data-elements="tab_03">
+                            3 | REFERENCE ARCHITECTURE
+                        </a>
+                    </li>
+                </ul>
+            </html>
+        </panel>
+    </row>
+    <!-- UPDATE: INTRODUCTION TAB -->
+    <row id="tab_01">
+        <panel>
+            <html>
+                <h1>
+                    <!-- Placeholder: Update icon -->
+                    <img width="45" src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                    <b>INTRODUCTION TO DATA COMPLIANCE CHALLENGES</b>
+                </h1>
+                <ul>
+                    <h2>Navigating the evolving compliance landscape
+                        for Financial Services</h2>
+                    <table>
+                        <tr>
+                            <td>
+                                <h3>The Complex and Evolving Data Compliance Landscape</h3>
+                                <p>The contemporary financial services landscape presents a dynamic
+                                    and intricate data compliance challenge, extending far beyond a
+                                    simple checklist exercise. Meeting the stringent requirements
+                                    imposed by regulations such as <a
+                                        href="https://www.pcisecuritystandards.org/" target="_blank"
+                                        rel="noopener noreferrer">PCI DSS</a>, <a
+                                        href="https://www.congress.gov/bill/107th-congress/house-bill/3763"
+                                        target="_blank" rel="noopener noreferrer">SOX</a>, <a
+                                        href="https://gdpr-info.eu/" target="_blank"
+                                        rel="noopener noreferrer">GDPR</a>, <a
+                                        href="https://oag.ca.gov/privacy/ccpa" target="_blank"
+                                        rel="noopener noreferrer">CCPA</a>, and a myriad of <a
+                                        href="https://en.wikipedia.org/wiki/Financial_services"
+                                        target="_blank" rel="noopener noreferrer">financial services
+                                    industry-specific</a> mandates is critical, yet increasingly
+                                    complex. This intricate environment is characterized by
+                                    fragmented data sources, the relentless evolution of regulatory
+                                    demands, labor-intensive manual audit processes, and the
+                                    constant pressure to definitively prove adherence to these
+                                    stringent standards.</p>
+                                <h3>Challenges of Fragmented Data and Manual Processes</h3>
+                                <p>The reliance on siloed tools and disjointed manual checks
+                                    significantly exacerbates these challenges. This often results
+                                    in significant gaps in crucial visibility across the <a
+                                        href="https://en.wikipedia.org/wiki/Information_technology"
+                                        target="_blank" rel="noopener noreferrer">IT</a>
+                                    environment, leading to sluggish response times when potential
+                                    compliance violations occur, and imposing considerable
+                                    operational overhead during demanding audit cycles.
+                                    Demonstrating continuous compliance under these conditions is
+                                    incredibly difficult, requiring a unified and cohesive approach
+                                    to comprehensively monitor control effectiveness and promptly
+                                    detect deviations.</p>
+                                <h3>The Need for a Unified Approach</h3>
+                                <p>Effective compliance today necessitates a unified approach to
+                                    comprehensively monitor control effectiveness, promptly detect
+                                    deviations from established policies, and efficiently generate
+                                    accurate and comprehensive reporting across diverse and complex <a
+                                        href="https://en.wikipedia.org/wiki/Information_technology"
+                                        target="_blank" rel="noopener noreferrer">IT</a>
+                                    environments. This is where a solution like the Splunk Solution
+                                    Accelerator becomes invaluable. It offers a robust foundation
+                                    for harnessing the power of Splunk, enabling organizations to
+                                    centralize critical compliance data, automate the continuous
+                                    monitoring of key controls, and significantly streamline the
+                                    often burdensome process of audit preparation for essential
+                                    frameworks like <a href="https://www.pcisecuritystandards.org/"
+                                        target="_blank" rel="noopener noreferrer">PCI DSS</a> and
+                                    various <a
+                                        href="https://en.wikipedia.org/wiki/Financial_services"
+                                        target="_blank" rel="noopener noreferrer">FSI-specific</a>
+                                    requirements.</p>
+                            </td>
+                            <td style="width: 30%; vertical-align: top; padding: 15px;">
+                                <img width="2500" usemap="#nav_banner_map"
+                                    src="/static/app/Data_Compliance/FSI_Data_Compliance_shield.jpg" />
+                            </td>
+                        </tr>
+                    </table>
+                </ul>
+                <h1>
+                    <!-- Placeholder: Update icon -->
+                    <img width="45" src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                    <b>The Role of Assets and Identities in Data Compliance</b>
+                </h1>
+                <ul>
+                    <h2>Achieving Auditability Through Asset and Identity Monitoring</h2>
+                    <table>
+                        <tr>
+                            <td>
+                                <h3>Navigating Compliance Through Asset and Identity Intelligence</h3>
+                                <p>At the core of navigating this complex compliance landscape lies
+                                    the crucial interplay between assets and identities. In response
+                                    to increasing regulation, financial institutions are recognizing
+                                    the necessity of making asset and identity intelligence the
+                                    cornerstone of their compliance strategy. Several compelling
+                                    forces are propelling this shift, including regulatory scrutiny
+                                    focused on data governance and access controls, the steady
+                                    proliferation of digital assets and services, the rise of more
+                                    sophisticated cyber threats targeting financial data and
+                                    systems, and the increasing costs associated with compliance
+                                    failures.</p>
+
+                                <h3>Defining Assets and Identities in Compliance</h3>
+                                <p>Assets encompass the vital information and systems underpinning
+                                    business operations. This ranges from sensitive customer data,
+                                    financial instruments, and <a
+                                        href="https://en.wikipedia.org/wiki/Information_technology"
+                                        target="_blank" rel="noopener noreferrer">IT</a>
+                                    infrastructure to critical third-party services. Complementing
+                                    this are identities, the detailed sets of information that
+                                    uniquely identify individuals and accounts. This includes
+                                    employees, customers, and partners, but also extends to
+                                    automated systems and <a
+                                        href="https://en.wikipedia.org/wiki/API" target="_blank"
+                                        rel="noopener noreferrer">APIs</a>, which are increasingly
+                                    interacting with sensitive data. Understanding and tracking the
+                                    relationship between these assets and the identities that access
+                                    them is fundamental to data compliance.</p>
+
+                                <h3>Leveraging Splunk for Asset and Identity Monitoring</h3>
+                                <p>The imperative for centralized monitoring and robust auditability
+                                    is paramount, and it's here that focusing on assets and
+                                    identities within a platform like Splunk becomes essential.
+                                    Splunk enables organizations to collect and analyze data
+                                    precisely relevant to specific compliance requirements related
+                                    to both assets and identities. This includes meticulously
+                                    tracking access to sensitive cardholder data (a critical asset
+                                    under <a href="https://www.pcisecuritystandards.org/"
+                                        target="_blank" rel="noopener noreferrer">PCI DSS</a>
+                                    Requirement 7) and monitoring user activity (related to
+                                    identities) for <a
+                                        href="https://en.wikipedia.org/wiki/Financial_services"
+                                        target="_blank" rel="noopener noreferrer">FSI</a> audit
+                                    trails. By providing a single, authoritative source of truth for
+                                    all relevant data, Splunk empowers organizations to effectively
+                                    monitor configurations (related to assets under <a
+                                        href="https://www.pcisecuritystandards.org/" target="_blank"
+                                        rel="noopener noreferrer">PCI DSS</a> Requirement 2) and
+                                    identify potential issues related to who is accessing what,
+                                    when, and why. This proactive approach to asset and identity
+                                    intelligence, facilitated by Splunk, is key to navigating the
+                                    complexities of modern data compliance.</p>
+                            </td>
+                            <td style="width: 30%; vertical-align: top; padding: 15px;">
+                                <img width="2500" usemap="#nav_banner_map"
+                                    src="/static/app/Data_Compliance/compliance.jpg" />
+                            </td>
+                        </tr>
+                    </table>
+                </ul>
+
+                <hr />
+                <h1>
+                    <img width="45" src="/static/app/Data_Compliance/SA_image_icon_bulb.png" />
+                    <b>HELPFUL RESOURCES</b>
+                </h1>
+                <ul>
+                    <ul>
+                        <h2>
+                            <a
+                                href="https://www.splunk.com/en_us/form/five-steps-to-greater-digital-resilience.html"
+                                target="_blank" rel="noopener noreferrer">
+                                <b>5 Steps to Greater Digital Resilience</b>
+                            </a>
+                        </h2>
+                        <p>In this guide, we outline five strategies that can increase the digital
+                            resilience of your organization.</p>
+                        <h2>
+                            <a
+                                href="https://www.splunk.com/en_us/form/future-proof-compliance-for-financial-services.html"
+                                target="_blank" rel="noopener noreferrer">
+                                <b>Future-Proof Compliance Guide for Financial Services</b>
+                            </a>
+                        </h2>
+                        <p>Discover how Splunk helps financial services organizations adapt to
+                            compliance challenges with AI, automation, and data-driven insights to
+                            build operational resilience.</p>
+                        <h2>
+                            <a
+                                href="https://lantern.splunk.com/Splunk_Platform/Use_Cases/Financial_Services_and_Insurance"
+                                target="_blank" rel="noopener noreferrer">
+                                <b>Splunk for Financial Services and Insurance</b>
+                            </a>
+                        </h2>
+                        <p>Explore how Splunk assists <a
+                                href="https://en.wikipedia.org/wiki/Financial_services"
+                                target="_blank" rel="noopener noreferrer">FSI</a> organizations with
+                            regulatory compliance, fraud detection, operational resilience, and
+                            security monitoring within the unique context of the financial industry.</p>
+
+                        <h2>
+                            <a
+                                href="https://lantern.splunk.com/Security/UCE/Foundational_Visibility/Compliance"
+                                target="_blank" rel="noopener noreferrer">
+                                <b>Splunk Lantern for Compliance Use Cases</b>
+                            </a>
+                        </h2>
+                        <p>Discover how Splunk helps organizations meet various compliance mandates.
+                            Find guidance on collecting relevant data, implementing monitoring
+                            searches, and building dashboards for specific regulations.</p>
+
+                        <h1>
+                            <b>Splunk resources for PCI Compliance</b>
+                        </h1>
+                        <p>Learn how Splunk addresses specific <a
+                                href="https://www.pcisecuritystandards.org/" target="_blank"
+                                rel="noopener noreferrer">PCI DSS</a> requirements through log
+                            collection, monitoring, alerting, and reporting. Find technical examples
+                            and best practices for using Splunk in your <a
+                                href="https://www.pcisecuritystandards.org/glossary/cardholder-data-environment-cde/"
+                                target="_blank" rel="noopener noreferrer">Cardholder Data
+                            Environment
+                                (CDE)</a>.</p>
+
+                        <h2>
+                            <a
+                                href="https://lantern.splunk.com/Security/UCE/Foundational_Visibility/Compliance/Using_the_Splunk_App_for_PCI_Compliance"
+                                target="_blank" rel="noopener noreferrer">
+                                <b>Splunk for PCI Compliance</b>
+                            </a>
+                        </h2>
+                        <p>This article provides an introduction to the Splunk App for PCI
+                            Compliance, showing you how to use it to monitor and assess <a
+                                href="https://www.pcisecuritystandards.org/" target="_blank"
+                                rel="noopener noreferrer">PCI DSS</a> requirements while
+                            continuously validating.</p>
+                        <h2>
+                            <a
+                                href="https://splunkbase.splunk.com/app/1143" target="_blank"
+                                rel="noopener noreferrer">
+                                <b>Splunk App for PCI Compliance - Splunk Enterprise</b>
+                            </a>
+                        </h2>
+                        <p>The Splunk App for PCI Compliance (for <a
+                                href="https://www.splunk.com/en_us/software/splunk-enterprise.html"
+                                target="_blank" rel="noopener noreferrer">Splunk Enterprise</a>) is
+                            a Splunk developed and supported App designed to help organizations meet <a
+                                href="https://www.pcisecuritystandards.org/" target="_blank"
+                                rel="noopener noreferrer">PCI DSS</a> 4.0 requirements.</p>
+                        <h2>
+                            <a
+                                href="https://splunkbase.splunk.com/app/2897" target="_blank"
+                                rel="noopener noreferrer">
+                                <b>Splunk App for PCI Compliance - Splunk Enterprise Security</b>
+                            </a>
+                        </h2>
+                        <p>The Splunk App for PCI Compliance (for <a
+                                href="https://www.splunk.com/en_us/software/enterprise-security.html"
+                                target="_blank" rel="noopener noreferrer">Splunk Enterprise Security</a>)
+                            is a Splunk developed and supported App designed to help organizations
+                            meet <a href="https://www.pcisecuritystandards.org/" target="_blank"
+                                rel="noopener noreferrer">PCI DSS</a> 4.0 requirements.</p>
+                    </ul>
+                </ul>
+            </html>
+        </panel>
+    </row>
+    <!-- WHY SPLUNK FOR COMPLIANCE TAB -->
+    <row id="tab_02">
+        <panel>
+            <html>
+                <h1>
+                    <img width="45" src="/static/app/Data_Compliance/SA_image_icon_bulb.png" />
+                    <b>WHY SPLUNK?</b>
+                </h1>
+                <ul>
+                    <h2>Achieving Continuous Compliance with Data-Driven Insights</h2>
+                    <p>Splunk provides a powerful platform to address data compliance challenges by
+                        turning machine data into actionable insights for monitoring, auditing, and
+                        reporting.</p>
+                    <p>Instead of relying on disparate tools and manual checks, Splunk centralizes
+                        relevant data, enabling automated monitoring of compliance controls, rapid
+                        investigation of potential violations, and streamlined evidence gathering
+                        for audits like <a href="https://www.pcisecuritystandards.org/"
+                            target="_blank" rel="noopener noreferrer">PCI DSS</a> assessments or <a
+                            href="https://en.wikipedia.org/wiki/Financial_services" target="_blank"
+                            rel="noopener noreferrer">FSI</a> regulatory reviews.</p>
+
+                    <hr />
+
+                    <h2>Key Capabilities for Compliance:</h2>
+                    <ul>
+                        <li><b>Centralized Data Collection:</b> Ingest logs, configurations, access
+                            events, and other relevant data from across your hybrid environment (<a
+                                href="https://en.wikipedia.org/wiki/On-premises_software"
+                                target="_blank" rel="noopener noreferrer">on-prem</a>, cloud,
+                            multi-cloud).</li>
+                        <li><b>Continuous Controls Monitoring:</b> Implement searches and alerts to
+                            automatically monitor adherence to specific compliance requirements
+                            (e.g., password policies, access controls, change management).</li>
+                        <li><b>Audit Trail Generation:</b> Maintain comprehensive, searchable logs
+                            of user activity, system changes, and data access for audit and
+                            investigation purposes.</li>
+                        <li><b>Automated Reporting:</b> Generate dashboards and reports tailored to
+                            specific compliance frameworks (PCI, <a
+                                href="https://en.wikipedia.org/wiki/Financial_services"
+                                target="_blank" rel="noopener noreferrer">FSI</a>, <a
+                                href="https://www.congress.gov/bill/107th-congress/house-bill/3763"
+                                target="_blank" rel="noopener noreferrer">SOX</a>, etc.) to
+                            demonstrate adherence and simplify audit preparation.</li>
+                        <li><b>Rapid Incident Response:</b> Quickly investigate potential compliance
+                            breaches or security incidents impacting regulated data.</li>
+                    </ul>
+
+                    <hr />
+
+                    <h2>Included Components (Conceptual):</h2>
+                    <ul>
+                        <li><b>Compliance-Focused Data Models:</b> Structures to normalize data
+                            relevant to common compliance controls (e.g., Authentication, Change
+                            Management, Network Traffic).</li>
+                        <li><b>Technology Add-Ons (<a
+                                    href="https://docs.splunk.com/Documentation/AddOns/latest/Overview/AboutSplunkAdd-ons"
+                                    target="_blank" rel="noopener noreferrer">TAs</a>):</b> Parsers
+                            and configurations to easily ingest data from security devices, servers,
+                            applications, and cloud services relevant to compliance.</li>
+                        <li><b>Pre-built Searches &amp; Dashboards:</b> Examples targeting specific <a
+                                href="https://www.pcisecuritystandards.org/" target="_blank"
+                                rel="noopener noreferrer">PCI DSS</a> requirements, <a
+                                href="https://en.wikipedia.org/wiki/Financial_services"
+                                target="_blank" rel="noopener noreferrer">FSI</a> logging standards,
+                            or general compliance controls (e.g., Failed Login Monitoring,
+                            Privileged User Activity Tracking).</li>
+                        <li><b>Compliance Reporting Framework:</b> Templates and examples for
+                            generating reports suitable for auditors.</li>
+                        <li><b>Alerting Examples:</b> Pre-configured alert templates for common
+                            compliance violations (e.g., unauthorized access attempts, critical file
+                            modifications).</li>
+                    </ul>
+                </ul>
+            </html>
+        </panel>
+    </row>
+    <!-- REFERENCE ARCH TAB -->
+    <row id="tab_03">
+        <panel>
+            <html tokens="true">
+                <h1>
+                    <img width="45" src="/static/app/Data_Compliance/SA_image_icon_tool.png" />
+                    <b>DATA PIPELINE MANAGEMENT REFERENCE ARCHITECTURE:</b>
+                </h1>
+
+                <p>Achieving timely and comprehensive data compliance in the financial services
+                    sector requires accommodating a wide array of architectures and disparate
+                    data collection methods across numerous applications and systems.</p>
+
+                <img src="/static/app/Data_Compliance/ref_arch.jpg"
+                    style="display: block; margin-left: auto; margin-right: auto; width: 66%;" />
+
+                <hr />
+                <h1>
+                    <img width="45" src="/static/app/Data_Compliance/SA_image_icon_bulb.png" />
+                    <b>ADDITIONAL REFERENCES:</b>
+                </h1>
+                <ul>
+                    <p>Achieving timely and comprehensive data compliance in the financial services
+                        sector requires accommodating a wide array of architectures and disparate
+                        data collection methods across numerous applications and systems.</p>
+                    <p>The Data Compliance Solutions Accelerator for Financial Services directly
+                        addresses these challenges. It offers proven methodologies and pre-built
+                        components to accelerate your Splunk deployment, ensuring robust and
+                        compliant data ingestion from your complex financial ecosystem to meet
+                        regulatory demands more efficiently.</p>
+                    <p>Access these valuable resources provided by the accelerator:</p>
+                    <ul>
+                        <ul>
+                            <li><b>
+                                    <a
+                                        href="https://www.splunk.com/en_us/form/new-rules-of-data-management-for-financial-services.html"
+                                        target="_blank" rel="noopener noreferrer">Financial services
+                                institutions can become data management leaders in the <a
+                                            href="https://en.wikipedia.org/wiki/Artificial_intelligence"
+                                            target="_blank" rel="noopener noreferrer">AI</a> era</a>
+                                </b>:
+                                Today’s financial institutions contend with vast amounts of data.
+                                But they’re exploring strategies to become data management leaders
+                                in the <a
+                                    href="https://en.wikipedia.org/wiki/Artificial_intelligence"
+                                    target="_blank" rel="noopener noreferrer">AI</a> era.</li>
+                            <li><b>
+                                    <a
+                                        href="https://www.splunk.com/en_us/form/the-new-rules-of-data-management.html"
+                                        target="_blank" rel="noopener noreferrer">The
+                                        New Rules of Data Management</a>
+                                </b>:
+                                Learn how to tame data complexity and drive better cybersecurity and
+                                observability outcomes with the new rules of data management.</li>
+                            <li><b>
+                                    <a
+                                        href="https://www.splunk.com/en_us/resources/beyond-compliance-a-better-playbook-for-long-term-digital-resilience-in-financial-services.html"
+                                        target="_blank" rel="noopener noreferrer">Beyond
+                                        Compliance: Financial Services Industry Brief</a>
+                                </b>:
+                                Explore strategies for long-term digital resilience in financial
+                                services that go beyond compliance. Learn how to tackle
+                                cybersecurity threats, meet rising customer expectations, and adapt
+                                to regulatory changes.</li>
+                            <li><b>
+                                    <a
+                                        href="https://www.splunk.com/en_us/resources/videos/splunk-data-management-pipeline-builder-edge-processor-overview.html"
+                                        target="_blank" rel="noopener noreferrer">Splunk Data
+                                Management Pipeline Builder: <a
+                                            href="https://www.splunk.com/en_us/products/edge-processor.html"
+                                            target="_blank" rel="noopener noreferrer">Edge Processor</a>
+                                Overview</a>
+                                </b>: Learn how <a
+                                    href="https://www.splunk.com/en_us/products/edge-processor.html"
+                                    target="_blank" rel="noopener noreferrer">Edge Processor</a>
+                                helps you transform data at the edge so you can reduce noise,
+                                control costs, and ingest data in the exact shape that you need it.</li>
+                            <li><b>
+                                    <a
+                                        href="https://www.splunk.com/en_us/form/five-essentials-for-financial-services-compliance-success.html"
+                                        target="_blank" rel="noopener noreferrer">Five
+                                        Must Have’s for Financial Services Compliance</a>
+                                </b>:
+                                Discover the five critical capabilities financial services need to
+                                ensure compliance, mitigate risks, and thrive in a complex
+                                regulatory landscape.</li>
+                        </ul>
+                    </ul>
+                </ul>
+            </html>
+        </panel>
+    </row>
+    <!-- Add rows for specific compliance tabs (e.g., id="tab_03" for PCI) if needed -->
+    <row id="tab_next">
+        <panel>
+            <html tokens="true">
+                <h1>
+                    <img width="45" src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                    <b>Do you need help? Ask a Data Compliance Expert.</b>
+                </h1>
+                <ul>
+                    <p> Need help implementing compliance monitoring in your environment or
+                        tailoring this accelerator to specific regulations like <a
+                            href="https://www.pcisecuritystandards.org/" target="_blank"
+                            rel="noopener noreferrer">PCI DSS</a> or <a
+                            href="https://en.wikipedia.org/wiki/Financial_services" target="_blank"
+                            rel="noopener noreferrer">FSI</a> requirements? Send us your questions.</p>
+                    <ul>
+                        <!-- Placeholder: Update Lantern link for THIS accelerator -->
+                        <li> For detailed step-by-step instructions on implementing solutions using
+                            this Accelerator, visit our <a
+                                href="https://lantern.splunk.com/Security/UCE/Foundational_Visibility/Compliance"
+                                target="_blank" rel="noopener noreferrer">
+                                <b>Solution Accelerator Lantern Page</b>
+                            </a>
+                            .</li>
+                        <!-- Placeholder: Update expertCode -->
+                        <li> To expedite implementation with professional services, please reach out
+                            to our sales team by clicking <a
+                                href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=Data_Compliance_expert_code"
+                                target="_ask_expert">
+                                <b>Contact Us</b>
+                            </a>.</li>
+                        <li> If you need immediate assistance, explore our community forum, <a
+                                href="http://answers.splunk.com/" target="_blank"
+                                rel="noopener noreferrer">
+                                <b>Splunk Answers</b>
+                            </a>.</li>
+                    </ul>
+                    <!-- Placeholder: Update bullet image if needed -->
+                    <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+                    <!-- Placeholder: Update expertCode -->
+                    <a
+                        href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=Data_Compliance_expert_code"
+                        class="btn" target="_ask_expert">Contact Us</a>
+                </ul>
+                <table>
+                    <tr>
+                        <td>
+                            <div class="col-sm-6 col-lg-5 col-lg-offset-1 col-md-offset-1 photo-box">
+                                <!-- Optional: Add relevant image or leave empty -->
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </html>
+        </panel>
+    </row>
+</dashboard>

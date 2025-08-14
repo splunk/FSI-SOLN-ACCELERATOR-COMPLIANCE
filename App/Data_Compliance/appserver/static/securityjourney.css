@@ -1,0 +1,466 @@
+#stagetable {
+  margin-left: 0px;
+  /* height: 700px; */
+}
+
+#stagetable td {
+  /* border: 1px solid #666; */
+}
+
+.stagetablediv {
+  float: left;
+}
+
+.journey-slider {
+  -webkit-appearance: slider-vertical;
+  /* WebKit */
+  width: 8px;
+  height: 680px;
+  padding: 0 5px;
+}
+
+.roundcorners {
+  border-radius: 30px 0px 30px 0px;
+}
+
+.stageheight {
+  height: 65px;
+}
+
+.journeystagename {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.journeystagedesc {
+  font-size: 12px;
+}
+
+.stage {
+  float: left;
+  font-size: 12px;
+  font-family: arial;
+  color: #ffffff;
+  padding: 18px;
+  margin: 0px;
+}
+
+.topstagename {
+  line-height: 1em;
+  float: left;
+  text-align: right;
+  width: 235px;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: arial;
+}
+
+.stagename {
+  line-height: 15.5em;
+  float: left;
+  text-align: right;
+  width: 100px;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: arial;
+}
+
+.stage6 {
+  width: 200px;
+  background-color: #937ab1;
+}
+
+.stage6dark {
+  width: 200px;
+  background-color: #d2cade;
+}
+
+.stage5 {
+  width: 300px;
+  background-color: #cd675d;
+}
+
+.stage5dark {
+  width: 300px;
+  background-color: #e4c3c0;
+}
+
+.stage4 {
+  width: 400px;
+  background-color: #f0943b;
+}
+
+.stage4dark {
+  width: 400px;
+  background-color: #f3d5b7;
+}
+
+.stage3 {
+  width: 500px;
+  background-color: #d2b630;
+}
+
+.stage3dark {
+  width: 500px;
+  background-color: #eae1b5;
+}
+
+.stage2 {
+  width: 600px;
+  background-color: #97b944;
+}
+
+.stage2dark {
+  width: 600px;
+  background-color: #d8e3b9;
+}
+
+.stage1 {
+  width: 700px;
+  background-color: #57bad1;
+}
+
+.stage1dark {
+  width: 700px;
+  background-color: #b3ecff;
+}
+
+.slidercell {
+  padding-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.numberCircle {
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  padding: 0px;
+  background: #777777;
+  border: 0px solid #666;
+  color: #ffffff;
+  text-align: center;
+  font: 32px Arial, sans-serif;
+  float: left;
+  margin-top: 40px;
+}
+
+.selectedstage {
+  line-height: 1.5em;
+  float: left;
+  padding-right: 3px;
+  margin-top: 40px;
+  font-family: arial;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.usecasediv {
+  padding-top: 50px;
+  padding-bottom: 30px;
+  border: 0px solid black;
+  clear: both;
+  font-family: arial;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.column {
+  float: left;
+  border: 0px solid black;
+  padding: 5px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.usecasetext {
+  font-family: arial;
+  font-weight: bold;
+  font-size: 14px;
+  margin-left: 40px;
+}
+
+.flatharvey {
+  margin-left: 37px;
+  padding-top: 6px;
+  padding-bottom: 33px;
+}
+
+.flatharveydashblue {
+  width: 60px;
+  height: 6px;
+  background-color: #66a3ff;
+  border-radius: 3px 3px 3px 3px;
+  float: left;
+  margin: 3px;
+}
+
+.flatharveydashgray {
+  width: 60px;
+  height: 6px;
+  background-color: #dddddd;
+  border-radius: 3px 3px 3px 3px;
+  float: left;
+  margin: 3px;
+}
+
+.stageinfo {
+  border-radius: 25px;
+  background: #ffffff;
+  padding: 0px;
+  width: 250px;
+  margin-right: 0px;
+  color: #000000;
+  font-family: arial;
+}
+
+.stageinfowide {
+  border-radius: 25px;
+  background: #ffffff;
+  padding: 0px;
+  width: 1325px;
+  margin-top: 10px;
+  margin-right: 5px;
+  color: #000000;
+  margin-bottom: 10px;
+  font-family: arial;
+}
+
+.stageinfoheader {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.stageinfocontent {
+  font-size: 12px;
+  font-weight: normal;
+  overflow-wrap: break-word; /* Ensures long words break and wrap */
+}
+
+.datasources {
+  border-radius: 25px;
+  background: #ffffff;
+  padding: 20px;
+  width: 400px;
+  height: 200px;
+  margin-top: 20px;
+  margin-right: 10px;
+  color: #000000;
+  margin-bottom: 10px;
+  font-family: arial;
+}
+
+.dontshow {
+  display: none;
+}
+
+.datasourcetable td {
+  border: 1px solid #dddddd;
+  padding: 10px;
+}
+
+/* Media Queries for Desktop and Widescreen Monitors */
+
+/* Base styles for smallest desktop screens (1024px and up) */
+@media screen and (min-width: 1024px) {
+  .column:first-child {
+    width: 15%; /* Reduced by 10% from previous 25% */
+  }
+  .stagetablediv {
+    width: 80%; /* Takes remaining space after first (15%) and third (5%) */
+  }
+  .column:last-child {
+    width: 5%; /* Third column fixed at 5% from the right */
+  }
+  /* Adjust text container in first column to use available space */
+  .stageinfo {
+    width: 100%; /* Ensure it takes full width of the column */
+    font-size: 12px; /* Maintain readable font size */
+    padding: 10px; /* Add padding for better text spacing */
+  }
+  .stageinfocontent {
+    font-size: 11px; /* Slightly smaller to fit more content if needed */
+  }
+  /* Stage elements widths for smallest desktop screens */
+  .stage1,
+  .stage1dark {
+    width: 500px;
+  }
+  .stage2,
+  .stage2dark {
+    width: 450px;
+  }
+  .stage3,
+  .stage3dark {
+    width: 400px;
+  }
+  .stage4,
+  .stage4dark {
+    width: 350px;
+  }
+  .stage5,
+  .stage5dark {
+    width: 300px;
+  }
+  .stage6,
+  .stage6dark {
+    width: 250px;
+  }
+}
+
+/* Styles for standard desktop screens (1280px and up) */
+@media screen and (min-width: 1280px) {
+  .column:first-child {
+    width: 30%; 
+  }
+  .stagetablediv {
+    width: 60%; 
+  }
+  .column:last-child {
+    width: 5%; /* Third column fixed at 5% */
+  }
+  /* Adjust text container in first column */
+  .stageinfo {
+    width: 100%;
+    font-size: 12px;
+    padding: 12px;
+  }
+  .stageinfocontent {
+    font-size: 11px;
+  }
+  /* Stage elements widths for standard desktop screens */
+  .stage1,
+  .stage1dark {
+    width: 600px;
+  }
+  .stage2,
+  .stage2dark {
+    width: 550px;
+  }
+  .stage3,
+  .stage3dark {
+    width: 500px;
+  }
+  .stage4,
+  .stage4dark {
+    width: 450px;
+  }
+  .stage5,
+  .stage5dark {
+    width: 400px;
+  }
+  .stage6,
+  .stage6dark {
+    width: 350px;
+  }
+}
+
+/* Styles for widescreen monitors (1440px and up) */
+@media screen and (min-width: 1440px) {
+  .column:first-child {
+    width: 20%; /* Reduced by 10% from previous 35% */
+  }
+  .stagetablediv {
+    width: 60%; /* Takes remaining space after first (25%) and third (5%) */
+  }
+  .column:last-child {
+    width: 5%; /* Third column fixed at 5% */
+  }
+  /* Adjust text container in first column */
+  .stageinfo {
+    width: 100%;
+    font-size: 13px; /* Slightly larger font for better readability */
+    padding: 14px;
+  }
+  .stageinfocontent {
+    font-size: 12px;
+  }
+  /* Stage elements widths for widescreen monitors */
+  .stage1,
+  .stage1dark {
+    width: 700px;
+  }
+  .stage2,
+  .stage2dark {
+    width: 650px;
+  }
+  .stage3,
+  .stage3dark {
+    width: 600px;
+  }
+  .stage4,
+  .stage4dark {
+    width: 550px;
+  }
+  .stage5,
+  .stage5dark {
+    width: 500px;
+  }
+  .stage6,
+  .stage6dark {
+    width: 450px;
+  }
+}
+
+/* Styles for very large widescreen monitors (1920px and up) */
+@media screen and (min-width: 1920px) {
+  .column:first-child {
+    width: 25%; /* Reduced by 5% from previous 30% */
+  }
+  .stagetablediv {
+    width: 65%; /* Takes remaining space after first (30%) and third (5%) */
+  }
+  .column:last-child {
+    width: 5%; /* Third column fixed at 5% */
+  }
+  /* Adjust text container in first column */
+  .stageinfo {
+    width: 100%;
+    font-size: 14px; /* Larger font for very large screens */
+    padding: 16px;
+  }
+  .stageinfocontent {
+    font-size: 13px;
+  }
+  /* Optional: Increase font sizes for stage table on large screens */
+  .journeystagename {
+    font-size: 22px;
+  }
+  .journeystagedesc {
+    font-size: 14px;
+  }
+  .stage {
+    padding: 22px;
+  }
+  /* Stage elements widths for very large widescreen monitors */
+  .stage1,
+  .stage1dark {
+    width: 850px;
+  }
+  .stage2,
+  .stage2dark {
+    width: 800px;
+  }
+  .stage3,
+  .stage3dark {
+    width: 750px;
+  }
+  .stage4,
+  .stage4dark {
+    width: 700px;
+  }
+  .stage5,
+  .stage5dark {
+    width: 650px;
+  }
+  .stage6,
+  .stage6dark {
+    width: 600px;
+  }
+}

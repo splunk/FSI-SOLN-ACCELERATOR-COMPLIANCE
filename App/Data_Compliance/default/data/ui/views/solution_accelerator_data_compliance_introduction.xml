@@ -1,0 +1,329 @@
+<dashboard version="1.1" theme="light" script="tabs.js" stylesheet="tabs.css">
+   <!-- Updated Label -->
+   <label>Introduction to Data Compliance</label>
+   <!-- Updated Description -->
+   <description>Understanding Key Data Compliance Regulations and Governed Data Types</description>
+   <row>
+      <panel>
+         <html>
+            <h1>
+               <!-- Placeholder: Update icon path -->
+               <img width="40"
+                  src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+               <b>INTRODUCTION</b>
+            </h1>
+            <ul>
+               <!-- Updated Introduction Text -->
+               <p>Meeting today's complex web of data compliance mandates - spanning
+                  security-focused frameworks like <a href="https://www.pcisecuritystandards.org/">PCI
+                  DSS</a>, operational regulations like SOX, and privacy-centric laws such as <a
+                     href="https://gdpr-info.eu/">GDPR</a> and <a
+                     href="https://oag.ca.gov/privacy/ccpa">CCPA</a>, alongside numerous
+                  FSI-specific requirements - is a non-negotiable aspect of modern business. It's
+                  crucial to understand the interplay between <strong>Data Security</strong>
+                  (protecting data from unauthorized access, corruption, or theft through technical
+                  controls) and <strong>Data
+                     Privacy</strong> (governing how personal data is collected, used, stored,
+                  shared, and ensuring individual rights). While distinct, they are deeply
+                  intertwined: robust data security is the essential foundation upon which data
+                  privacy compliance is built.</p>
+               <p>Organizations face significant hurdles in achieving compliance across both
+                  domains. Fragmented data silos across hybrid and multi-cloud environments obscure
+                  visibility, evolving regulations demand constant adaptation, and reliance on
+                  manual checks and periodic audits creates gaps and inefficiencies. Splunk provides
+                  a unified data platform capable of ingesting, normalizing, and analyzing machine
+                  data from any source. This unique ability to break down data silos allows
+                  organizations to continuously monitor security controls, gather evidence for
+                  privacy adherence, streamline auditing, and accelerate incident response,
+                  providing the foundational visibility required to manage the complexities of both
+                  data security and data privacy regulations.</p>
+            </ul>
+         </html>
+      </panel>
+   </row>
+   <row id="tabs">
+      <panel>
+         <html>
+            <p>
+               <ul id="tabs" class="nav nav-tabs">
+                  <li>
+                     <!-- Placeholder: Update nav button image -->
+                     <img width="200"
+                        src="/static/app/Data_Compliance/SA_image_icon_navi_gr_button.png" />
+                  </li>
+                  <li class="active">
+                     <a href="#" class="toggle-tab" data-toggle="tab" data-elements="tab_objective">1
+                        | OBJECTIVE</a>
+                  </li>
+                  <li>
+                     <a href="#" class="toggle-tab" data-toggle="tab" data-elements="tab_data_types">2
+                        |
+                        DATA TYPES</a>
+                  </li>
+                  <li>
+                     <!-- Placeholder: Update Lantern link for Compliance -->
+                     <a
+                        href="https://lantern.splunk.com/Security/UCE/Foundational_Visibility/Compliance"
+                        target="_blank">3 | LANTERN RECIPES</a>
+                  </li>
+                  <li>
+                     <a href="#" class="toggle-tab" data-toggle="tab" data-elements="tab_help">4 |
+                        HELP</a>
+                  </li>
+               </ul>
+            </p>
+         </html>
+      </panel>
+   </row>
+   <row id="tab_objective">
+      <panel>
+         <html>
+            <ul>
+               <h1>
+                  <!-- Placeholder: Update icon path -->
+                  <img width="35"
+                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                  <b>OBJECTIVE:</b>
+               </h1>
+               <!-- Updated Objective Text -->
+               <p>The primary objective of data compliance initiatives is to ensure adherence to
+                  relevant laws, regulations, industry standards, and internal policies governing
+                  data security and privacy. This involves implementing and maintaining appropriate
+                  technical and organizational controls to protect sensitive information (like
+                  customer PII, financial data, cardholder data) and demonstrating this adherence to
+                  auditors and regulators.</p>
+               <p>Key goals often include: <ul>
+                     <ul>
+                        <li>
+                           <b>Meeting Regulatory Requirements:</b> Satisfying specific mandates from
+                  frameworks like <a href="https://www.pcisecuritystandards.org/">PCI DSS</a> (e.g.,
+                  Requirement 10 for logging, Requirement 7 for access control), <a
+                              href="https://gdpr-info.eu/">GDPR</a> (e.g., data subject rights,
+                  breach notification), SOX (financial reporting controls), HIPAA (health
+                  information privacy), and various FSI regulations.</li>
+                        <li>
+                           <b>Protecting Sensitive Data:</b> Implementing robust security controls
+                  (encryption, access management, vulnerability management) to prevent data breaches
+                  and unauthorized access.</li>
+                        <li>
+                           <b>Ensuring Data Privacy:</b> Managing data according to privacy
+                  principles, including consent management, purpose limitation, data minimization,
+                  and honoring data subject rights (like DSARs).</li>
+                        <li>
+                           <b>Streamlining Audits:</b> Reducing the effort and cost associated with
+                  compliance audits by centralizing evidence, automating control monitoring, and
+                  simplifying reporting.</li>
+                        <li>
+                           <b>Managing Risk:</b> Proactively identifying and mitigating compliance
+                  risks related to data handling, security posture, and third-party vendors.</li>
+                        <li>
+                           <b>Building Trust:</b> Demonstrating a commitment to data protection,
+                  thereby enhancing customer confidence and brand reputation.</li>
+                     </ul>
+                  </ul>
+               </p>
+               <p>An effective data compliance program leverages continuous monitoring and data
+                  analysis to provide assurance that controls are working as intended and that the
+                  organization can quickly respond to potential issues, minimizing financial, legal,
+                  and reputational damage.</p>
+            </ul>
+            <hr width="100%" />
+            <ul>
+               <h1>
+                  <!-- Placeholder: Update icon path -->
+                  <img width="35"
+                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                  <b>PREREQUISITES:</b>
+               </h1>
+               <!-- Updated Prerequisites Text -->
+               <p>To effectively navigate the complex, fragmented, and regionally diverse data
+                  compliance landscape, gaining comprehensive visibility and enabling the crucial
+                  interplay between assets and identities requires the ingestion and analysis of
+                  specific data types from across your IT environment. These data sources serve as
+                  the foundational inputs for monitoring controls, detecting deviations, and
+                  providing the necessary audit trails across various regulatory mandates.</p>
+               <p>The following data types are typically required for comprehensive data compliance
+                  monitoring and auditing within this Solution Accelerator:</p>
+               <ul>
+                  <ul>
+                     <li>
+                        <b>Authentication &amp; Access Logs:</b> Essential for monitoring identity
+                        activity and access to assets. System, application, database, and VPN logs
+                        showing user logins (success/failure), access attempts to sensitive
+                        resources, and privilege escalations are critical. (e.g., Windows Security
+                        Events, Linux auth logs, Active Directory logs, Cloud IAM logs).</li>
+                     <li>
+                        <b>Change Management Logs:</b> Key for tracking modifications to critical
+                        assets and configurations that could impact security posture and compliance.
+                        Records of changes to system configurations, firewall rules, user
+                        permissions, and application code are necessary. (e.g., Config management
+                        tool logs, Git logs, OS change logs).</li>
+                     <li>
+                        <b>Network Activity Logs:</b> Provide visibility into the flow of data (a
+                        key asset) and potential policy violations across the network. Firewall,
+                        proxy, IDS/IPS, and network flow data showing traffic patterns, connection
+                        attempts, and potential policy violations are valuable.</li>
+                     <li>
+                        <b>Endpoint Security Logs:</b> Offer insights into the security status of
+                        endpoints (assets) and potential threats impacting data.
+                        Antivirus/anti-malware alerts, host-based intrusion detection events, file
+                        integrity monitoring alerts, and DLP events are important for compliance
+                        monitoring.</li>
+                     <li>
+                        <b>Operating System Logs:</b> Provide granular audit trails at the OS level
+                        (an asset), capturing system events, process execution, and critical errors
+                        relevant to compliance. (e.g., Windows Event Logs, Linux syslog).</li>
+                     <li>
+                        <b>Database Audit Logs:</b> Crucial for monitoring access to sensitive data
+                        (an asset) within databases and tracking administrative actions and schema
+                        changes. Logs tracking access to sensitive tables/data, administrative
+                        actions, and changes to database schemas or permissions are vital.</li>
+                     <li>
+                        <b>Cloud Infrastructure Logs:</b> Provide audit trails for cloud assets and
+                        identities, detailing API calls, resource modifications, security group
+                        changes, and access events within cloud environments. (e.g., AWS CloudTrail,
+                        Azure Activity Log, GCP Audit Logs).</li>
+                     <li>
+                        <b>Vulnerability Scan Data</b> (Optional): Results from vulnerability
+                        scanners identifying weaknesses in systems (assets) that could lead to
+                        non-compliance.</li>
+                     <li>
+                        <b>Asset &amp; Identity Data</b> (Optional): Explicit information
+                        correlating systems/IPs to owners/functions (assets) and users to
+                        roles/permissions (identities). While inferred from other logs, explicit
+                        data enhances correlation and analysis.</li>
+                  </ul>
+               </ul>
+               <br />
+               <p>Centralizing and correlating these diverse data inputs is fundamental to the
+                  Solution Accelerator's ability to provide the necessary visibility for compliance
+                  across various regulations and to effectively monitor the interactions between
+                  assets and identities.</p>
+            </ul>
+         </html>
+      </panel>
+   </row>
+   <row id="tab_data_types">
+      <panel>
+         <html>
+            <ul>
+               <h1>
+                  <!-- Placeholder: Update icon path -->
+                  <img width="35"
+                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                  <b>DATA TYPES: Information Governed by Compliance Regulations</b>
+               </h1>
+               <!-- Expanded Data Types Text -->
+               <p>Data compliance regulations are primarily focused on protecting specific
+                  categories of sensitive and regulated information. Understanding where these data
+                  types exist within your environment is fundamental to identifying your compliance
+                  obligations and implementing appropriate technical and organizational controls as
+                  mandated by various global and regional frameworks.</p>
+               <ul>
+                  <li>
+                     <b>Personally Identifiable Information (PII):</b> This is information that can
+                     directly or indirectly identify an individual. Its definition can vary slightly
+                     by jurisdiction, but generally includes details like names, addresses, email
+                     addresses, phone numbers, identification numbers (such as social security or
+                     national ID), and sometimes even online identifiers or location data. PII is a
+                     core focus of comprehensive privacy regulations worldwide, such as the <a
+                        href="https://gdpr-info.eu/">GDPR</a> in Europe, <a
+                        href="https://oag.ca.gov/privacy/ccpa">CCPA</a>/<a href="https://thecpra.org/">CPRA</a> in the United States,
+                     LGPD in Brazil, and numerous national data protection acts across APAC and
+                     other regions. Compliance requires careful handling based on principles like
+                     consent, purpose limitation, data minimization, and ensuring data subject
+                     rights. </li>
+                  <li>
+                     <b>Financial Data:</b> This encompasses information related to an individual's
+                     or entity's financial standing, transactions, accounts, investments, and credit
+                     history. Due to its sensitive nature and direct link to economic activity,
+                     financial data is subject to rigorous regulations globally. These include
+                     sector-specific laws (like GLBA in the US), anti-money laundering (AML) and
+                     counter-terrorist financing (CFT) mandates (ubiquitous worldwide), and
+                     requirements from financial regulatory bodies in each region (e.g., MAS in
+                     Singapore, BaFin in Germany, FCA/PRA in the UK). Compliance focuses on data
+                     security, transaction monitoring, record-keeping, and reporting obligations. </li>
+                  <li>
+                     <b>Cardholder Data (CHD):</b> This specific set of data elements is required
+                     for processing payment card transactions and is the central focus of the
+                     Payment Card Industry Data Security Standard (<a
+                        href="https://www.pcisecuritystandards.org/">PCI DSS</a>). CHD includes the
+                     Primary Account Number (PAN), cardholder name, expiration date, and service
+                     code. While <a href="https://www.pcisecuritystandards.org/">PCI DSS</a> is a
+                     global standard mandated by card brands, the handling of CHD is often also
+                     subject to national data privacy and security laws, requiring adherence to both <a
+                        href="https://www.pcisecuritystandards.org/">PCI DSS</a> and relevant local
+                     regulations. </li>
+                  <li>
+                     <b>Protected Health Information (PHI):</b> This refers to information related
+                     to an individual's past, present, or future physical or mental health, the
+                     provision of healthcare, or payment for healthcare. While HIPAA is a prominent
+                     example in the United States, many countries have specific health data privacy
+                     laws or include health data as a "special category" of sensitive personal data
+                     under general privacy laws (as in <a href="https://gdpr-info.eu/">GDPR</a>).
+                     Handling PHI requires strict access controls, security measures, and adherence
+                     to consent and usage restrictions tailored to health sector regulations. </li>
+                  <li>
+                     <b>Proprietary and Confidential Business Data:</b> Beyond individual privacy,
+                     regulations often mandate the protection of sensitive business information
+                     crucial for operational integrity, financial reporting, and market stability.
+                     This can include internal financial records, trade secrets, intellectual
+                     property, strategic plans, and data critical to operational resilience.
+                     Frameworks like SOX (focusing on financial reporting data controls), DORA
+                     (emphasizing IT security and resilience for financial entities), and APRA's CPS
+                     standards (covering information security and operational resilience in
+                     Australia) often require controls around these data types to ensure business
+                     continuity and prevent systemic risk. </li>
+               </ul>
+               <br />
+               <p>Effectively managing data compliance across this diverse landscape requires
+                  identifying where these various types of regulated data reside within your hybrid
+                  and multi-cloud environments and applying the necessary security, privacy, and
+                  operational controls as dictated by the specific regulations applicable to your
+                  organization's operations and the jurisdictions in which you operate.</p>
+            </ul>
+         </html>
+      </panel>
+   </row>
+   <row id="tab_help">
+      <panel>
+         <html tokens="true">
+            <ul>
+               <h1>
+                  <!-- Placeholder: Update icon path -->
+                  <img width="45"
+                     src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                  <!-- Updated Help Header -->
+                  <b>HELP: Ask a Data Compliance Expert</b>
+               </h1>
+               <p> Need help with your environment or requirements? Send us your questions, and
+                  we’ll get back to you as soon as possible. <ul>
+                     <li> For detailed step-by-step instructions on implementing the solution using
+                  this Solutions Accelerator, visit our <a
+                           href="https://lantern.splunk.com/@go/page/Data_Compliance">
+                           <b>Solutions Accelerator</b>
+                        </a> page.</li>
+                     <li> To expedite implementation with professional services, please reach out to
+                  our sales team by clicking <a
+                           href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
+                           target="_ask_expert">
+                           <b>Contact Us</b>
+                        </a>
+                     </li>
+                     <li> If you need immediate assistance, explore our community forum, <a
+                           href="http://answers.splunk.com/">
+                           <b>Splunk Answers</b>
+                        </a>.</li>
+                  </ul>
+               </p>
+               <!-- Placeholder: Update bullet image path -->
+               <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+               <a
+                  href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
+                  class="btn" target="_ask_expert">Contact Us</a>
+            </ul>
+         </html>
+      </panel>
+   </row>
+
+</dashboard> 

@@ -1,0 +1,132 @@
+<form version="1.1" theme="dark">
+    <label>Data Ingest Dashboard</label>
+    <description>Monitor all data in Splunk instance</description>
+    <fieldset submitButton="false">
+        <input type="dropdown" token="timerange" searchWhenChanged="true">
+            <label>Analysis Time Range:</label>
+            <choice value="1">Last 24 hours</choice>
+            <choice value="7">Last 7 days</choice>
+            <choice value="14">Last 14 days</choice>
+            <choice value="30">Last 30 days</choice>
+            <choice value="60">Last 60 days</choice>
+            <choice value="90">Last 90 days</choice>
+            <choice value="120">Last 120 days</choice>
+            <choice value="180">Last 180 days</choice>
+            <default>3</default>
+        </input>
+        <input type="dropdown" token="selected_raw_index" searchWhenChanged="true">
+            <label>Select Raw Data Index:</label>
+            <fieldForLabel>label</fieldForLabel>
+            <fieldForValue>value</fieldForValue>
+            <search>
+                <query>
+                    | tstats count where index=* by index
+                    | rename index as value
+                    | eval label=value
+                    | fields label value
+                </query>
+            </search>
+            <default>main</default>
+        </input>
+    </fieldset>
+    <row>
+        <panel>
+            <title>Events Per Day</title>
+            <single>
+                <search>
+                    <query>index=$selected_raw_index$ | timechart count span=1d</query>
+                    <earliest>-14d@d</earliest>
+                    <latest>now</latest>
+                </search>
+                <option name="colorBy">trend</option>
+                <option name="colorMode">block</option>
+                <option name="drilldown">none</option>
+                <option name="rangeColors">["0x53a051","0x0877a6","0xf8be34","0xf1813f","0xdc4e41"]</option>
+                <option name="refresh.display">progressbar</option>
+                <option name="showSparkline">0</option>
+                <option name="showTrendIndicator">1</option>
+                <option name="trendDisplayMode">percent</option>
+                <option name="useColors">1</option>
+            </single>
+        </panel>
+        <panel>
+            <title>Number of Sourcetypes in Index(es)</title>
+            <single>
+                <search>
+                    <query>
+                        | tstats dc(sourcetype) where index=$selected_raw_index$
+                    </query>
+                    <earliest>-$timerange$d@d</earliest>
+                    <latest>now</latest>
+                </search>
+                <option name="colorMode">block</option>
+                <option name="drilldown">all</option>
+                <option name="rangeColors">["0x53a051","0x0877a6","0xf8be34","0xf1813f","0xdc4e41"]</option>
+                <option name="useColors">1</option>
+            </single>
+        </panel>
+        <panel>
+            <title>Number of Events in Index(es)</title>
+            <single>
+                <search>
+                    <query>| tstats count where index=$selected_raw_index$</query>
+                    <earliest>-14d@d</earliest>
+                    <latest>now</latest>
+                </search>
+                <option name="colorMode">block</option>
+                <option name="drilldown">all</option>
+                <option name="rangeColors">["0xd41f1f","0xd94e17","0xcba700","0x118832"]</option>
+                <option name="rangeValues">[50000,400000,600000]</option>
+                <option name="refresh.display">progressbar</option>
+                <option name="useColors">1</option>
+            </single>
+        </panel>
+    </row>
+    <row>
+        <panel>
+            <title>Data Summary</title>
+            <table>
+                <search>
+                    <query>
+                        | tstats values(sourcetype) where index=$selected_raw_index$ by index
+                        sourcetype |
+                        table index, sourcetype </query>
+                    <earliest>-$timerange$d@d</earliest>
+                    <latest>now</latest>
+                    <sampleRatio>1</sampleRatio>
+                </search>
+                <option name="count">20</option>
+                <option name="dataOverlayMode">none</option>
+                <option name="drilldown">none</option>
+                <option name="percentagesRow">false</option>
+                <option name="rowNumbers">false</option>
+                <option name="totalsRow">false</option>
+                <option name="wrap">true</option>
+            </table>
+        </panel>
+        <panel>
+            <title>Event Count by Sourcetype</title>
+            <chart>
+                <search>
+                    <query>
+                        | tstats count where index=$selected_raw_index$ by sourcetype index |
+                        xyseries
+                        sourcetype index count </query>
+                    <earliest>-$timerange$d@d</earliest>
+                    <latest>now</latest>
+                </search>
+                <option name="charting.axisTitleX.text">Sourcetype Num Events</option>
+                <option name="charting.axisTitleY.visibility">collapsed</option>
+                <option name="charting.axisY.abbreviation">auto</option>
+                <option name="charting.axisY.scale">linear</option>
+                <option name="charting.chart">bar</option>
+                <option name="charting.chart.showDataLabels">none</option>
+                <option name="charting.chart.stackMode">default</option>
+                <option name="charting.drilldown">none</option>
+                <option name="charting.layout.splitSeries">0</option>
+                <option name="height">228</option>
+                <option name="refresh.display">progressbar</option>
+            </chart>
+        </panel>
+    </row>
+</form>

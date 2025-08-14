@@ -1,0 +1,357 @@
+<form version="1.1">
+  <label>Monitor Data Schema Consistency</label>
+  <init>
+    <set token="show_schema_fields_column"></set>
+    <set token="fields_list"></set>
+    <set token="default_index">drift_raw_data</set>
+  </init>
+  <description>Monitors schema changes by comparing field sets over time for selected data sources.</description>
+  <!-- Dashboard Buttons -->
+  <!-- Detailed Field Changes Table -->
+  <!-- Dashboard Buttons -->
+  <!-- Detailed Values Changes Table -->
+  <!-- Visualization Panels -->
+  <fieldset submitButton="false">
+    <input type="dropdown" token="timerange" searchWhenChanged="true">
+      <label>Analysis Time Range:</label>
+      <choice value="1">Last 24 hours</choice>
+      <choice value="7">Last 7 days</choice>
+      <choice value="14">Last 14 days</choice>
+      <choice value="30">Last 30 days</choice>
+      <choice value="60">Last 60 days</choice>
+      <choice value="90">Last 90 days</choice>
+      <choice value="120">Last 120 days</choice>
+      <choice value="180">Last 180 days</choice>
+      <default>3</default>
+    </input>
+    <input type="dropdown" token="selected_raw_index" searchWhenChanged="true">
+      <label>Select Raw Data Index:</label>
+      <fieldForLabel>label</fieldForLabel>
+      <fieldForValue>value</fieldForValue>
+      <search>
+        <query>
+          | tstats count where index=* by index
+          | rename index as value
+          | eval label=value
+          | fields label, value
+        </query>
+      </search>
+      <default>main</default>
+    </input>
+    <input type="dropdown" token="selected_raw_sourcetype" searchWhenChanged="true">
+      <label>Select Raw Data Sourcetype:</label>
+      <fieldForLabel>label</fieldForLabel>
+      <fieldForValue>value</fieldForValue>
+      <search>
+        <query>
+          | tstats count where index=$selected_raw_index$ by sourcetype
+          | eval label=sourcetype." (Events: ".count.")"
+          | rename sourcetype as value
+          | fields label value
+        </query>
+      </search>
+      <default>*</default>
+    </input>
+    <input type="dropdown" token="schema_timespan" searchWhenChanged="true">
+      <label>Schema Analysis Timespan:</label>
+      <choice value="1h">1 hour</choice>
+      <choice value="2h">2 hours</choice>
+      <choice value="4h">4 hours</choice>
+      <choice value="6h">6 hours</choice>
+      <choice value="12h">12 hours</choice>
+      <choice value="24h">24 hours</choice>
+      <default>4h</default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <html>
+        <div>
+          <a href="/app/$env:app$/$env:page$?form.timerange.earliest=$form.timerange.earliest$&amp;form.timerange.latest=$form.timerange.latest$&amp;form.selected_raw_index=$form.selected_raw_index$&amp;form.selected_raw_sourcetype=$form.selected_raw_sourcetype$&amp;form.schema_timespan=$form.schema_timespan$&amp;form.schema_change_sensitivity=$form.schema_change_sensitivity$&amp;form.show_fields=$form.show_fields$" style="display:inline-block; padding:6px 12px; background:#f0f0f0; border:1px solid #ccc; border-radius:4px; margin-right:10px;">
+            Reset Dashboard
+          </a>
+          <span id="statusMessage" style="display:inline-block; padding:6px 12px; background:#e6f7ff; border:1px solid #91d5ff; border-radius:4px;">
+            Detected Changes: <b>$change_count$</b>
+          </span>
+        </div>
+      </html>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <table>
+        <title>Fields Schema Monitor</title>
+        <search>
+          <query>
+            | makeresults count=$timerange$
+            | streamstats count as comparison_idx
+
+            | eval window_hours = replace("$schema_timespan$", "h", "")
+
+            | eval current_days_back = comparison_idx - 1
+            | eval previous_days_back = comparison_idx
+
+            | eval current_earliest_epoch = relative_time(now(), "-" . window_hours . "h-" .
+            current_days_back . "d")
+            | eval current_latest_epoch = relative_time(now(), "-" . current_days_back . "d")
+
+            | eval previous_earliest_epoch = relative_time(now(), "-" . window_hours . "h-" .
+            previous_days_back . "d")
+            | eval previous_latest_epoch = relative_time(now(), "-" . previous_days_back . "d")
+
+            | eval current_earliest = strftime(current_earliest_epoch, "%Y-%m-%d %H:%M:%S")
+            | eval current_latest = strftime(current_latest_epoch, "%Y-%m-%d %H:%M:%S")
+            | eval previous_earliest = strftime(previous_earliest_epoch, "%Y-%m-%d %H:%M:%S")
+            | eval previous_latest = strftime(previous_latest_epoch, "%Y-%m-%d %H:%M:%S")
+
+            | eval current_time_range_display = current_earliest . " to " . current_latest
+            | eval previous_time_range_display = previous_earliest . " to " . previous_latest
+
+            | map maxsearches=20 search="
+            search index=\"$selected_raw_index$\" sourcetype=\"$selected_raw_sourcetype$\"
+            earliest=$$current_earliest_epoch$$
+            latest=$$current_latest_epoch$$
+            | fieldsummary
+            | eval time_period=\"current_range\"
+            | eval index=\"$selected_raw_index$\", sourcetype=\"$selected_raw_sourcetype$\"
+            | fields field, time_period, index, sourcetype
+
+            | append [
+            search index=\"$selected_raw_index$\" sourcetype=\"$selected_raw_sourcetype$\"
+            earliest=$$previous_earliest_epoch$$
+            latest=$$previous_latest_epoch$$
+            | fieldsummary
+            | eval time_period=\"previous_range\"
+            | eval index=\"$selected_raw_index$\", sourcetype=\"$selected_raw_sourcetype$\"
+            | fields field, time_period, index, sourcetype
+            ]
+            | stats values(time_period) AS presence BY field, index, sourcetype
+            | where NOT match(field, \"^_\")
+            | eval status=case(
+            mvcount(presence) == 2, \"Unchanged\",
+            presence == \"current_range\", \"New Field\",
+            presence == \"previous_range\", \"Removed Field\"
+            )
+            | fields field, status, index, sourcetype
+            | eval Comparison_Period = $$current_time_range_display$$
+            | eval Compared_To_Period = $$previous_time_range_display$$
+            | sort field
+            "
+            | where status="New Field" OR status="Removed Field"
+            | table Comparison_Period, Compared_To_Period, field, status, index, sourcetype
+          </query>
+          <earliest>-$timerange$d@d</earliest>
+          <latest>now</latest>
+          <progress>
+            <eval token="change_count">$job.resultCount$</eval>
+          </progress>
+          <done>
+            <condition match="$job.resultCount$ == 0">
+              <set token="statusMessage">No schema changes detected in selected time range</set>
+            </condition>
+            <condition>
+              <set token="statusMessage">Detected $job.resultCount$ schema changes</set>
+            </condition>
+          </done>
+        </search>
+        <option name="count">10</option>
+        <option name="drilldown">row</option>
+        <format type="color" field="Change Impact (%)">
+          <colorPalette type="minMidMax" maxColor="#D6563C" midColor="#F7BC38" minColor="#65A30D"></colorPalette>
+          <scale type="minMidMax"></scale>
+        </format>
+        <format type="color" field="Added Fields">
+          <colorPalette type="list">#10B981,#059669</colorPalette>
+        </format>
+        <format type="color" field="Removed Fields">
+          <colorPalette type="list">#EF4444,#DC2626</colorPalette>
+        </format>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <chart>
+        <title>Number of Fields per Sourcetype over Time</title>
+        <search>
+          <query>index=$selected_raw_index$ sourcetype=$selected_raw_sourcetype$
+
+            | eval event_field_count = 0
+            | foreach * [
+            eval event_field_count = if(
+            NOT (
+            match('&lt;&lt;FIELD&gt;&gt;', "^_") OR
+            match('&lt;&lt;FIELD&gt;&gt;',
+            "date_.*|punct|tag::.*|eventtype|linecount|event_field_count")
+            ),
+            event_field_count + 1,
+            event_field_count
+            )
+            ]
+            | bin _time span=$schema_timespan$
+            | stats avg(event_field_count) as avg_count by _time, index, sourcetype
+            | eval series = index . "::" . sourcetype
+            | xyseries _time, series, avg_count
+            | fillnull value=0</query>
+          <earliest>-$timerange$d@d</earliest>
+          <latest>now</latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+        <option name="charting.axisTitleX.text">Time</option>
+        <option name="charting.axisTitleX.visibility">visible</option>
+        <option name="charting.axisTitleY.visibility">visible</option>
+        <option name="charting.axisTitleY2.visibility">visible</option>
+        <option name="charting.axisX.abbreviation">none</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.abbreviation">none</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.axisY2.abbreviation">none</option>
+        <option name="charting.axisY2.enabled">0</option>
+        <option name="charting.axisY2.scale">inherit</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.chart.bubbleMaximumSize">50</option>
+        <option name="charting.chart.bubbleMinimumSize">10</option>
+        <option name="charting.chart.bubbleSizeBy">area</option>
+        <option name="charting.chart.nullValueMode">gaps</option>
+        <option name="charting.chart.showDataLabels">none</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">default</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.layout.splitSeries.allowIndependentYRanges">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.mode">standard</option>
+        <option name="charting.legend.placement">right</option>
+        <option name="charting.lineWidth">2</option>
+        <option name="trellis.enabled">0</option>
+        <option name="trellis.scales.shared">1</option>
+        <option name="trellis.size">medium</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>Number of Events per Sourcetype over Time</title>
+      <chart>
+        <search>
+          <query>
+            index=$selected_raw_index$ sourcetype=$selected_raw_sourcetype$
+            | timechart span=$schema_timespan$ count by sourcetype
+            | fillnull value=0</query>
+          <earliest>-$timerange$d@d</earliest>
+          <latest>now</latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+        <option name="charting.axisTitleX.text">Time</option>
+        <option name="charting.axisTitleX.visibility">visible</option>
+        <option name="charting.axisTitleY.visibility">visible</option>
+        <option name="charting.axisTitleY2.visibility">visible</option>
+        <option name="charting.axisX.abbreviation">none</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.abbreviation">none</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.axisY2.abbreviation">none</option>
+        <option name="charting.axisY2.enabled">0</option>
+        <option name="charting.axisY2.scale">inherit</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.chart.bubbleMaximumSize">50</option>
+        <option name="charting.chart.bubbleMinimumSize">10</option>
+        <option name="charting.chart.bubbleSizeBy">area</option>
+        <option name="charting.chart.nullValueMode">gaps</option>
+        <option name="charting.chart.showDataLabels">none</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">default</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.layout.splitSeries.allowIndependentYRanges">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.mode">standard</option>
+        <option name="charting.legend.placement">right</option>
+        <option name="charting.lineWidth">2</option>
+        <option name="trellis.enabled">0</option>
+        <option name="trellis.scales.shared">1</option>
+        <option name="trellis.size">medium</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <table>
+        <title>Field Change Distribution</title>
+        <search>
+          <query>
+            <![CDATA[ 
+              | makeresults count=$timerange$
+| streamstats count as comparison_idx
+
+| eval window_hours = replace("$schema_timespan$", "h", "")
+
+| eval current_days_back = comparison_idx - 1
+| eval previous_days_back = comparison_idx
+
+| eval current_earliest_epoch = relative_time(now(), "-" . window_hours . "h-" . current_days_back . "d")
+| eval current_latest_epoch = relative_time(now(), "-" . current_days_back . "d")
+
+| eval previous_earliest_epoch = relative_time(now(), "-" . window_hours . "h-" . previous_days_back . "d")
+| eval previous_latest_epoch = relative_time(now(), "-" . previous_days_back . "d")
+
+| eval current_earliest = strftime(current_earliest_epoch, "%Y-%m-%d %H:%M:%S")
+| eval current_latest = strftime(current_latest_epoch, "%Y-%m-%d %H:%M:%S")
+| eval previous_earliest = strftime(previous_earliest_epoch, "%Y-%m-%d %H:%M:%S")
+| eval previous_latest = strftime(previous_latest_epoch, "%Y-%m-%d %H:%M:%S")
+
+| eval Comparison_Period_Display = current_earliest . " to " . current_latest
+| eval Compared_To_Period_Display = previous_earliest . " to " . previous_latest
+
+| map maxsearches=20 search="
+    search index=\"$selected_raw_index$\" sourcetype=\"$selected_raw_sourcetype$\"
+    earliest=$$current_earliest_epoch$$
+    latest=$$current_latest_epoch$$
+    | fieldsummary
+    | eval time_period=\"current_range\"
+    | fields field, time_period
+
+    | append [
+        search index=\"$selected_raw_index$\" sourcetype=\"$selected_raw_sourcetype$\"
+        earliest=$$previous_earliest_epoch$$
+        latest=$$previous_latest_epoch$$
+        | fieldsummary
+        | eval time_period=\"previous_range\"
+        | fields field, time_period
+    ]
+    | stats values(time_period) AS presence BY field
+    | where NOT match(field, \"^_\")
+    | eval status=case(
+        mvcount(presence) == 2, \"Unchanged\",
+        presence == \"current_range\", \"New Field\",
+        presence == \"previous_range\", \"Removed Field\"
+    )
+    | stats count(eval(status=\"New Field\")) as Added_Fields, count(eval(status=\"Removed Field\")) as Removed_Fields
+    | eval _time = $$current_latest_epoch$$
+    | eval target_index = \"$selected_raw_index$\"
+    | eval target_sourcetype = \"$selected_raw_sourcetype$\"
+    | eval Comparison_Period = \"$$Comparison_Period_Display$$\"
+    | eval Compared_To_Period = \"$$Compared_To_Period_Display$$\"
+    | fields _time, target_index, target_sourcetype, Comparison_Period, Compared_To_Period, Added_Fields, Removed_Fields
+"
+| where Added_Fields > 0 OR Removed_Fields > 0 
+| table Comparison_Period, Compared_To_Period, Added_Fields, Removed_Fields, target_index, target_sourcetype
+| rename target_index as Index, target_sourcetype as Sourcetype, Added_Fields as "Added Fields", Removed_Fields as "Removed Fields"
+| sort -_time
+    ]]>
+          </query>
+          <earliest>-$timerange$d@d</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="rowNumbers">true</option>
+        <option name="count">20</option>
+      </table>
+    </panel>
+  </row>
+</form>

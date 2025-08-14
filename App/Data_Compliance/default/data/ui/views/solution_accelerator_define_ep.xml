@@ -1,0 +1,525 @@
+<dashboard version="1.1" theme="light">
+    <label>Defining Edge Processor</label>
+    <description>Defining what Splunk Edge Processor is, and how it works.</description>
+    <row>
+        <panel>
+            <html>
+                <ul>
+                    <h1>
+                        <img width="35" src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                        <font color="#8B0000">Introduction to Edge Processor for Data Compliance</font>
+                    </h1>
+                    <p>The Edge Processor solution provides distributed data processing
+                        capabilities, operating at the edge of your network. Its primary function is
+                        to enable the filtering, masking, and transformation of data at its source,
+                        prior to routing the processed output to external destinations.</p>
+
+                    <p>This solution is suitable for Splunk Cloud Platform administrators leveraging
+                        forwarders, syslog devices, or HTTP Event Collector (<a
+                            href="https://docs.splunk.com/Documentation/Splunk/latest/Data/HECExamples"
+                            target="_blank" rel="noopener noreferrer">HEC</a>) for data ingestion.
+                        It is available across both Classic and Victoria Experiences. Prerequisites
+                        for deployment include:</p>
+                    <ul>
+                        <li>Splunk Cloud Platform version 9.0.2209 or higher.</li>
+                        <li>Provisioning in an Edge Processor-supported region (consult the <a
+                                href="https://docs.splunk.com/Documentation/SplunkCloud/9.3.2411/Service/SplunkCloudservice#Available_regions_and_region_differences"
+                                target="_blank">Splunk Cloud Platform Service Description</a> for
+                            details).</li>
+                        <li>Exclusion of <a
+                                href="https://public.cyber.mil/Products-Services/Cloud-Services/"
+                                target="_blank" rel="noopener noreferrer">DoD IL5</a> or <a
+                                href="https://www.fedramp.gov/" target="_blank"
+                                rel="noopener noreferrer">FedRAMP</a> Moderate subscription types.</li>
+                    </ul>
+                    <p>By sanitizing and reducing data volume before transmission to Splunk indexes
+                        or Amazon <a href="https://aws.amazon.com/s3/" target="_blank"
+                            rel="noopener noreferrer">S3</a> buckets, Edge Processor contributes to
+                        decreased data storage costs and enhanced prevention of confidential data
+                        egress. Furthermore, it offers centralized management and monitoring of data
+                        processing configurations and ingest traffic via a dedicated Splunk Cloud
+                        service.</p>
+                    <hr />
+                    <h1>
+                        <img width="35" src="/static/app/Data_Compliance/SA_image_icon_tool.png" />
+                        <font color="#000000">Edge Processor Reference Architecture</font>
+                    </h1>
+                    <p>Ingest logs data and generate metrics to power real-time dashboards and
+                        alerts:</p>
+                    <img src="/static/app/Data_Compliance/ep-fed-s3.avif"
+                        style="display: block; margin-left: auto; margin-right: auto; width: 66%;" />
+                    <hr />
+                    <h1>
+                        <img width="35" src="/static/app/Data_Compliance/SA_image_icon_tool.png" />
+                        <font color="#000000">Getting Started with Splunk Edge
+                            Processor</font>
+                    </h1>
+                    <ul>
+                        <h2>
+                            <font color="#000000">Introducing Splunk Edge Processor</font>
+                        </h2>
+                        <p>Splunk Edge Processor, a key service offering within Splunk Cloud
+                            Platform and part of Splunk’s pre-ingest data transformation
+                            capabilities, represents Splunk's latest innovation in data processing.
+                            It is designed to help <a
+                                href="https://en.wikipedia.org/wiki/Financial_services"
+                                target="_blank" rel="noopener noreferrer">Financial Services
+                            Institutions (FSIs)</a> achieve greater efficiencies in data
+                            transformation by processing data closer to its source, <b>before</b> it
+                            reaches your central Splunk indexers (Cloud or Enterprise). This
+                            approach provides improved visibility into data in motion and empowers <a
+                                href="https://en.wikipedia.org/wiki/Financial_services"
+                                target="_blank" rel="noopener noreferrer">FSIs</a> to filter, mask,
+                            and otherwise transform their data before routing it to supported
+                            destinations, such as Splunk Enterprise, Splunk Cloud Platform, or
+                            Amazon <a href="https://aws.amazon.com/s3/" target="_blank"
+                                rel="noopener noreferrer">S3</a>.</p>
+                        <p>The power behind Edge Processor's data transformation capabilities lies
+                            in <a
+                                href="https://docs.splunk.com/Documentation/Splunk/latest/Search/AboutSPL2"
+                                target="_blank" rel="noopener noreferrer">SPL2</a>, Splunk’s
+                            next-generation data search and preparation language. <a
+                                href="https://docs.splunk.com/Documentation/Splunk/latest/Search/AboutSPL2"
+                                target="_blank" rel="noopener noreferrer">SPL2</a> offers
+                            significant flexibility, allowing <a
+                                href="https://en.wikipedia.org/wiki/Financial_services"
+                                target="_blank" rel="noopener noreferrer">FSIs</a> to shape data
+                            precisely as needed for compliance, security, and analytics before it's
+                            indexed. This is crucial for applying critical compliance controls -
+                            like those for <a
+                                href="https://csrc.nist.gov/glossary/term/personally_identifiable_information"
+                                target="_blank" rel="noopener noreferrer">PII</a>, <a
+                                href="https://www.pcisecuritystandards.org/glossary/cardholder-data/"
+                                target="_blank" rel="noopener noreferrer">CHD</a>, and data
+                            residency - to sensitive data streams from diverse systems
+                            (applications, servers, network devices, <a
+                                href="https://en.wikipedia.org/wiki/Internet_of_things"
+                                target="_blank" rel="noopener noreferrer">IoT</a>) before
+                            transmission or central storage.</p>
+                        <p>Edge Processor features a unique architecture with a cloud-based control
+                            plane for centralized management. Edge Processor nodes, which act as an
+                            intermediate forwarding tier receiving data from sources like Splunk
+                            Universal and Heavyweight Forwarders, are easily installed and
+                            configured on your servers or cloud infrastructure using a single
+                            command. The entire fleet of edge processors, along with inbound and
+                            outbound data volumes and detailed metrics on pipeline impact, can be
+                            managed and monitored from Splunk Cloud Platform. Nodes can scale
+                            horizontally by simply adding instances to handle increasing data
+                            volumes or processing requirements. The data plane itself remains
+                            entirely within your control, ensuring data is only sent where you
+                            direct it.</p>
+                        <p>From this central cloud control plane, you define data processing logic
+                            using pipelines. These pipelines, constructed with <a
+                                href="https://docs.splunk.com/Documentation/Splunk/latest/Search/AboutSPL2"
+                                target="_blank" rel="noopener noreferrer">SPL2</a> in a new pipeline
+                            editor experience, dictate the desired filtering, masking, and routing
+                            logic. The editor allows you to preview the impact of your pipeline on
+                            sample data before deployment, ensuring precise control over data
+                            handling. This capability is vital for <a
+                                href="https://en.wikipedia.org/wiki/Financial_services"
+                                target="_blank" rel="noopener noreferrer">FSIs</a> to implement
+                            robust data compliance strategies effectively.</p>
+                        <h2>
+                            <font color="#000000">Splunk Edge Processor Prerequisities</font>
+                        </h2>
+                        <p>Before you can access and manage Splunk Edge Processor instances and
+                            their data pipelines, the Edge Processor system must be correctly
+                            deployed and configured in your environment. This typically involves a
+                            few key stages:</p>
+                        <ul>
+                            <li>
+                                <strong>Deploying Edge Processor Instances:</strong> This involves
+                                installing the Edge Processor software on your designated hardware
+                                or virtual machines at the edge locations where your data
+                                originates. Ensure your systems meet the necessary prerequisites. <ul>
+                                    <li>
+                                        <em>Learn more:</em>
+                                        <a
+                                            href="https://help.splunk.com/en/splunk-cloud-platform/process-data-at-the-edge/use-edge-processors/9.3.2411/administer-edge-processors/installation-requirements-for-edge-processors"
+                                            target="_blank" rel="noopener noreferrer">Install and
+                                manage Edge Processors</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>Connecting and Registering Instances:</strong> Once
+                                deployed, Edge Processor instances need to be connected to and
+                                registered with your Splunk Cloud Platform deployment. This allows
+                                for centralized management, monitoring, and pipeline deployment. <ul>
+                                    <li>
+                                        <em>Learn more:</em>
+                                        <a
+                                            href="https://help.splunk.com/en/splunk-cloud-platform/process-data-at-the-edge/use-edge-processors/9.3.2411/getting-started/first-time-setup-instructions-for-the-edge-processor-solution"
+                                            target="_blank" rel="noopener noreferrer">Connect an
+                                            Edge Processor to Splunk Cloud Platform</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>Configuring Data Sources and Destinations:</strong> You'll
+                                need to define where the Edge Processor will receive data from
+                                (e.g., Universal Forwarders, HTTP Event Collector endpoints at the
+                                edge) and where the processed data will be routed (e.g., specific
+                                Splunk Cloud Platform indexes, S3 buckets). <ul>
+                                    <li><em>Learn more:</em> <a
+                                            href="https://help.splunk.com/en/splunk-cloud-platform/process-data-at-the-edge/use-edge-processors/9.3.2411/get-data-into-edge-processors/get-data-from-a-forwarder-into-an-edge-processor"
+                                            target="_blank" rel="noopener noreferrer">Get data into
+                                Edge Processor</a> and <a
+                                            href="https://help.splunk.com/en/splunk-cloud-platform/process-data-at-the-edge/use-edge-processors/9.3.2411/send-data-out-from-edge-processors/how-the-destination-for-edge-processor-works"
+                                            target="_blank" rel="noopener noreferrer">Send data from
+                                an Edge Processor</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>Defining Processing Pipelines:</strong> This is where you
+                                create the logic using SPL2 to filter, mask, transform, and route
+                                your data. These pipelines are then applied to your Edge Processor
+                                instances. <ul>
+                                    <li>
+                                        <em>Learn more:</em>
+                                        <a
+                                            href="https://help.splunk.com/en/splunk-cloud-platform/process-data-at-the-edge/use-edge-processors/9.3.2411/working-with-pipelines/edge-processor-pipeline-syntax"
+                                            target="_blank" rel="noopener noreferrer">About Edge
+                                Processor pipelines</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <p>For comprehensive details and the latest procedures, always refer to the
+                            official Splunk Edge Processor documentation:</p>
+                        <ul>
+                            <li>
+                                <strong>Main Documentation:</strong>
+                                <a
+                                    href="https://help.splunk.com/en/splunk-cloud-platform/process-data-at-the-edge/use-edge-processors/9.3.2411/getting-started/about-the-edge-processor-solution"
+                                    target="_blank" rel="noopener noreferrer">Splunk Edge Processor
+                                </a>
+                            </li>
+                        </ul>
+                        <p>Once these setup steps are completed, you can proceed to access and
+                            utilize the Edge Processor for managing your edge data.</p>
+                        <h2>
+                            <font color="#000000">Accessing Splunk Edge Processor</font>
+                        </h2>
+                        <ul>
+                            <li>
+                                <p> Go to your Splunk Cloud deployment by visiting <code>
+                                    https://px.scs.splunk.com/&lt;tenant&gt; </code> where <code>
+                                    &lt;tenant&gt;</code> should be replaced with the name of your
+                                    specific Splunk Cloud deployment. </p>
+                            </li>
+                            <li>
+                                <p> Use your Splunk Cloud credentials to log in. Ensure that the
+                                    account you use has the <code>admin_all_objects</code>
+                                    capability. </p>
+                            </li>
+                        </ul>
+                        <h2>
+                            <font color="#000000">Splunk Edge Processor UI</font>
+                        </h2>
+
+                        <p>From a centralized cloud control plane, customers can define their data
+                            processing logic through "pipelines." These pipelines dictate the
+                            desired filtering, masking, and routing behavior for their data, and can
+                            be applied universally or selectively to any Edge Processor deployed
+                            within their network. The creation of these pipelines is facilitated by
+                            the new pipeline editor experience, which utilizes <a
+                                href="https://docs.splunk.com/Documentation/Splunk/latest/Search/AboutSPL2"
+                                target="_blank" rel="noopener noreferrer">SPL2</a>. This innovative
+                            editor allows users to preview the real-time impact of a pipeline on
+                            their data before changes are finalized, providing immediate feedback
+                            and ensuring accuracy.</p>
+
+                        <p>Crucially, the data plane itself remains entirely within the customer's
+                            control. Customers direct their data sources (such as Splunk Universal
+                            and Heavyweight Forwarders) to an Edge Processor node installed on their
+                            own hosts. From there, data is only transmitted to destinations
+                            explicitly defined and controlled by the customer. At its initial
+                            launch, Edge Processor is capable of receiving data from these Splunk
+                            forwarders and routing it to various targets, including Splunk
+                            Enterprise, Splunk Cloud Platform, and Amazon <a
+                                href="https://aws.amazon.com/s3/" target="_blank"
+                                rel="noopener noreferrer">S3</a>.</p>
+
+                        <div style="text-align: center; margin-top: 10px; margin-bottom: 10px;">
+                            <img src="/static/app/Data_Compliance/diag-edge-processor.avif"
+                                alt="Ingest Action Ruleset Placeholder"
+                                style="max-width: 80%; height: auto;" />
+                            <p style="margin-top: 10px;">
+                                <em>Splunk Edge Processor UI.</em>
+                            </p>
+                        </div>
+
+                        <h2>
+                            <font color="#000000">Key Edge Processor Techniques for Data Compliance
+                                in <a href="https://en.wikipedia.org/wiki/Financial_services"
+                                    target="_blank" rel="noopener noreferrer">FSI</a></font>
+                        </h2>
+                        <p>
+                            <b>1. Filtering Irrelevant or Non-Compliant Data at the Source:</b>
+                        </p>
+                        <ul>
+                            <li>
+                                <b>Purpose:</b> To reduce data volume, minimize license/storage
+                                costs, and adhere to data minimization principles by discarding data
+                                that is not required for compliance, security, or operational
+                                analytics before it leaves the source environment. </li>
+                            <li>
+                                <b>Application for <a
+                                        href="https://en.wikipedia.org/wiki/Financial_services"
+                                        target="_blank" rel="noopener noreferrer">FSI</a>:</b>
+                                Filtering out verbose operational logs from ATMs that don't contain
+                                security or transaction information, dropping routine network
+                                chatter from branch office devices, or removing debug-level
+                                application logs that are not needed for audit trails. </li>
+                            <li>
+                                <b>Conceptual Implementation (<a
+                                        href="https://docs.splunk.com/Documentation/Splunk/latest/Search/AboutSPL2"
+                                        target="_blank" rel="noopener noreferrer">SPL2</a> in Edge
+                                    Processor Pipeline):</b>
+                                <pre>| where sourcetype!="fsi_app_debug_verbose" AND (event_code >= 500 OR contains(keywords, "CRITICAL_ERROR"))</pre>
+                                <p>
+                                    <em>This example keeps events not matching a verbose sourcetype
+                                        if they have a critical event code or keyword.</em>
+                                </p>
+                            </li>
+                        </ul>
+                        <p>
+                            <b>2. Masking or Obfuscating Sensitive Information (<a
+                                    href="https://csrc.nist.gov/glossary/term/personally_identifiable_information"
+                                    target="_blank" rel="noopener noreferrer">PII</a>, <a
+                                    href="https://www.pcisecuritystandards.org/glossary/cardholder-data/"
+                                    target="_blank" rel="noopener noreferrer">CHD</a>):</b>
+                        </p>
+                        <ul>
+                            <li>
+                                <b>Purpose:</b> To protect sensitive data like customer <a
+                                    href="https://csrc.nist.gov/glossary/term/personally_identifiable_information"
+                                    target="_blank" rel="noopener noreferrer">PII</a>, account
+                                numbers, or cardholder data by replacing or obscuring it with
+                                non-sensitive values before the data is transmitted from the edge. </li>
+                            <li>
+                                <b>Application for <a
+                                        href="https://en.wikipedia.org/wiki/Financial_services"
+                                        target="_blank" rel="noopener noreferrer">FSI</a>:</b>
+                                Masking customer account numbers in logs from a core banking
+                                application at the data center edge, obfuscating parts of credit
+                                card numbers from <a
+                                    href="https://en.wikipedia.org/wiki/Point_of_sale"
+                                    target="_blank" rel="noopener noreferrer">POS</a> terminal logs
+                                before they are sent to a central Splunk instance for <a
+                                    href="https://www.pcisecuritystandards.org/pci_security/"
+                                    target="_blank" rel="noopener noreferrer">PCI DSS</a>
+                                compliance. </li>
+                            <li>
+                                <b>Conceptual Implementation (<a
+                                        href="https://docs.splunk.com/Documentation/Splunk/latest/Search/AboutSPL2"
+                                        target="_blank" rel="noopener noreferrer">SPL2</a> in Edge
+                                    Processor Pipeline):</b>
+                                <pre>| eval _raw = replace(_raw, /(\d{4}-){3}(\d{4})/, "XXXX-XXXX-XXXX-" + mvindex(split(replace(_raw, /(\d{4}-){3}(\d{4})/, "$2"),"-"),0))</pre>
+                                <p>
+                                    <em>This conceptual example attempts to mask a CCN, leaving the
+                                        last 4 digits. Real-world regex would need to be robust.</em>
+                                </p>
+                                <pre>| eval _raw = replace(_raw, /ssn=\d{3}-\d{2}-\d{4}/, "ssn=XXX-XX-XXXX")</pre>
+                                <p>
+                                    <em>This conceptual example attempts to mask an SSN. Real-world
+                                        regex would need to be robust.</em>
+                                </p>
+                            </li>
+                        </ul>
+                        <p>
+                            <b>3. Routing Data Based on Compliance and Residency Requirements:</b>
+                        </p>
+                        <ul>
+                            <li>
+                                <b>Purpose:</b> To direct specific data streams to different Splunk
+                                instances, <a href="https://aws.amazon.com/s3/" target="_blank"
+                                    rel="noopener noreferrer">S3</a> buckets, or other destinations
+                                based on data sensitivity, geographic origin, or regulatory mandates
+                                (e.g., <a
+                                    href="https://gdpr-info.eu/" target="_blank"
+                                    rel="noopener noreferrer">GDPR</a> data residency). </li>
+                            <li>
+                                <b>Application for <a
+                                        href="https://en.wikipedia.org/wiki/Financial_services"
+                                        target="_blank" rel="noopener noreferrer">FSI</a>:</b>
+                                Routing transaction logs originating from <a
+                                    href="https://european-union.europa.eu/index_en" target="_blank"
+                                    rel="noopener noreferrer">EU</a> customers to an <a
+                                    href="https://european-union.europa.eu/index_en" target="_blank"
+                                    rel="noopener noreferrer">EU</a>-based Splunk Cloud stack, while
+                                routing logs from US customers to a US-based stack. Sending audit
+                                logs to a long-term, immutable storage destination like <a
+                                    href="https://aws.amazon.com/s3/" target="_blank"
+                                    rel="noopener noreferrer">S3</a>. </li>
+                            <li>
+                                <b>Conceptual Implementation (Edge Processor Pipeline
+                                    Configuration):</b> Edge Processor pipelines allow defining
+                                multiple output destinations. Logic within the <a
+                                    href="https://docs.splunk.com/Documentation/Splunk/latest/Search/AboutSPL2"
+                                    target="_blank" rel="noopener noreferrer">SPL2</a> pipeline
+                                (e.g., using `where` clauses based on source IP geolocation or
+                                specific metadata) would determine which events go to which
+                                configured output. <pre>
+                                // Pipeline 1: Route EU data
+                                | where geo_location="EU"
+                                | send_to_splunk_cloud_eu_stack;
+
+                                // Pipeline 2: Route US data
+                                | where geo_location="US"
+                                | send_to_splunk_cloud_us_stack;
+
+                                // Pipeline 3: Archive certain audit logs to S3
+                                | where sourcetype="fsi_critical_audit"
+                                | send_to_s3_archive_bucket;
+                                </pre>
+                            </li>
+                        </ul>
+                        <p>
+                            <b>4. Aggregating Data for Trend Analysis while Minimizing Detail:</b>
+                        </p>
+                        <ul>
+                            <li>
+                                <b>Purpose:</b> To summarize event data at the edge, sending only
+                                aggregated statistics or counts, which can be useful for high-level
+                                monitoring and trend analysis while reducing the volume of detailed
+                                (and potentially sensitive) raw logs. </li>
+                            <li>
+                                <b>Application for <a
+                                        href="https://en.wikipedia.org/wiki/Financial_services"
+                                        target="_blank" rel="noopener noreferrer">FSI</a>:</b>
+                                Counting the number of failed login attempts per hour from a
+                                specific branch IP range and sending only that count, rather than
+                                every individual failed login event. </li>
+                            <li>
+                                <b>Conceptual Implementation (<a
+                                        href="https://docs.splunk.com/Documentation/Splunk/latest/Search/AboutSPL2"
+                                        target="_blank" rel="noopener noreferrer">SPL2</a> in Edge
+                                    Processor Pipeline):</b>
+                                <pre>| where event_type="failed_login" AND source_branch_id="branch_123" | stats count by date_hour, source_ip | send_to_summary_index</pre>
+                            </li>
+                        </ul>
+                        <hr />
+                        <h2>
+                            <font color="#000000">Benefits of Edge Processor for <a
+                                    href="https://en.wikipedia.org/wiki/Financial_services"
+                                    target="_blank" rel="noopener noreferrer">FSI</a> Data
+                                Compliance</font>
+                        </h2>
+                        <ul>
+                            <li>
+                                <b>Significant Cost Reduction:</b> Lowers Splunk ingest volume,
+                                license fees, and network bandwidth costs by processing and
+                                filtering data at the source, helping to manage costs and boost
+                                value from your Splunk investment.</li>
+                            <li>
+                                <b>Enhanced Security &amp; Privacy:</b> Masks or filters sensitive
+                                data <b>before</b> it leaves trusted network boundaries, minimizing
+                                risk of exposure and supporting data protection.</li>
+                            <li>
+                                <b>Improved Compliance Posture and Control:</b> Facilitates
+                                adherence to data minimization, data residency (e.g., <a
+                                    href="https://gdpr-info.eu/" target="_blank"
+                                    rel="noopener noreferrer">GDPR</a>), and data protection
+                                principles, offering greater simplicity and control over data
+                                transformations.</li>
+                            <li>
+                                <b>Increased Data Quality and Visibility for Analytics:</b> Delivers
+                                cleaner, more relevant data to central Splunk, improving the value
+                                of data for analytics with increased visibility into data in motion.</li>
+                            <li>
+                                <b>Scalability and Simplified Management:</b> Effectively manages
+                                data from numerous distributed <a
+                                    href="https://en.wikipedia.org/wiki/Financial_services"
+                                    target="_blank" rel="noopener noreferrer">FSI</a> operations
+                                (branches, ATMs, remote systems) with horizontal scalability and
+                                centralized management via the Splunk Cloud control plane.</li>
+                            <li>
+                                <b>Improved Productivity:</b> Streamlines data preparation
+                                processes, allowing teams to focus on deriving insights rather than
+                                extensive data wrangling.</li>
+                        </ul>
+                    </ul>
+
+                    <hr />
+                    <h1>
+                        <img width="35" src="/static/app/Data_Compliance/SA_image_bullet_01.png" />
+                        <font color="#000000">NEXT STEPS</font>
+                    </h1>
+                    <ul>
+                        <li>
+                            <b>Identify Edge Data Sources:</b> Determine which distributed systems
+                            generate data relevant to compliance. </li>
+                        <li>
+                            <b>Define Edge Processing Rules:</b> Based on compliance requirements,
+                            specify what filtering, masking, or routing needs to occur for each edge
+                            data source. </li>
+                        <li>
+                            <b>Deploy Edge Processor Instances:</b> Strategically deploy Edge
+                            Processor nodes within your network segments. </li>
+                        <li>
+                            <b>Develop and Test <a
+                                    href="https://docs.splunk.com/Documentation/Splunk/latest/Search/AboutSPL2"
+                                    target="_blank" rel="noopener noreferrer">SPL2</a> Pipelines:</b>
+                            Create and rigorously test your data processing pipelines in the Edge
+                            Processor UI or via its configuration files. </li>
+                        <li>
+                            <b>Monitor Edge Processor Performance:</b> Utilize Splunk tools to
+                            monitor the health, throughput, and effectiveness of your Edge Processor
+                            deployments. </li>
+                        <li>
+                            <b>Consult Splunk Documentation:</b> Refer to the official Splunk Edge
+                            Processor documentation for detailed guidance on deployment, pipeline
+                            creation, <a
+                                href="https://docs.splunk.com/Documentation/Splunk/latest/Search/AboutSPL2"
+                                target="_blank" rel="noopener noreferrer">SPL2</a> usage, and best
+                            practices. </li>
+                    </ul>
+                </ul>
+            </html>
+        </panel>
+    </row>
+    <row id="tab_next">
+        <panel>
+            <html tokens="true">
+                <ul>
+                    <h1>
+                        <!-- Placeholder: Update icon path -->
+                        <img width="45"
+                            src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                        <!-- Updated Help Header -->
+                        <b>Do you need help? Ask a Data Compliance Expert.</b>
+                    </h1>
+                    <p> Need help with your environment or requirements? Send us your questions, and
+                        we’ll get back to you as soon as possible. <ul>
+                            <li> For detailed step-by-step instructions on implementing the solution
+                        using this Solutions Accelerator, visit our <a
+                                    href="https://lantern.splunk.com/@go/page/Data_Compliance">
+                                    <b>Solutions Accelerator</b>
+                                </a>
+                        page.</li>
+                            <li> To expedite implementation with professional services, please reach
+                        out to our sales team by clicking <a
+                                    href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
+                                    target="_ask_expert">
+                                    <b>Contact Us</b>
+                                </a>
+                            </li>
+                            <li> If you need immediate assistance, explore our community forum, <a
+                                    href="http://answers.splunk.com/">
+                                    <b>Splunk Answers</b>
+                                </a>.</li>
+                        </ul>
+                    </p>
+                    <!-- Placeholder: Update bullet image path -->
+                    <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+                    <a
+                        href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
+                        class="btn" target="_ask_expert">Contact Us</a>
+                </ul>
+
+            </html>
+        </panel>
+    </row>
+</dashboard>

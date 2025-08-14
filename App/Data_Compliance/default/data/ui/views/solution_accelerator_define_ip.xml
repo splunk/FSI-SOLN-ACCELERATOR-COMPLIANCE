@@ -1,0 +1,433 @@
+<dashboard version="1.1" theme="light">
+    <label>Defining Ingest Processor</label>
+    <description>Defining what Splunk Ingest Processor is, and how it works.</description>
+    <row>
+        <panel>
+            <html>
+                <ul>
+                    <h1>
+                        <img width="35" src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                        <font color="#8B0000">Introduction to Ingest Processor for Data Compliance</font>
+                    </h1>
+                    <p>The Ingest Processor is a native data processing service within the Splunk
+                        Cloud Platform. Its primary function is to enable the filtering, masking,
+                        and transformation of data as it is received by Splunk Cloud, prior to it
+                        being indexed and stored.</p>
+
+                    <p>This solution is suitable for all Splunk Cloud Platform administrators as it
+                        is a core capability of the platform, supporting data from forwarders,
+                        syslog devices, or the HTTP Event Collector (<a
+                            href="https://docs.splunk.com/Documentation/Splunk/latest/Data/HECExamples"
+                            target="_blank" rel="noopener noreferrer">HEC</a>). As a native service,
+                        it requires no additional infrastructure to be deployed or managed by the
+                        user.</p>
+                    <ul>
+                        <li>Splunk Cloud Platform version that includes the Ingest Processor
+                            feature.</li>
+                        <li>Permissions to access and configure Ingest Processor pipelines (typically
+                            the <code>sc_admin</code> role).</li>
+                    </ul>
+                    <p>By sanitizing and reducing data volume before it's written to Splunk indexes
+                        or routed to Amazon <a href="https://aws.amazon.com/s3/" target="_blank"
+                            rel="noopener noreferrer">S3</a> buckets, Ingest Processor contributes
+                        to decreased data storage costs and enhanced prevention of confidential
+                        data exposure. It offers centralized management and monitoring of all data
+                        processing configurations and ingest traffic directly within the Splunk
+                        Cloud UI.</p>
+                    <hr />
+                    <h1>
+                        <img width="35" src="/static/app/Data_Compliance/SA_image_icon_tool.png" />
+                        <font color="#000000">Ingest Processor Reference Architecture</font>
+                    </h1>
+                    <p>Ingest logs data and generate metrics to power real-time dashboards and
+                        alerts:</p>
+                    <img src="/static/app/Data_Compliance/ip_arch.jpg"
+                        style="display: block; margin-left: auto; margin-right: auto; width: 66%;" />
+                    <hr />
+                    <h1>
+                        <img width="35" src="/static/app/Data_Compliance/SA_image_icon_tool.png" />
+                        <font color="#000000">Getting Started with Splunk Ingest
+                            Processor</font>
+                    </h1>
+                    <ul>
+                        <h2>
+                            <font color="#000000">Introducing Splunk Ingest Processor</font>
+                        </h2>
+                        <p>Splunk Ingest Processor, a key service offering within Splunk Cloud
+                            Platform, represents a powerful approach to pre-ingest data
+                            transformation. It is designed to help <a
+                                href="https://en.wikipedia.org/wiki/Financial_services"
+                                target="_blank" rel="noopener noreferrer">Financial Services
+                                Institutions (FSIs)</a> achieve greater efficiencies by processing
+                            data centrally within the Splunk Cloud environment, <b>before</b> it
+                            reaches your indexes. This approach provides improved visibility into
+                            data in motion and empowers <a
+                                href="https://en.wikipedia.org/wiki/Financial_services"
+                                target="_blank" rel="noopener noreferrer">FSIs</a> to filter, mask,
+                            and otherwise transform their data before routing it to supported
+                            destinations, such as Splunk Cloud Platform indexes or Amazon <a
+                                href="https://aws.amazon.com/s3/" target="_blank"
+                                rel="noopener noreferrer">S3</a>.</p>
+                        <p>The power behind Ingest Processor's data transformation capabilities
+                            lies in <a
+                                href="https://docs.splunk.com/Documentation/Splunk/latest/Search/AboutSPL2"
+                                target="_blank" rel="noopener noreferrer">SPL2</a>, Splunk’s
+                            next-generation data search and preparation language. <a
+                                href="https://docs.splunk.com/Documentation/Splunk/latest/Search/AboutSPL2"
+                                target="_blank" rel="noopener noreferrer">SPL2</a> offers
+                            significant flexibility, allowing <a
+                                href="https://en.wikipedia.org/wiki/Financial_services"
+                                target="_blank" rel="noopener noreferrer">FSIs</a> to shape data
+                            precisely as needed for compliance, security, and analytics before it's
+                            indexed. This is crucial for applying critical compliance controls -
+                            like those for <a
+                                href="https://csrc.nist.gov/glossary/term/personally_identifiable_information"
+                                target="_blank" rel="noopener noreferrer">PII</a>, <a
+                                href="https://www.pcisecuritystandards.org/glossary/cardholder-data/"
+                                target="_blank" rel="noopener noreferrer">CHD</a>, and data
+                            residency - to sensitive data streams before they are stored.</p>
+                        <p>Ingest Processor is managed entirely from a centralized control plane
+                            within the Splunk Cloud UI. There are no separate nodes to install or
+                            manage. You define data processing logic using pipelines, which are
+                            constructed with <a
+                                href="https://docs.splunk.com/Documentation/Splunk/latest/Search/AboutSPL2"
+                                target="_blank" rel="noopener noreferrer">SPL2</a> in a dedicated
+                            pipeline editor. This editor allows you to preview the impact of your
+                            pipeline on sample data before deployment, ensuring precise control over
+                            data handling. This capability is vital for <a
+                                href="https://en.wikipedia.org/wiki/Financial_services"
+                                target="_blank" rel="noopener noreferrer">FSIs</a> to implement
+                            robust data compliance strategies effectively and efficiently.</p>
+                        <h2>
+                            <font color="#000000">Splunk Ingest Processor Prerequisities</font>
+                        </h2>
+                        <p>Because Splunk Ingest Processor is a native service within Splunk Cloud
+                            Platform, there are no separate components to install or deploy. The
+                            primary prerequisites are related to your Splunk Cloud environment and
+                            user permissions:</p>
+                        <ul>
+                            <li>
+                                <strong>Splunk Cloud Platform Access:</strong> You must have access
+                                to a Splunk Cloud Platform deployment. Ingest Processor is an
+                                integrated feature of the platform.</li>
+                            <li>
+                                <strong>Required Permissions:</strong> Your user account must have
+                                the necessary capabilities to access and manage Ingest Processor
+                                settings. Typically, this requires the <code>sc_admin</code> role.
+                            </li>
+                        </ul>
+                        <p>For comprehensive details and the latest procedures, always refer to the
+                            official Splunk Ingest Processor documentation:</p>
+                        <ul>
+                            <li>
+                                <strong>Main Documentation:</strong>
+                                <a
+                                    href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/Ingestprocessor"
+                                    target="_blank" rel="noopener noreferrer">Splunk Ingest
+                                    Processor</a>
+                            </li>
+                        </ul>
+                        <h2>
+                            <font color="#000000">Accessing Splunk Ingest Processor</font>
+                        </h2>
+                        <ul>
+                            <li>
+                                <p> Log in to your Splunk Cloud Platform deployment. </p>
+                            </li>
+                            <li>
+                                <p> On the Splunk Web menu bar, navigate to <b>Settings</b> &gt;
+                                    <b>Ingest Processor</b>. </p>
+                            </li>
+                            <li>
+                                <p> Ensure that the account you use has the <code>sc_admin</code>
+                                    role or equivalent permissions to view and modify pipelines.
+                                </p>
+                            </li>
+                        </ul>
+                        <h2>
+                            <font color="#000000">Splunk Ingest Processor UI</font>
+                        </h2>
+
+                        <p>From the centralized Ingest Processor UI within Splunk Cloud, customers
+                            can define their data processing logic through "pipelines." These
+                            pipelines dictate the desired filtering, masking, and routing behavior
+                            for their data. The creation of these pipelines is facilitated by the
+                            new pipeline editor experience, which utilizes <a
+                                href="https://docs.splunk.com/Documentation/Splunk/latest/Search/AboutSPL2"
+                                target="_blank" rel="noopener noreferrer">SPL2</a>. This innovative
+                            editor allows users to preview the real-time impact of a pipeline on
+                            their data before changes are finalized, providing immediate feedback
+                            and ensuring accuracy.</p>
+
+                        <div style="text-align: center; margin-top: 10px; margin-bottom: 10px;">
+                            <img src="/static/app/Data_Compliance/ingest_processor_ui.jpg"
+                                alt="Ingest Processor Pipeline Editor"
+                                style="max-width: 80%; height: auto;" />
+                            <p style="margin-top: 10px;">
+                                <em>Splunk Ingest Processor UI.</em>
+                            </p>
+                        </div>
+
+                        <h2>
+                            <font color="#000000">Key Ingest Processor Techniques for Data
+                                Compliance in <a
+                                    href="https://en.wikipedia.org/wiki/Financial_services"
+                                    target="_blank" rel="noopener noreferrer">FSI</a></font>
+                        </h2>
+                        <p>
+                            <b>1. Filtering Irrelevant or Non-Compliant Data:</b>
+                        </p>
+                        <ul>
+                            <li>
+                                <b>Purpose:</b> To reduce data volume, minimize license/storage
+                                costs, and adhere to data minimization principles by discarding data
+                                that is not required for compliance, security, or operational
+                                analytics before it gets indexed. </li>
+                            <li>
+                                <b>Application for <a
+                                        href="https://en.wikipedia.org/wiki/Financial_services"
+                                        target="_blank" rel="noopener noreferrer">FSI</a>:</b>
+                                Filtering out verbose operational logs from applications that don't
+                                contain security or transaction information, dropping routine
+                                network chatter, or removing debug-level logs that are not needed
+                                for audit trails. </li>
+                            <li>
+                                <b>Conceptual Implementation (<a
+                                        href="https://docs.splunk.com/Documentation/Splunk/latest/Search/AboutSPL2"
+                                        target="_blank" rel="noopener noreferrer">SPL2</a> in Ingest
+                                    Processor Pipeline):</b>
+                                <pre>| where sourcetype!="fsi_app_debug_verbose" AND (event_code >= 500 OR contains(keywords, "CRITICAL_ERROR"))</pre>
+                                <p>
+                                    <em>This example keeps events not matching a verbose sourcetype
+                                        if they have a critical event code or keyword.</em>
+                                </p>
+                            </li>
+                        </ul>
+                        <p>
+                            <b>2. Masking or Obfuscating Sensitive Information (<a
+                                    href="https://csrc.nist.gov/glossary/term/personally_identifiable_information"
+                                    target="_blank" rel="noopener noreferrer">PII</a>, <a
+                                    href="https://www.pcisecuritystandards.org/glossary/cardholder-data/"
+                                    target="_blank" rel="noopener noreferrer">CHD</a>):</b>
+                        </p>
+                        <ul>
+                            <li>
+                                <b>Purpose:</b> To protect sensitive data like customer <a
+                                    href="https://csrc.nist.gov/glossary/term/personally_identifiable_information"
+                                    target="_blank" rel="noopener noreferrer">PII</a>, account
+                                numbers, or cardholder data by replacing or obscuring it with
+                                non-sensitive values before the data is indexed. </li>
+                            <li>
+                                <b>Application for <a
+                                        href="https://en.wikipedia.org/wiki/Financial_services"
+                                        target="_blank" rel="noopener noreferrer">FSI</a>:</b>
+                                Masking customer account numbers in logs from a core banking
+                                application, obfuscating parts of credit card numbers from payment
+                                processing logs for <a
+                                    href="https://www.pcisecuritystandards.org/pci_security/"
+                                    target="_blank" rel="noopener noreferrer">PCI DSS</a>
+                                compliance. </li>
+                            <li>
+                                <b>Conceptual Implementation (<a
+                                        href="https://docs.splunk.com/Documentation/Splunk/latest/Search/AboutSPL2"
+                                        target="_blank" rel="noopener noreferrer">SPL2</a> in Ingest
+                                    Processor Pipeline):</b>
+                                <pre>| eval _raw = replace(_raw, /(\d{4}-){3}(\d{4})/, "XXXX-XXXX-XXXX-" + mvindex(split(replace(_raw, /(\d{4}-){3}(\d{4})/, "$2"),"-"),0))</pre>
+                                <p>
+                                    <em>This conceptual example attempts to mask a CCN, leaving the
+                                        last 4 digits. Real-world regex would need to be robust.</em>
+                                </p>
+                                <pre>| eval _raw = replace(_raw, /ssn=\d{3}-\d{2}-\d{4}/, "ssn=XXX-XX-XXXX")</pre>
+                                <p>
+                                    <em>This conceptual example attempts to mask an SSN. Real-world
+                                        regex would need to be robust.</em>
+                                </p>
+                            </li>
+                        </ul>
+                        <p>
+                            <b>3. Routing Data Based on Compliance and Residency Requirements:</b>
+                        </p>
+                        <ul>
+                            <li>
+                                <b>Purpose:</b> To direct specific data streams to different Splunk
+                                indexes, <a href="https://aws.amazon.com/s3/" target="_blank"
+                                    rel="noopener noreferrer">S3</a> buckets, or other destinations
+                                based on data sensitivity, geographic origin, or regulatory mandates
+                                (e.g., <a
+                                    href="https://gdpr-info.eu/" target="_blank"
+                                    rel="noopener noreferrer">GDPR</a> data residency). </li>
+                            <li>
+                                <b>Application for <a
+                                        href="https://en.wikipedia.org/wiki/Financial_services"
+                                        target="_blank" rel="noopener noreferrer">FSI</a>:</b>
+                                Routing transaction logs originating from <a
+                                    href="https://european-union.europa.eu/index_en" target="_blank"
+                                    rel="noopener noreferrer">EU</a> customers to an <a
+                                    href="https://european-union.europa.eu/index_en" target="_blank"
+                                    rel="noopener noreferrer">EU</a>-based Splunk Cloud stack, while
+                                routing logs from US customers to a US-based stack. Sending audit
+                                logs to a long-term, immutable storage destination like <a
+                                    href="https://aws.amazon.com/s3/" target="_blank"
+                                    rel="noopener noreferrer">S3</a>. </li>
+                            <li>
+                                <b>Conceptual Implementation (Ingest Processor Pipeline
+                                    Configuration):</b> Ingest Processor pipelines allow defining
+                                multiple output destinations. Logic within the <a
+                                    href="https://docs.splunk.com/Documentation/Splunk/latest/Search/AboutSPL2"
+                                    target="_blank" rel="noopener noreferrer">SPL2</a> pipeline
+                                (e.g., using `where` clauses based on source IP geolocation or
+                                specific metadata) would determine which events go to which
+                                configured output. <pre>
+                                // Pipeline 1: Route EU data to a specific index
+                                | where geo_location="EU"
+                                | eval index="eu_financial_logs"
+
+                                // Pipeline 2: Route US data to a different index
+                                | where geo_location="US"
+                                | eval index="us_financial_logs"
+
+                                // Pipeline 3: Archive certain audit logs to S3
+                                | where sourcetype="fsi_critical_audit"
+                                | send_to_s3_archive_bucket;
+                                </pre>
+                            </li>
+                        </ul>
+                        <p>
+                            <b>4. Aggregating Data for Trend Analysis while Minimizing Detail:</b>
+                        </p>
+                        <ul>
+                            <li>
+                                <b>Purpose:</b> To summarize event data as it's ingested, sending
+                                only aggregated statistics or counts, which can be useful for
+                                high-level monitoring and trend analysis while reducing the volume
+                                of detailed (and potentially sensitive) raw logs. </li>
+                            <li>
+                                <b>Application for <a
+                                        href="https://en.wikipedia.org/wiki/Financial_services"
+                                        target="_blank" rel="noopener noreferrer">FSI</a>:</b>
+                                Counting the number of failed login attempts per hour from a
+                                specific application and sending only that count to a summary
+                                index, rather than every individual failed login event. </li>
+                            <li>
+                                <b>Conceptual Implementation (<a
+                                        href="https://docs.splunk.com/Documentation/Splunk/latest/Search/AboutSPL2"
+                                        target="_blank" rel="noopener noreferrer">SPL2</a> in Ingest
+                                    Processor Pipeline):</b>
+                                <pre>| where event_type="failed_login" AND app="online_banking" | stats count by date_hour, user | eval index="summary_logins"</pre>
+                            </li>
+                        </ul>
+                        <hr />
+                        <h2>
+                            <font color="#000000">Benefits of Ingest Processor for <a
+                                    href="https://en.wikipedia.org/wiki/Financial_services"
+                                    target="_blank" rel="noopener noreferrer">FSI</a> Data
+                                Compliance</font>
+                        </h2>
+                        <ul>
+                            <li>
+                                <b>Significant Cost Reduction:</b> Lowers Splunk ingest volume,
+                                license fees, and storage costs by processing and filtering data
+                                before indexing, helping to manage costs and boost value from your
+                                Splunk investment.</li>
+                            <li>
+                                <b>Enhanced Security &amp; Privacy:</b> Masks or filters sensitive
+                                data <b>before</b> it is written to disk, minimizing risk of
+                                exposure and supporting data protection.</li>
+                            <li>
+                                <b>Improved Compliance Posture and Control:</b> Facilitates
+                                adherence to data minimization, data residency (e.g., <a
+                                    href="https://gdpr-info.eu/" target="_blank"
+                                    rel="noopener noreferrer">GDPR</a>), and data protection
+                                principles, offering greater simplicity and control over data
+                                transformations.</li>
+                            <li>
+                                <b>Increased Data Quality and Visibility for Analytics:</b> Delivers
+                                cleaner, more relevant data to Splunk, improving the value of data
+                                for analytics with increased visibility into data in motion.</li>
+                            <li>
+                                <b>Scalability and Simplified Management:</b> Automatically scales
+                                with your Splunk Cloud ingest and is managed centrally from the
+                                Splunk Cloud UI, with no infrastructure to maintain.</li>
+                            <li>
+                                <b>Improved Productivity:</b> Streamlines data preparation
+                                processes, allowing teams to focus on deriving insights rather than
+                                extensive data wrangling.</li>
+                        </ul>
+                    </ul>
+
+                    <hr />
+                    <h1>
+                        <img width="35" src="/static/app/Data_Compliance/SA_image_bullet_01.png" />
+                        <font color="#000000">NEXT STEPS</font>
+                    </h1>
+                    <ul>
+                        <li>
+                            <b>Identify Data Sources:</b> Determine which systems generate data
+                            relevant to compliance that will be processed. </li>
+                        <li>
+                            <b>Define Ingest Processing Rules:</b> Based on compliance
+                            requirements, specify what filtering, masking, or routing needs to occur
+                            for each data source. </li>
+                        <li>
+                            <b>Develop and Test <a
+                                    href="https://docs.splunk.com/Documentation/Splunk/latest/Search/AboutSPL2"
+                                    target="_blank" rel="noopener noreferrer">SPL2</a> Pipelines:</b>
+                            Create and rigorously test your data processing pipelines in the Ingest
+                            Processor UI. </li>
+                        <li>
+                            <b>Apply and Monitor Pipelines:</b> Apply your pipelines to your data
+                            sources and monitor their health, throughput, and effectiveness. </li>
+                        <li>
+                            <b>Consult Splunk Documentation:</b> Refer to the official Splunk Ingest
+                            Processor documentation for detailed guidance on pipeline creation, <a
+                                href="https://docs.splunk.com/Documentation/Splunk/latest/Search/AboutSPL2"
+                                target="_blank" rel="noopener noreferrer">SPL2</a> usage, and best
+                            practices. </li>
+                    </ul>
+                </ul>
+            </html>
+        </panel>
+    </row>
+    <row id="tab_next">
+        <panel>
+            <html tokens="true">
+                <ul>
+                    <h1>
+                        <!-- Placeholder: Update icon path -->
+                        <img width="45"
+                            src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                        <!-- Updated Help Header -->
+                        <b>Do you need help? Ask a Data Compliance Expert.</b>
+                    </h1>
+                    <p> Need help with your environment or requirements? Send us your questions, and
+                        we’ll get back to you as soon as possible. <ul>
+                            <li> For detailed step-by-step instructions on implementing the solution
+                        using this Solutions Accelerator, visit our <a
+                                    href="https://lantern.splunk.com/@go/page/Data_Compliance">
+                                    <b>Solutions Accelerator</b>
+                                </a>
+                        page.</li>
+                            <li> To expedite implementation with professional services, please reach
+                        out to our sales team by clicking <a
+                                    href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
+                                    target="_ask_expert">
+                                    <b>Contact Us</b>
+                                </a>
+                            </li>
+                            <li> If you need immediate assistance, explore our community forum, <a
+                                    href="http://answers.splunk.com/">
+                                    <b>Splunk Answers</b>
+                                </a>.</li>
+                        </ul>
+                    </p>
+                    <!-- Placeholder: Update bullet image path -->
+                    <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+                    <a
+                        href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
+                        class="btn" target="_ask_expert">Contact Us</a>
+                </ul>
+
+            </html>
+        </panel>
+    </row>
+</dashboard>

@@ -1,0 +1,348 @@
+<dashboard version="1.1" script="securityjourney.js" stylesheet="securityjourney.css">
+  <!-- Updated Label for Data Compliance -->
+  <label>Data Compliance Maturity</label>
+  <row>
+    <panel>
+      <html>
+        <!-- Note: Layout is controlled by the updated securityjourney.css with media queries for
+        desktop and widescreen monitors -->
+        <div class="clearfix">
+          <div class="column">
+            <!-- Side Panel Content Area (First Column) -->
+            <div class="stageinfo" id="stagedesc">
+              <span class="stageinfoheader">
+                DESCRIPTION
+              </span>
+              <br />
+              <span class="stageinfocontent" id="stagedesccontent">
+                <!-- Content will be dynamically loaded here by JS -->
+              </span>
+            </div>
+            <div class="stageinfo" id="stagemilestones">
+              <span class="stageinfoheader">
+                MILESTONES
+              </span>
+              <br />
+              <span class="stageinfocontent" id="stagemilestonecontent">
+                <!-- Content will be dynamically loaded here by JS -->
+              </span>
+            </div>
+            <div class="stageinfo" id="stagechallenges">
+              <span class="stageinfoheader">
+                CHALLENGES
+              </span>
+              <br />
+              <span class="stageinfocontent" id="stagechallengecontent">
+                <!-- Content will be dynamically loaded here by JS -->
+              </span>
+            </div>
+          </div>
+          <div class="column stagetablediv">
+            <!-- Maturity Steps Table (Second Column) -->
+            <table id="stagetable">
+              <tr>
+                <td class="slidercell" rowspan="7">
+                  <input id="journeyslider" class="journey-slider" type="range" min="0" max="1000" />
+                </td>
+                <td>
+                  <div class="topstagename">STEP 6
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <!-- Step 6 -->
+                  <div id="stage6" class="roundcorners stageheight stage stage6 stage6dark">
+                    <div class="journeystagename"> Automate &amp; Optimize <!-- Updated -->
+                    </div>
+                    <div class="journeystagedesc"> Automate compliance tasks, integrate workflows,
+                      and continuously improve posture. <!-- Updated -->
+                    </div>
+                  </div>
+                  <div class="stageheight stagename">
+                    STEP 5
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <!-- Step 5 -->
+                  <div id="stage5" class="roundcorners stageheight stage stage5 stage5dark">
+                    <div class="journeystagename"> Audit &amp; Report Evidence <!-- Updated -->
+                    </div>
+                    <div class="journeystagedesc"> Streamline evidence gathering and generate
+                      compliance reports for auditors/stakeholders. <!-- Updated -->
+                    </div>
+                  </div>
+                  <div class="stageheight stagename">
+                    STEP 4
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <!-- Step 4 -->
+                  <div id="stage4" class="roundcorners stageheight stage stage4 stage4dark">
+                    <div class="journeystagename"> Monitor &amp; Detect Deviations <!-- Updated -->
+                    </div>
+                    <div class="journeystagedesc"> Continuously monitor control effectiveness and
+                      detect policy violations or anomalies. <!-- Updated -->
+                    </div>
+                  </div>
+                  <div class="stageheight stagename">
+                    STEP 3
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <!-- Step 3 -->
+                  <div id="stage3" class="roundcorners stageheight stage stage3 stage3dark">
+                    <div class="journeystagename"> Implement &amp; Enforce <!-- Updated -->
+                    </div>
+                    <div class="journeystagedesc"> Deploy technical controls (access, encryption,
+                      logging) and procedural safeguards. <!-- Updated -->
+                    </div>
+                  </div>
+                  <div class="stageheight stagename">
+                    STEP 2
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <!-- Step 2 -->
+                  <div id="stage2" class="roundcorners stageheight stage stage2 stage2dark">
+                    <div class="journeystagename"> Define Policies &amp; Controls <!-- Updated -->
+                    </div>
+                    <div class="journeystagedesc"> Establish clear data handling policies and map
+                      required security/privacy controls. <!-- Updated -->
+                    </div>
+                  </div>
+                  <div class="stageheight stagename">
+                    STEP 1
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <!-- Step 1 -->
+                  <div id="stage1" class="roundcorners stageheight stage stage1">
+                    <div class="journeystagename"> Discover &amp; Classify <!-- Updated -->
+                    </div>
+                    <div class="journeystagedesc"> Identify applicable regulations (PCI, <a href="https://gdpr-info.eu/">GDPR</a>, FSI,
+                      etc.) and locate/classify sensitive data. <!-- Updated -->
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="column">
+            <!-- Selected Step Indicator (Third Column) -->
+            <div id="selectedstage" class="selectedstage">
+              <span>SELECTED STEP</span>
+            </div>
+            <div id="numbercircle" class="numberCircle">1 <!-- Default to 1, JS updates this -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Hidden divs containing detailed content for each step -->
+        <!-- Updated Content for Step 1 -->
+        <div id="stage1description" class="dontshow">
+          This initial step focuses on understanding the compliance landscape relevant to your
+          organization and identifying where sensitive data resides. It involves inventorying data
+          assets, classifying data based on sensitivity and regulatory requirements (e.g., PCI CDE,
+          PII under <a href="https://gdpr-info.eu/">GDPR</a>, NPI under GLBA), and mapping data flows to understand how sensitive
+          information moves through systems.
+        </div>
+        <div id="stage1milestone" class="dontshow"> Successfully completing this stage means: <ul>
+            <li>You have identified the specific regulations (<a href="https://www.pcisecuritystandards.org/">PCI DSS</a>, <a href="https://gdpr-info.eu/">GDPR</a>, <a href="https://oag.ca.gov/privacy/ccpa">CCPA</a>, SOX, FSI
+              mandates, etc.) applicable to your business.</li>
+            <li>You have created or updated a data inventory that identifies critical and sensitive
+          data assets.</li>
+            <li>Data classification standards are defined and applied, distinguishing between
+              public, internal, confidential, and restricted data.</li>
+            <li>You have a basic understanding of where key regulated data resides within your IT
+          environment (databases, file shares, applications, cloud storage).</li>
+          </ul>
+        </div>
+        <div id="stage1challenge" class="dontshow"> Challenges at this stage often include: <ul>
+            <li>Discovering data hidden in unexpected locations (e.g., unstructured data, shadow
+              IT).</li>
+            <li>Accurately classifying large volumes of data across diverse systems.</li>
+            <li>Keeping the data inventory and classification up-to-date as the environment changes.</li>
+            <li>Dealing with complex data flows across on-premises and cloud environments.</li>
+          </ul>
+        </div>
+
+        <!-- Updated Content for Step 2 -->
+        <div id="stage2description" class="dontshow">
+          Based on the regulations identified and data classified in Step 1, this stage involves
+          defining clear, actionable policies for data handling, security, and privacy. It also
+          includes selecting the specific technical and procedural controls required to meet the
+          mandates of frameworks like <a href="https://www.pcisecuritystandards.org/">PCI DSS</a>, <a href="https://gdpr-info.eu/">GDPR</a>, etc. This involves translating regulatory
+          requirements into concrete control objectives.
+        </div>
+        <div id="stage2milestone" class="dontshow"> Key milestones for this stage include: <ul>
+            <li>Documented policies covering data access, use, storage, retention, disposal, and
+          incident response are established or updated.</li>
+            <li>Specific security controls (e.g., encryption standards, access control mechanisms,
+          logging requirements, vulnerability management) are selected based on risk assessments and
+          regulatory requirements (e.g., mapping controls to <a href="https://www.pcisecuritystandards.org/">PCI DSS</a> requirements).</li>
+            <li>Privacy controls (e.g., consent mechanisms, data minimization procedures, DSAR
+          processes) are defined.</li>
+            <li>Control ownership and responsibilities are clearly assigned within the organization.</li>
+          </ul>
+        </div>
+        <div id="stage2challenge" class="dontshow"> Common challenges involve: <ul>
+            <li>Translating high-level regulatory text into specific, implementable controls.</li>
+            <li>Balancing security/compliance requirements with business operational needs.</li>
+            <li>Ensuring policies are clearly communicated and understood across the organization.</li>
+            <li>Selecting appropriate controls that are both effective and feasible to implement and
+          manage.</li>
+          </ul>
+        </div>
+
+        <!-- Updated Content for Step 3 -->
+        <div id="stage3description" class="dontshow">
+          This stage focuses on the practical deployment and enforcement of the policies and
+          controls defined in Step 2. It involves configuring security tools, implementing technical
+          safeguards (like encryption and access controls), establishing required logging, and
+          putting procedural mechanisms into practice across the relevant systems and processes
+          handling sensitive data.
+        </div>
+        <div id="stage3milestone" class="dontshow"> Achieving this stage means: <ul>
+            <li>Required technical security controls (firewalls, IDS/IPS, endpoint security,
+          encryption for data-at-rest/in-transit) are deployed and configured according to policy.</li>
+            <li>Access control mechanisms (e.g., RBAC, MFA) are implemented to enforce least
+          privilege principles for sensitive data.</li>
+            <li>Comprehensive logging is enabled on critical systems as required by regulations
+          (e.g., <a href="https://www.pcisecuritystandards.org/">PCI DSS</a> Req 10) and logs are centrally collected.</li>
+            <li>Procedural controls (e.g., change management processes, employee training on data
+          handling) are actively enforced.</li>
+            <li>Data Loss Prevention (DLP) solutions may be implemented to monitor and block
+          unauthorized data exfiltration.</li>
+          </ul>
+        </div>
+        <div id="stage3challenge" class="dontshow"> Implementation challenges often include: <ul>
+            <li>Integrating new security tools with existing infrastructure.</li>
+            <li>Ensuring consistent control implementation across diverse environments (on-prem,
+          cloud, legacy systems).</li>
+            <li>Minimizing disruption to business operations during control deployment.</li>
+            <li>Achieving adequate log coverage and ensuring logs are protected and forwarded
+          reliably.</li>
+            <li>Overcoming user resistance to new security procedures or controls.</li>
+          </ul>
+        </div>
+
+        <!-- Updated Content for Step 4 -->
+        <div id="stage4description" class="dontshow">
+          With controls implemented, this stage focuses on continuous monitoring to ensure they are
+          operating effectively and detecting deviations from policies or potential compliance
+          violations. It involves actively analyzing logs and events, running vulnerability scans,
+          performing configuration checks, and using security analytics to identify anomalies
+          indicative of risks or non-compliance.
+        </div>
+        <div id="stage4milestone" class="dontshow"> Key milestones include: <ul>
+            <li>Security Information and Event Management (SIEM) or a platform like Splunk is used
+              to correlate and analyze logs for security and compliance events.</li>
+            <li>Automated alerts are configured to notify personnel of critical security events,
+          policy violations, or control failures (e.g., unauthorized access attempts, critical file
+          modifications).</li>
+            <li>Regular vulnerability scanning and penetration testing are performed to identify
+          weaknesses.</li>
+            <li>Configuration management tools monitor systems for unauthorized changes or
+              deviations from secure baselines.</li>
+            <li>User activity monitoring is in place for privileged accounts and access to sensitive
+          data.</li>
+          </ul>
+        </div>
+        <div id="stage4challenge" class="dontshow"> Monitoring challenges typically involve: <ul>
+            <li>Dealing with a high volume of logs and alerts (alert fatigue).</li>
+            <li>Tuning detection rules to minimize false positives while catching true threats.</li>
+            <li>Correlating events across different data sources to get a complete picture.</li>
+            <li>Monitoring encrypted traffic and activities within cloud environments.</li>
+            <li>Ensuring monitoring processes cover all relevant systems and data subject to
+          compliance.</li>
+          </ul>
+        </div>
+
+        <!-- Updated Content for Step 5 -->
+        <div id="stage5description" class="dontshow">
+          This stage focuses on efficiently gathering evidence of control effectiveness and
+          generating the necessary reports for internal stakeholders, management, and external
+          auditors (e.g., PCI QSA, FSI regulators, privacy authorities). It involves streamlining
+          the process of demonstrating compliance through organized data, dashboards, and formalized
+          reporting.
+        </div>
+        <div id="stage5milestone" class="dontshow"> Successfully reaching this stage means: <ul>
+            <li>Compliance dashboards provide real-time visibility into key control metrics and
+          compliance posture.</li>
+            <li>Processes are established to quickly retrieve specific logs and evidence required by
+          auditors (e.g., demonstrating access controls for PCI Req 7, audit trails for PCI Req 10).</li>
+            <li>Automated or semi-automated reports mapped to specific regulatory requirements
+              (e.g., PCI Attestation of Compliance support, <a href="https://gdpr-info.eu/">GDPR</a> Article 30 records) can be
+          generated.</li>
+            <li>Audit findings are tracked, and remediation efforts are documented.</li>
+            <li>Clear documentation exists detailing how controls meet specific regulatory
+          requirements.</li>
+          </ul>
+        </div>
+        <div id="stage5challenge" class="dontshow"> Challenges in auditing and reporting include: <ul>
+            <li>Manually gathering evidence from disparate systems is time-consuming and
+              error-prone.</li>
+            <li>Mapping technical evidence to specific, often non-technical, compliance
+              requirements.</li>
+            <li>Ensuring the integrity and completeness of audit evidence.</li>
+            <li>Generating reports in the specific formats required by different auditors or
+          regulations.</li>
+            <li>Keeping documentation current with environmental and regulatory changes.</li>
+          </ul>
+        </div>
+
+        <!-- Updated Content for Step 6 -->
+        <div id="stage6description" class="dontshow">
+          This represents the highest level of data compliance maturity. Activities focus on
+          automating compliance processes, integrating security and privacy workflows, and
+          leveraging data analytics for continuous improvement and proactive risk reduction. It
+          involves moving beyond reactive reporting to predictive insights and automated remediation
+          where possible. Compliance is deeply embedded into operations (Compliance-as-Code
+          principles may apply).
+        </div>
+        <div id="stage6milestone" class="dontshow"> At this step, your organization has achieved a
+          state of continuous compliance readiness: <ul>
+            <li>Key compliance monitoring, evidence gathering, and reporting tasks are largely
+          automated, reducing manual effort and errors.</li>
+            <li>Data from security, IT operations, and privacy tools are integrated, providing
+          holistic visibility and context (e.g., correlating security alerts with potential privacy
+          impacts).</li>
+            <li>Workflows for tasks like Data Subject Access Requests (DSARs), breach response, and
+          control testing are automated and orchestrated.</li>
+            <li>Advanced analytics and potentially Machine Learning are used to identify subtle
+          compliance risks, predict potential issues, and optimize control effectiveness.</li>
+            <li>Compliance metrics are actively tracked, reported, and used to drive strategic
+          decisions regarding risk management and resource allocation.</li>
+            <li>Regular reviews and optimizations ensure controls remain effective against evolving
+          threats and regulations.</li>
+          </ul>
+        </div>
+        <div id="stage6challenge" class="dontshow"> Maintaining this level requires ongoing
+          commitment and adaptation: <ul>
+            <li>Keeping automation scripts and integrations up-to-date with changing regulations and
+          evolving IT environments is a constant task.</li>
+            <li>Ensuring the accuracy and reliability of automated reporting and alerting requires
+          robust validation and testing.</li>
+            <li>Integrating diverse toolsets and data sources across security, privacy, and IT can
+          present technical and organizational hurdles.</li>
+            <li>Developing and maintaining the in-house expertise (or leveraging partners) for
+          advanced analytics and automation requires investment.</li>
+            <li>Avoiding "automation complacency" - ensuring that automated processes are still
+          regularly reviewed and validated by human experts.</li>
+          </ul>
+        </div>
+      </html>
+    </panel>
+  </row>
+</dashboard>

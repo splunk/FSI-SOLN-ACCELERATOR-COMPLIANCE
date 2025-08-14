@@ -1,0 +1,679 @@
+<dashboard version="1.1" theme="light" script="tabs.js" stylesheet="tabs.css">
+   <label>Regional Compliance Regulations</label>
+
+   <label>Introduction to Data Compliance Regulations</label>
+   <description>Navigating the complex and evolving global data compliance landscape impacting
+      financial services organizations.</description>
+   <row>
+      <panel>
+         <html>
+            <h1>
+               <!-- Placeholder: Update icon path -->
+               <img width="40"
+                  src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+               <b>INTRODUCTION</b>
+            </h1>
+            <ul>
+               <!-- Updated Introduction Text -->
+               <p>The global landscape of data compliance regulations has expanded dramatically,
+                  reflecting a growing international consensus on the importance of protecting
+                  sensitive information and ensuring responsible data stewardship. Governments and
+                  regulatory bodies worldwide are actively implementing and enforcing stringent
+                  rules aimed at safeguarding individual privacy, bolstering cybersecurity defenses,
+                  and preventing illicit activities. While the fundamental objectives—such as
+                  requiring consent for data collection, ensuring data security, and providing
+                  individuals with rights over their information—are often similar, the sheer volume
+                  and breadth of these mandates mean that organizations must navigate a complex web
+                  of obligations that impact nearly every business function.</p>
+               <p>Adding to this complexity is the significant variation in how these regulations
+                  are defined and implemented across different jurisdictions. Rather than a single
+                  global standard, companies must contend with distinct regional and national
+                  frameworks. Europe has the <a href="https://gdpr-info.eu/" target="_blank" rel="noopener noreferrer">GDPR</a>, the United States has federal laws like <a href="https://www.hhs.gov/hipaa/index.html" target="_blank" rel="noopener noreferrer">HIPAA</a> and
+                  state-specific rules like <a href="https://oag.ca.gov/privacy/ccpa" target="_blank" rel="noopener noreferrer">CCPA</a>,and <a href="https://thecpra.org/" target="_blank" rel="noopener noreferrer">CPRA</a>, and many other countries are developing
+                  their own unique data protection legislation. This fragmentation means that an
+                  organization operating across borders cannot apply a one-size-fits-all approach
+                  but must instead understand and comply with the specific requirements of every
+                  region where they collect, process, or store data, making robust, adaptable
+                  compliance strategies essential.</p>
+            </ul>
+         </html>
+      </panel>
+   </row>
+   <row id="tabs">
+      <panel>
+         <html>
+            <p>
+               <ul id="tabs" class="nav nav-tabs">
+                  <li>
+                     <!-- Placeholder: Update nav button image -->
+                     <img width="200"
+                        src="/static/app/Data_Compliance/SA_image_icon_navi_gr_button.png" />
+                  </li>
+                  <li class="active">
+                     <a href="#" class="toggle-tab" data-toggle="tab" data-elements="tab_objective">1
+                        | OBJECTIVE</a>
+                  </li>
+                  <li>
+                     <a href="#" class="toggle-tab" data-toggle="tab" data-elements="tab_global">2 |
+                        GLOBAL REGULATIONS</a>
+                  </li>
+                  <li>
+                     <a href="#" class="toggle-tab" data-toggle="tab" data-elements="tab_amer">3 |
+                        AMER REGULATIONS</a>
+                  </li>
+                  <li>
+                     <a href="#" class="toggle-tab" data-toggle="tab" data-elements="tab_emea">4 |
+                        EMEA REGULATIONS</a>
+                  </li>
+                  <li>
+                     <a href="#" class="toggle-tab" data-toggle="tab" data-elements="tab_apac">5 |
+                        APAC REGULATIONS</a>
+                  </li>
+                  <li>
+                     <a href="#" class="toggle-tab" data-toggle="tab" data-elements="tab_anz">6 |
+                        A/NZ REGULATIONS</a>
+                  </li>
+               </ul>
+            </p>
+         </html>
+      </panel>
+   </row>
+   <row id="tab_objective">
+      <panel>
+         <html>
+            <ul>
+               <h1>
+                  <!-- Placeholder: Update icon path -->
+                  <img width="35"
+                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                  <b>OBJECTIVE:</b>
+               </h1>
+               <!-- Updated Objective Text -->
+               <p>In light of the widespread and increasingly complex global landscape of data
+                  compliance regulations, the primary objective of data compliance initiatives is to
+                  ensure stringent adherence to the vast and varied body of relevant laws,
+                  regulations, industry standards, and internal policies governing data security and
+                  privacy. This necessitates the meticulous implementation and maintenance of
+                  appropriate technical and organizational controls designed to protect sensitive
+                  information - such as customer <a href="https://csrc.nist.gov/glossary/term/personally_identifiable_information" target="_blank" rel="noopener noreferrer">PII</a>, financial data, and cardholder data - and the
+                  crucial ability to effectively demonstrate this adherence to auditors and
+                  regulators across different jurisdictions.</p>
+               <p>Achieving this overarching objective involves several key goals, driven by the
+                  need to navigate diverse and evolving mandates: <ul>
+                     <ul>
+                        <li>
+                           <b>Meeting Diverse Regulatory Requirements:</b> Satisfying the specific
+                  mandates from numerous frameworks operating across different regions and sectors,
+                  including <a href="https://www.pcisecuritystandards.org/" target="_blank" rel="noopener noreferrer">PCI DSS</a> (e.g., Requirement 10 for logging, Requirement 7 for access
+                  control), <a href="https://gdpr-info.eu/" target="_blank" rel="noopener noreferrer">GDPR</a> (e.g., data subject rights, breach notification), <a href="https://www.congress.gov/bill/107th-congress/house-bill/3763" target="_blank" rel="noopener noreferrer">SOX</a> (financial
+                  reporting controls), <a href="https://www.hhs.gov/hipaa/index.html" target="_blank" rel="noopener noreferrer">HIPAA</a> (health information privacy), and a multitude of varied
+                  <a href="https://en.wikipedia.org/wiki/Financial_services" target="_blank" rel="noopener noreferrer">FSI</a> regulations applicable in specific markets.</li>
+                        <li>
+                           <b>Protecting Sensitive Data:</b> Implementing robust security controls
+                  (encryption, access management, vulnerability management) critical for preventing
+                  data breaches and unauthorized access, as required by nearly all data protection
+                  regulations.</li>
+                        <li>
+                           <b>Ensuring Data Privacy:</b> Managing data according to global privacy
+                  principles, encompassing consent management, purpose limitation, data
+                  minimization, and honoring data subject rights (like <a href="https://gdpr.eu/article-15-right-of-access-by-the-data-subject/" target="_blank" rel="noopener noreferrer">DSARs</a>) as defined by
+                  regulations like <a href="https://gdpr-info.eu/" target="_blank" rel="noopener noreferrer">GDPR</a> and <a href="https://oag.ca.gov/privacy/ccpa" target="_blank" rel="noopener noreferrer">CCPA</a>.</li>
+                        <li>
+                           <b>Streamlining Audits:</b> Significantly reducing the effort and cost
+                  associated with compliance audits by centralizing evidence, automating control
+                  monitoring across diverse systems, and simplifying reporting for different
+                  regulatory bodies.</li>
+                        <li>
+                           <b>Managing Risk:</b> Proactively identifying and mitigating compliance
+                  risks related to data handling, security posture across varied environments, and
+                  interactions with third-party vendors governed by numerous regulations.</li>
+                        <li>
+                           <b>Building Trust:</b> Demonstrating a clear and verifiable commitment to
+                  data protection and compliance with regional regulations, thereby enhancing
+                  customer confidence and solidifying brand reputation in every market served.</li>
+                     </ul>
+                  </ul>
+               </p>
+               <p>An effective data compliance program, especially in this fragmented regulatory
+                  environment, must leverage continuous monitoring and data analysis to provide
+                  ongoing assurance that controls are working as intended. This capability allows
+                  the organization to quickly identify and respond to potential issues across its
+                  global operations, minimizing financial, legal, and reputational damage regardless
+                  of the specific regulation involved.</p>
+            </ul>
+
+            <hr width="100%" />
+            <ul>
+               <h1>
+                  <!-- Placeholder: Update icon path -->
+                  <img width="35"
+                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                  <b>PREREQUISITES: Data Inputs for Global Compliance Visibility</b>
+               </h1>
+               <!-- Updated Prerequisites Text -->
+               <p>To effectively navigate the complex, fragmented, and regionally diverse data
+                  compliance landscape discussed in the introduction, gaining comprehensive
+                  visibility and enabling the crucial interplay between assets and identities
+                  requires the ingestion and analysis of specific data types from across your IT
+                  environment. These data sources serve as the fundamental building blocks,
+                  providing the necessary evidence and context to monitor controls, detect
+                  deviations, and generate required audit trails across various global and regional
+                  regulatory mandates.</p>
+               <p>While specific requirements vary by regulation (<a href="https://gdpr-info.eu/" target="_blank" rel="noopener noreferrer">GDPR</a>, <a href="https://www.pcisecuritystandards.org/" target="_blank" rel="noopener noreferrer">PCI DSS</a>, <a href="https://www.congress.gov/bill/107th-congress/house-bill/3763" target="_blank" rel="noopener noreferrer">SOX</a>, <a href="https://oag.ca.gov/privacy/ccpa" target="_blank" rel="noopener noreferrer">CCPA</a>, etc.),
+                  the following categories of data are typically required inputs for comprehensive
+                  data compliance monitoring and auditing within this Solution Accelerator:</p>
+               <ul>
+                  <h3>User &amp; System Activity Logs</h3>
+                  <ul>
+                     <li>
+                        <b>Authentication &amp; Access Logs:</b> Essential for monitoring identity
+                        activity and access to sensitive assets. System, application, database, and
+                        <a href="https://en.wikipedia.org/wiki/Virtual_private_network" target="_blank" rel="noopener noreferrer">VPN</a> logs showing user logins (success/failure), access attempts to sensitive
+                        resources, and privilege escalations are critical for audit trails required
+                        globally. (e.g., Windows Security Events, Linux auth logs, Active Directory
+                        logs, Cloud <a href="https://en.wikipedia.org/wiki/Identity_management" target="_blank" rel="noopener noreferrer">IAM</a> logs). </li>
+                     <li>
+                        <b>Operating System Logs:</b> Provide granular audit trails at the <a href="https://en.wikipedia.org/wiki/Operating_system" target="_blank" rel="noopener noreferrer">OS</a> level
+                        (an asset), capturing system events, process execution, and critical errors
+                        relevant to compliance and security across your infrastructure. (e.g.,
+                        Windows Event Logs, Linux syslog). </li>
+                     <li>
+                        <b>Database Audit Logs:</b> Crucial for monitoring access to sensitive data
+                        (an asset) within databases and tracking administrative actions and schema
+                        changes, vital for data integrity and privacy regulations worldwide. </li>
+                     <li>
+                        <b>Cloud Infrastructure Logs:</b> Provide audit trails for cloud assets and
+                        identities, detailing API calls, resource modifications, security group
+                        changes, and access events within cloud environments, necessary for
+                        compliance as cloud adoption grows globally. (e.g., <a href="https://aws.amazon.com/cloudtrail/" target="_blank" rel="noopener noreferrer">AWS CloudTrail</a>, <a href="https://docs.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log" target="_blank" rel="noopener noreferrer">Azure Activity Log</a>, <a href="https://cloud.google.com/logging/docs/audit" target="_blank" rel="noopener noreferrer">GCP Audit Logs</a>). </li>
+                  </ul>
+                  <h3>Configuration &amp; Asset State Logs</h3>
+                  <ul>
+                     <li>
+                        <b>Change Management Logs:</b> Key for tracking modifications to critical
+                        assets and configurations that could impact security posture and compliance
+                        mandates related to system integrity and controls. Records of changes to
+                        system configurations, firewall rules, user permissions, and application
+                        code are necessary. (e.g., Config management tool logs, <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">Git</a> logs, <a href="https://en.wikipedia.org/wiki/Operating_system" target="_blank" rel="noopener noreferrer">OS</a> change
+                        logs). </li>
+                     <li>
+                        <b>Endpoint Security Logs:</b> Offer insights into the security status of
+                        endpoints (assets) and potential threats impacting data.
+                        Antivirus/anti-malware alerts, host-based intrusion detection events, file
+                        integrity monitoring alerts, and <a href="https://en.wikipedia.org/wiki/Data_loss_prevention_software" target="_blank" rel="noopener noreferrer">DLP</a> events are important for compliance
+                        monitoring and incident response globally. </li>
+                     <li>
+                        <b>Vulnerability Scan Data</b> (Optional but Recommended): Results from
+                        vulnerability scanners identifying weaknesses in systems (assets) that could
+                        lead to non-compliance or breaches, a common requirement across security
+                        frameworks. </li>
+                  </ul>
+                  <h3>Network &amp; Data Flow Logs</h3>
+                  <ul>
+                     <li>
+                        <b>Network Activity Logs:</b> Provide visibility into the flow of data (a
+                        key asset) and potential policy violations across the network. Firewall,
+                        proxy, <a href="https://www.cisa.gov/news-events/news/understanding-intrusion-detection-systems-ids" target="_blank" rel="noopener noreferrer">IDS/IPS</a>, and network flow data showing traffic patterns, connection
+                        attempts, and potential policy violations are valuable for monitoring data
+                        exfiltration and network security controls. </li>
+                  </ul>
+                  <h3>Asset &amp; Identity Context Data</h3>
+                  <ul>
+                     <li>
+                        <b>Asset &amp; Identity Data</b> (Optional but Highly Recommended): Explicit
+                        information correlating systems/IPs to owners/functions (assets) and users
+                        to roles/permissions (identities). While partially inferred from other logs,
+                        explicit data significantly enhances the ability to analyze compliance
+                        against specific roles, responsibilities, and critical assets, crucial in a
+                        complex organizational and regulatory landscape. </li>
+                  </ul>
+               </ul>
+               <p>Centralizing and correlating these diverse data inputs is fundamental to the
+                  Solution Accelerator's ability to provide the necessary comprehensive visibility
+                  for compliance across various regulations and to effectively monitor the
+                  interactions between assets and identities in a globally distributed environment.</p>
+            </ul>
+         </html>
+      </panel>
+   </row>
+   <row id="tab_global">
+      <panel>
+         <html>
+            <ul>
+               <h1>
+                  <!-- Placeholder: Update icon path -->
+                  <img width="35"
+                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                  <b>GLOBAL REGULATIONS</b>
+               </h1>
+               <table>
+                  <tr>
+                     <td>
+                        <ul>
+                           <li>
+                              <p><b>KYC (Know Your Customer) &amp; AML/CFT (Anti-Money Laundering /
+                                 Counter-Terrorist Financing):</b> These are sets of international
+                                 standards and national laws designed to prevent financial
+                                 institutions from being used for money laundering, terrorist
+                                 financing, and other illicit financial activities. <a href="https://www.fatf-gafi.org/en/glossary/know-your-customer-customer-due-diligence.html" target="_blank" rel="noopener noreferrer">KYC</a> involves
+                                 verifying the identity of customers and assessing their risk
+                                 profiles, while <a href="https://www.fatf-gafi.org/en/topics/anti-money-laundering-and-counter-terrorist-financing.html" target="_blank" rel="noopener noreferrer">AML/CFT</a> encompasses broader measures including
+                                 transaction monitoring, reporting suspicious activities, and
+                                 implementing robust internal controls.</p>
+                              <p><b>In Brief:</b> <a href="https://www.fatf-gafi.org/en/glossary/know-your-customer-customer-due-diligence.html" target="_blank" rel="noopener noreferrer">KYC</a> and <a href="https://www.fatf-gafi.org/en/topics/anti-money-laundering-and-counter-terrorist-financing.html" target="_blank" rel="noopener noreferrer">AML/CFT</a> regulations aim to prevent
+                                 financial crime by requiring financial institutions to verify
+                                 customer identity, understand their activities, and monitor
+                                 transactions.</p>
+                           </li>
+                           <li>
+                              <p><b>Cross-Border Data Transfer Rules:</b> These rules, often part of
+                                 broader data privacy laws (like <a href="https://gdpr-info.eu/" target="_blank" rel="noopener noreferrer">GDPR</a>'s transfer mechanisms) or
+                                 specific international agreements, dictate the conditions under
+                                 which personal and sensitive financial data can be legally moved
+                                 from one country to another. They aim to ensure that data remains
+                                 protected even when it leaves its original jurisdiction, often
+                                 requiring adequacy decisions, standard contractual clauses, or
+                                 other safeguards.</p>
+                              <p><b>In Brief:</b> <a href="https://www.unodc.org/e4j/en/cybercrime/module-10/key-issues/cross-border-data-flows.html" target="_blank" rel="noopener noreferrer">Cross-Border Data Transfer Rules</a> are international
+                                 agreements and national laws governing how sensitive personal and
+                                 financial data can be moved legally across international
+                                 boundaries.</p>
+                           </li>
+                           <li>
+                              <p><b>T+1 Settlement:</b> <a href="https://www.dtcc.com/settlement-central/t-plus-1" target="_blank" rel="noopener noreferrer">T+1 Settlement</a> refers to a market convention
+                                 where security trades are settled one business day after the trade
+                                 date (T). This shift from longer settlement cycles (like T+2) aims
+                                 to reduce counterparty risk, credit risk, and market risk by
+                                 decreasing the time between trade execution and final settlement,
+                                 requiring faster data processing, reconciliation, and communication
+                                 among market participants.</p>
+                              <p><b>In Brief:</b> <a href="https://www.dtcc.com/settlement-central/t-plus-1" target="_blank" rel="noopener noreferrer">T+1 Settlement</a> aims to reduce market risk by
+                                 shortening the time between a securities trade and its settlement
+                                 to one business day, requiring faster data processing and exchange.</p>
+                           </li>
+                        </ul>
+                     </td>
+                     <td style="width: 30%; vertical-align: top; padding: 15px;">
+                        <!-- Placeholder: Update image path -->
+                        <img width="2500" src="/static/app/Data_Compliance/global.png" />
+                     </td>
+                  </tr>
+               </table>
+            </ul>
+         </html>
+      </panel>
+   </row>
+   <row id="tab_amer">
+      <panel>
+         <html>
+            <ul>
+               <h1>
+                  <!-- Placeholder: Update icon path -->
+                  <img width="35"
+                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                  <b>AMER REGULATIONS</b>
+               </h1>
+               <table>
+                  <tr>
+                     <td>
+                        <ul>
+                           <li>
+                              <p><b>Sarbanes-Oxley Act (SOX):</b> Enacted in the United States, <a href="https://www.congress.gov/bill/107th-congress/house-bill/3763" target="_blank" rel="noopener noreferrer">SOX</a>
+                                 is a federal law that mandates strict reforms to improve financial
+                                 disclosures from corporations and prevent accounting fraud. It
+                                 holds senior executives responsible for the accuracy of financial
+                                 reports and requires robust internal controls over financial
+                                 reporting (<a href="https://pcaobus.org/oversight/standards/auditing-standards/details/AS2201" target="_blank" rel="noopener noreferrer">ICFR</a>), including controls over the IT systems and data
+                                 that support these reports.</p>
+                              <p><b>In Brief:</b> <a href="https://www.congress.gov/bill/107th-congress/house-bill/3763" target="_blank" rel="noopener noreferrer">SOX</a> requires public companies to establish and
+                                 maintain internal controls over financial reporting and the
+                                 underlying data and systems to prevent fraud and errors, impacting
+                                 data integrity and retention.</p>
+                           </li>
+                           <li>
+                              <p><b>Gramm-Leach-Bliley Act (GLBA):</b> Also known as the Financial
+                                 Services Modernization Act of 1999, <a href="https://www.ftc.gov/business-guidance/privacy-security/gramm-leach-bliley-act" target="_blank" rel="noopener noreferrer">GLBA</a> is a U.S. federal law that
+                                 requires financial institutions to explain their
+                                 information-sharing practices to their customers and to safeguard
+                                 sensitive customer data. It includes provisions for privacy notices
+                                 and the development of a comprehensive information security
+                                 program.</p>
+                              <p><b>In Brief:</b> <a href="https://www.ftc.gov/business-guidance/privacy-security/gramm-leach-bliley-act" target="_blank" rel="noopener noreferrer">GLBA</a> mandates that financial institutions protect
+                                 the privacy and security of consumer financial information through
+                                 various administrative, technical, and physical safeguards.</p>
+                           </li>
+                           <li>
+                              <p><b>California Consumer Privacy Act (CCPA) &amp; California Privacy
+                                 Rights Act (<a href="https://thecpra.org/" target="_blank" rel="noopener noreferrer">CPRA</a>):</b> The <a href="https://oag.ca.gov/privacy/ccpa" target="_blank" rel="noopener noreferrer">CCPA</a>, as amended by the <a href="https://thecpra.org/" target="_blank" rel="noopener noreferrer">CPRA</a>, grants
+                                 California consumers comprehensive privacy rights, including the
+                                 right to know what personal information is collected, the right to
+                                 delete it, and the right to opt-out of its sale or sharing. It
+                                 applies to businesses that collect personal information of
+                                 California residents and meet certain revenue or data processing
+                                 thresholds.</p>
+                              <p><b>In Brief:</b> <a href="https://oag.ca.gov/privacy/ccpa" target="_blank" rel="noopener noreferrer">CCPA</a>,and <a href="https://thecpra.org/" target="_blank" rel="noopener noreferrer">CPRA</a> grant California consumers specific
+                                 rights regarding their personal information collected by
+                                 businesses, including access, deletion, and the right to opt-out of
+                                 sale or sharing.</p>
+                           </li>
+                           <li>
+                              <p><b>23 NYCRR 500:</b> This regulation from the <a href="https://www.dfs.ny.gov/" target="_blank" rel="noopener noreferrer">New York State
+                                 Department of Financial Services (NYDFS)</a> establishes cybersecurity
+                                 requirements for all financial services companies operating under
+                                 <a href="https://www.dfs.ny.gov/" target="_blank" rel="noopener noreferrer">NYDFS</a> licensure. It mandates the development and maintenance of a
+                                 cybersecurity program designed to protect the confidentiality,
+                                 integrity, and availability of information systems.</p>
+                              <p><b>In Brief:</b> <a href="https://www.dfs.ny.gov/industry_guidance/cybersecurity" target="_blank" rel="noopener noreferrer">23 NYCRR 500</a> is New York State's cybersecurity
+                                 regulation requiring financial services companies licensed or
+                                 operating in New York to implement and maintain specific
+                                 cybersecurity programs and controls.</p>
+                           </li>
+                           <li>
+                              <p><b><a href="https://www.pcisecuritystandards.org/" target="_blank" rel="noopener noreferrer">PCI DSS</a> (Payment Card Industry Data Security Standard):</b> PCI
+                                 DSS is a global information security standard applicable to all
+                                 entities that store, process, or transmit cardholder data.
+                                 Developed and managed by the PCI Security Standards Council, it
+                                 provides a baseline of technical and operational requirements
+                                 designed to protect card data and reduce credit card fraud.</p>
+                              <p><b>In Brief:</b> <a href="https://www.pcisecuritystandards.org/" target="_blank" rel="noopener noreferrer">PCI DSS</a> is a set of security standards designed to
+                                 ensure that all companies that accept, process, store, or transmit
+                                 credit card information maintain a secure environment through
+                                 specific technical and operational requirements.</p>
+                           </li>
+                        </ul>
+                     </td>
+                     <td style="width: 30%; vertical-align: top; padding: 15px;">
+                        <!-- Placeholder: Update image path -->
+                        <img width="2500" src="/static/app/Data_Compliance/amer.png" />
+                     </td>
+                  </tr>
+               </table>
+            </ul>
+         </html>
+      </panel>
+   </row>
+   <row id="tab_emea">
+      <panel>
+         <html>
+            <ul>
+               <h1>
+                  <!-- Placeholder: Update icon path -->
+                  <img width="35"
+                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                  <b>EMEA REGULATIONS</b>
+               </h1>
+               <table>
+                  <tr>
+                     <td>
+                        <ul>
+                           <li>
+                              <p><b><a href="https://gdpr-info.eu/" target="_blank" rel="noopener noreferrer">GDPR</a> (General Data Protection Regulation):</b> The <a href="https://gdpr-info.eu/" target="_blank" rel="noopener noreferrer">GDPR</a> is a
+                                 landmark regulation in EU law on data protection and privacy for
+                                 all individuals within the <a href="https://european-union.europa.eu/index_en" target="_blank" rel="noopener noreferrer">European Union</a> and the <a href="https://www.efta.int/eea/eea-agreement" target="_blank" rel="noopener noreferrer">European Economic
+                                 Area</a>. It also addresses the transfer of personal data outside the
+                                 <a href="https://european-union.europa.eu/index_en" target="_blank" rel="noopener noreferrer">EU</a> and <a href="https://www.efta.int/eea/eea-agreement" target="_blank" rel="noopener noreferrer">EEA</a> areas. It imposes strict obligations on organizations
+                                 regarding the collection, processing, storage, and security of
+                                 personal data, and grants individuals significant rights over their
+                                 data.</p>
+                              <p><b>In Brief:</b> <a href="https://gdpr-info.eu/" target="_blank" rel="noopener noreferrer">GDPR</a> is a comprehensive <a href="https://european-union.europa.eu/index_en" target="_blank" rel="noopener noreferrer">EU</a> regulation setting
+                                 strict rules for processing personal data of individuals within the
+                                 <a href="https://european-union.europa.eu/index_en" target="_blank" rel="noopener noreferrer">EU</a>, granting them extensive rights over their data, including
+                                 consent, access, and erasure.</p>
+                           </li>
+                           <li>
+                              <p><b>DORA (Digital Operational Resilience Act):</b> <a href="https://eur-lex.europa.eu/eli/reg/2022/2554/oj" target="_blank" rel="noopener noreferrer">DORA</a> is an <a href="https://european-union.europa.eu/index_en" target="_blank" rel="noopener noreferrer">EU</a>
+                                 regulation aimed at harmonizing and strengthening the digital
+                                 operational resilience of financial entities such as banks,
+                                 insurance companies, and investment firms, as well as critical <a href="https://en.wikipedia.org/wiki/Information_and_communications_technology" target="_blank" rel="noopener noreferrer">ICT</a>
+                                 third-party service providers. It sets requirements concerning <a href="https://en.wikipedia.org/wiki/Information_and_communications_technology" target="_blank" rel="noopener noreferrer">ICT</a>
+                                 risk management, incident reporting, resilience testing, and
+                                 third-party risk management.</p>
+                              <p><b>In Brief:</b> <a href="https://eur-lex.europa.eu/eli/reg/2022/2554/oj" target="_blank" rel="noopener noreferrer">DORA</a> is an <a href="https://european-union.europa.eu/index_en" target="_blank" rel="noopener noreferrer">EU</a> regulation focused on strengthening
+                                 the IT security and operational resilience of financial entities
+                                 and critical third parties that provide <a href="https://en.wikipedia.org/wiki/Information_and_communications_technology" target="_blank" rel="noopener noreferrer">ICT</a> services to them.</p>
+                           </li>
+                           <li>
+                              <p><b>Bank of England (BoE) Rules and Guidance / FCA &amp; PRA
+                                 Requirements (UK):</b> In the <a href="https://www.gov.uk/" target="_blank" rel="noopener noreferrer">United Kingdom</a>, the <a href="https://www.bankofengland.co.uk/" target="_blank" rel="noopener noreferrer">Bank of England</a>,
+                                 along with the <a href="https://www.fca.org.uk/" target="_blank" rel="noopener noreferrer">Financial Conduct Authority (FCA)</a> and the <a href="https://www.bankofengland.co.uk/prudential-regulation" target="_blank" rel="noopener noreferrer">Prudential
+                                 Regulation Authority (PRA)</a>, sets forth specific rules, guidance,
+                                 and supervisory expectations for financial institutions. These
+                                 cover a wide range of areas including operational resilience,
+                                 cybersecurity, data security, outsourcing, and conduct, aiming to
+                                 ensure financial stability and consumer protection.</p>
+                              <p><b>In Brief:</b> <a href="https://www.gov.uk/" target="_blank" rel="noopener noreferrer">UK</a> financial regulators issue specific rules and
+                                 guidance covering operational resilience, cybersecurity, and data
+                                 security to ensure the stability and integrity of the <a href="https://www.gov.uk/" target="_blank" rel="noopener noreferrer">UK</a> financial
+                                 system.</p>
+                           </li>
+                           <li>
+                              <p><b>BaFin Requirements (Germany):</b> Germany's <a href="https://www.bafin.de/EN/Homepage/homepage_node.html" target="_blank" rel="noopener noreferrer">Federal Financial
+                                 Supervisory Authority (BaFin)</a> issues circulars and guidelines, such
+                                 as <a href="https://www.bafin.de/SharedDocs/Downloads/EN/Rundschreiben/dl_rs_1710_bait_en.html" target="_blank" rel="noopener noreferrer">BAIT (Banking Supervisory Requirements for IT)</a> and <a href="https://www.bafin.de/SharedDocs/Downloads/EN/Rundschreiben/dl_rs_1910_kait_en.html" target="_blank" rel="noopener noreferrer">KAIT (Capital
+                                 Management Supervisory Requirements for IT)</a>, which specify
+                                 requirements for IT systems, IT security, and data protection for
+                                 financial institutions operating in Germany. These aim to ensure
+                                 the security and stability of financial operations.</p>
+                              <p><b>In Brief:</b> <a href="https://www.bafin.de/EN/Homepage/homepage_node.html" target="_blank" rel="noopener noreferrer">BaFin</a> outlines specific IT security and data
+                                 protection requirements for financial institutions operating in
+                                 Germany to protect sensitive data and ensure system integrity.</p>
+                           </li>
+                        </ul>
+                     </td>
+                     <td style="width: 30%; vertical-align: top; padding: 15px;">
+                        <!-- Placeholder: Update image path -->
+                        <img width="2500" src="/static/app/Data_Compliance/emea.png" />
+                     </td>
+                  </tr>
+               </table>
+            </ul>
+         </html>
+      </panel>
+   </row>
+   <row id="tab_apac">
+      <panel>
+         <html>
+            <ul>
+               <h1>
+                  <!-- Placeholder: Update icon path -->
+                  <img width="35"
+                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                  <b>APAC REGULATIONS</b>
+               </h1>
+               <table>
+                  <tr>
+                     <td>
+                        <ul>
+                           <li>
+                              <p><b>MAS Notices &amp; Guidelines (Singapore):</b> The <a href="https://www.mas.gov.sg/" target="_blank" rel="noopener noreferrer">Monetary
+                                 Authority of Singapore (MAS)</a> issues various notices, guidelines,
+                                 and circulars that set out regulatory requirements for financial
+                                 institutions in Singapore. These cover areas such as technology
+                                 risk management (<a href="https://www.mas.gov.sg/regulation/guidelines/technology-risk-management-guidelines" target="_blank" rel="noopener noreferrer">TRM</a>), cybersecurity, data governance, outsourcing,
+                                 and business continuity management, aiming to ensure the safety and
+                                 soundness of the financial sector.</p>
+                              <p><b>In Brief:</b> <a href="https://www.mas.gov.sg/" target="_blank" rel="noopener noreferrer">MAS</a> regulations focus on robust technology risk
+                                 management frameworks, cybersecurity measures, and data governance
+                                 practices for financial institutions in Singapore.</p>
+                           </li>
+                           <li>
+                              <p><b>RMiT (Risk Management in Technology) (Malaysia):</b> Issued by
+                                 Bank Negara Malaysia (the central bank), the <a href="https://www.bnm.gov.my/documents/20124/938039/Risk+Management+in+Technology+(RMiT).pdf" target="_blank" rel="noopener noreferrer">Risk Management in
+                                 Technology (RMiT)</a> policy outlines the requirements for financial
+                                 institutions to establish a robust technology risk management
+                                 framework and practices. This includes governance, IT
+                                 infrastructure security, cybersecurity resilience, data management,
+                                 and oversight of third-party service providers.</p>
+                              <p><b>In Brief:</b> <a href="https://www.bnm.gov.my/documents/20124/938039/Risk+Management+in+Technology+(RMiT).pdf" target="_blank" rel="noopener noreferrer">RMiT</a> is Bank Negara Malaysia's policy requiring
+                                 financial institutions to establish comprehensive technology risk
+                                 management, including data security and cyber resilience measures.</p>
+                           </li>
+                           <li>
+                              <p><b>APPI (Act on Protection of Personal Information) (Japan):</b>
+                                 Japan's <a href="https://www.ppc.go.jp/en/legal/" target="_blank" rel="noopener noreferrer">APPI</a> is the primary legislation governing the handling of
+                                 personal information by businesses. It sets out rules for the
+                                 collection, use, storage, and transfer of personal data, and grants
+                                 individuals rights regarding their information. It has undergone
+                                 amendments to align more closely with international standards like
+                                 <a href="https://gdpr-info.eu/" target="_blank" rel="noopener noreferrer">GDPR</a>.</p>
+                              <p><b>In Brief:</b> <a href="https://www.ppc.go.jp/en/legal/" target="_blank" rel="noopener noreferrer">APPI</a> is Japan's primary data privacy law
+                                 regulating the handling of personal information by businesses,
+                                 covering collection, use, security, and providing individuals with
+                                 rights over their data.</p>
+                           </li>
+                           <li>
+                              <p><b>Cross-Border Data Transfer Rules (Various Countries):</b> Many
+                                 countries in the <a href="https://en.wikipedia.org/wiki/Asia-Pacific" target="_blank" rel="noopener noreferrer">APAC</a> region have specific national laws or
+                                 regulations that govern how personal and sensitive data can be
+                                 transferred outside their borders. These rules vary significantly
+                                 and may require consent, adequacy assessments of the recipient
+                                 country's data protection laws, or the implementation of specific
+                                 contractual safeguards to ensure data protection.</p>
+                              <p><b>In Brief:</b> Numerous national laws across <a href="https://en.wikipedia.org/wiki/Asia-Pacific" target="_blank" rel="noopener noreferrer">APAC</a> impose specific
+                                 requirements for transferring personal and financial data outside
+                                 of each respective country, often requiring specific consent or
+                                 mechanisms.</p>
+                           </li>
+                        </ul>
+                     </td>
+                     <td style="width: 30%; vertical-align: top; padding: 15px;">
+                        <!-- Placeholder: Update image path -->
+                        <img width="2500" src="/static/app/Data_Compliance/apac.png" />
+                     </td>
+                  </tr>
+               </table>
+            </ul>
+         </html>
+      </panel>
+   </row>
+   <row id="tab_anz">
+      <panel>
+         <html>
+            <ul>
+               <h1>
+                  <!-- Placeholder: Update icon path -->
+                  <img width="35"
+                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                  <b>A/NZ REGULATIONS</b>
+               </h1>
+               <table>
+                  <tr>
+                     <td>
+                        <ul>
+                           <li>
+                              <b>CPS 234 (Information Security) (Australia)</b>
+                              <p>Issued by the <a href="https://www.apra.gov.au/" target="_blank" rel="noopener noreferrer">Australian Prudential Regulation Authority (APRA)</a>,
+                                 <a href="https://www.apra.gov.au/prudential-standard-cps-234-information-security" target="_blank" rel="noopener noreferrer">CPS 234</a> is a prudential standard that requires <a href="https://www.apra.gov.au/" target="_blank" rel="noopener noreferrer">APRA</a>-regulated
+                                 entities (such as banks, insurers, and superannuation funds) to
+                                 implement and maintain information security controls to protect
+                                 their information assets (including data) from internal and
+                                 external threats.</p>
+                              <p><b>In Brief:</b> <a href="https://www.apra.gov.au/prudential-standard-cps-234-information-security" target="_blank" rel="noopener noreferrer">CPS 234</a> requires <a href="https://www.apra.gov.au/" target="_blank" rel="noopener noreferrer">APRA</a>-regulated entities to
+                                 maintain information security capabilities commensurate with their
+                                 risk profiles to protect information assets, including data.</p>
+                           </li>
+                           <li>
+                              <b>CPS 230 (Operational Resilience) (Australia)</b>
+                              <p><a href="https://www.apra.gov.au/" target="_blank" rel="noopener noreferrer">APRA</a>'s <a href="https://www.apra.gov.au/prudential-standard-cps-230-operational-risk-management" target="_blank" rel="noopener noreferrer">CPS 230</a> is a prudential standard designed to strengthen the
+                                 operational resilience of regulated entities. It sets requirements
+                                 for managing operational risks, ensuring business continuity, and
+                                 maintaining critical operations through disruptions, including
+                                 those related to technology failures, cyber-attacks, and other
+                                 incidents impacting data and systems.</p>
+                              <p><b>In Brief:</b> <a href="https://www.apra.gov.au/prudential-standard-cps-230-operational-risk-management" target="_blank" rel="noopener noreferrer">CPS 230</a> aims to strengthen operational resilience
+                                 for <a href="https://www.apra.gov.au/" target="_blank" rel="noopener noreferrer">APRA</a>-regulated entities by establishing requirements for
+                                 managing operational risks, including those impacting data and
+                                 systems.</p>
+                           </li>
+                           <li>
+                              <b>Privacy Act 1988 (Australia)</b>
+                              <p>This is <a href="https://www.legislation.gov.au/Details/C2021C00400" target="_blank" rel="noopener noreferrer">Australia's Privacy Act 1988</a>.
+                                 It includes the <a href="https://www.oaic.gov.au/privacy/australian-privacy-principles" target="_blank" rel="noopener noreferrer">Australian Privacy Principles (APPs)</a> that govern
+                                 the collection, use, disclosure, storage, and security of personal
+                                 information, and also includes a mandatory Notifiable Data Breaches
+                                 (<a href="https://www.oaic.gov.au/privacy/notifiable-data-breaches" target="_blank" rel="noopener noreferrer">NDB</a>) scheme.</p>
+                              <p><b>In Brief:</b> <a href="https://www.legislation.gov.au/Details/C2021C00400" target="_blank" rel="noopener noreferrer">Australia's Privacy Act</a> governs how personal
+                                 information is handled by businesses, setting out privacy
+                                 principles for collection, use, storage, and disclosure, and
+                                 includes mandatory data breach notification.</p>
+                           </li>
+                           <li>
+                              <b>Privacy Act 2020 (New Zealand)</b>
+                              <p><a href="https://www.privacy.org.nz/privacy-act-2020/" target="_blank" rel="noopener noreferrer">New Zealand's Privacy Act 2020</a> modernizes the country's privacy
+                                 laws. It includes <a href="https://www.privacy.org.nz/privacy-act-2020/information-privacy-principles/" target="_blank" rel="noopener noreferrer">Information Privacy Principles (IPPs)</a> that govern
+                                 how agencies collect, use, store, and disclose personal
+                                 information. Key features include mandatory data breach
+                                 notifications and new rules for cross-border data transfers.</p>
+                              <p><b>In Brief:</b> <a href="https://www.privacy.org.nz/privacy-act-2020/" target="_blank" rel="noopener noreferrer">New Zealand's Privacy Act</a> outlines principles for
+                                 the collection, use, storage, and disclosure of personal
+                                 information, providing individuals with rights and establishing
+                                 breach notification requirements.</p>
+                           </li>
+                           <li>
+                              <b>Consumer Data Right (CDR) (Australia)</b>
+                              <p>The <a href="https://www.cdr.gov.au/" target="_blank" rel="noopener noreferrer">CDR</a> legislation in Australia gives consumers greater access to
+                                 and control over their data held by businesses. Initially rolled
+                                 out in the banking sector (Open Banking), it is expanding to other
+                                 sectors. It allows consumers to direct accredited data recipients
+                                 to securely access their data to get better deals on products and
+                                 services, imposing data security and privacy obligations on
+                                 participating entities.</p>
+                              <p><b>In Brief:</b> <a href="https://www.cdr.gov.au/" target="_blank" rel="noopener noreferrer">CDR</a> is legislation allowing Australian consumers
+                                 to securely access and share their data held by accredited
+                                 businesses, including those in the financial sector, impacting data
+                                 portability and security requirements.</p>
+                           </li>
+                        </ul>
+                     </td>
+                     <td style="width: 30%; vertical-align: top; padding: 15px;">
+                        <!-- Placeholder: Update image path -->
+                        <img width="2500" src="/static/app/Data_Compliance/anz.png" />
+                     </td>
+                  </tr>
+               </table>
+            </ul>
+         </html>
+      </panel>
+   </row>
+   <row id="tab_next">
+      <panel>
+         <html tokens="true">
+            <ul>
+               <h1>
+                  <!-- Placeholder: Update icon path -->
+                  <img width="45"
+                     src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                  <!-- Updated Help Header -->
+                  <b>Do you need help? Ask a Data Compliance Expert.</b>
+               </h1>
+               <p> Need help with your environment or requirements? Send us your questions, and
+                  we’ll get back to you as soon as possible. <ul>
+                     <li> For detailed step-by-step instructions on implementing the solution using
+                  this Solutions Accelerator, visit our <a
+                           href="https://lantern.splunk.com/@go/page/Data_Compliance">
+                           <b>Solutions Accelerator</b>
+                        </a> page.</li>
+                     <li> To expedite implementation with professional services, please reach out to
+                  our sales team by clicking <a
+                           href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
+                           target="_ask_expert">
+                           <b>Contact Us</b>
+                        </a>
+                     </li>
+                     <li> If you need immediate assistance, explore our community forum, <a
+                           href="http://answers.splunk.com/">
+                           <b>Splunk Answers</b>
+                        </a>.</li>
+                  </ul>
+               </p>
+               <!-- Placeholder: Update bullet image path -->
+               <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+               <a
+                  href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
+                  class="btn" target="_ask_expert">Contact Us</a>
+            </ul>
+
+         </html>
+      </panel>
+   </row>
+</dashboard>

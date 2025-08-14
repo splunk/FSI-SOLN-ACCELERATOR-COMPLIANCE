@@ -1,0 +1,257 @@
+<form version="1.1" theme="dark">
+  <label>Data Flow Dashboard</label>
+  <description>Monitor data flow metrics such as freshness, volume, latency, SLA compliance,
+        and anomalies.</description>
+  <fieldset submitButton="false">
+    <input type="time" token="timerange" searchWhenChanged="true">
+      <label>Analysis Time Range:</label>
+      <default>
+        <earliest>-7d@h</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+    <input type="dropdown" token="selected_raw_index" searchWhenChanged="true">
+      <label>Select Raw Data Index:</label>
+      <fieldForLabel>label</fieldForLabel>
+      <fieldForValue>value</fieldForValue>
+      <search>
+        <query>
+                    | tstats count where index=* by index
+                    | rename index as value
+                    | eval label=value
+                    | fields label value
+                </query>
+        <earliest>$timerange.earliest$</earliest>
+        <latest>$timerange.latest$</latest>
+      </search>
+      <default>main</default>
+    </input>
+    <input type="dropdown" token="selected_raw_sourcetype" searchWhenChanged="true">
+      <label>Select Raw Data Sourcetype:</label>
+      <fieldForLabel>label</fieldForLabel>
+      <fieldForValue>value</fieldForValue>
+      <search>
+        <query>
+                    | tstats count where index=$selected_raw_index$ by sourcetype
+                    | stats sum(count) as event_count by sourcetype
+                    | eval label=sourcetype+" (Events: "+event_count+")"
+                    | rename sourcetype as value
+                    | fields label value
+                </query>
+        <earliest>$timerange.earliest$</earliest>
+        <latest>$timerange.latest$</latest>
+      </search>
+      <default>*</default>
+      <!-- Removed duplicate default tag -->
+    </input>
+    <input type="dropdown" token="schema_timespan" searchWhenChanged="true">
+      <label>Schema Analysis Timespan:</label>
+      <choice value="1h">1 hour</choice>
+      <choice value="2h">2 hours</choice>
+      <choice value="4h">4 hours</choice>
+      <choice value="6h">6 hours</choice>
+      <choice value="12h">12 hours</choice>
+      <choice value="24h">24 hours</choice>
+      <default>4h</default>
+      <!-- Corrected value to match choice value -->
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <title>Data Freshness</title>
+      <table>
+        <search>
+          <query>| tstats max(_time) as lastTime where index=$selected_raw_index$ sourcetype=$selected_raw_sourcetype$ by index sourcetype
+| eval time_lag = now() - lastTime
+| eval compliance_status = if(time_lag &lt;= 3600, "Compliant", "Non-Compliant")
+| eval lastTime_formatted = strftime(lastTime, "%Y-%m-%d %H:%M:%S %Z")
+| eval time_lag_weeks = floor(time_lag / (60 * 60 * 24 * 7))
+| eval seconds_after_weeks = time_lag % (60 * 60 * 24 * 7)
+| eval time_lag_days_remainder = floor(seconds_after_weeks / (60 * 60 * 24))
+| eval seconds_after_days = seconds_after_weeks % (60 * 60 * 24)
+| eval time_lag_hours_remainder = floor(seconds_after_days / (60 * 60))
+| eval seconds_after_hours = seconds_after_days % (60 * 60)
+| eval time_lag_minutes_remainder = floor(seconds_after_hours / 60)
+| eval time_lag_display_parts = mvappend(
+    if(time_lag_weeks &gt; 0, time_lag_weeks . " week" . if(time_lag_weeks != 1, "s", ""), null()),
+    if(time_lag_days_remainder &gt; 0, time_lag_days_remainder . " day" . if(time_lag_days_remainder != 1, "s", ""), null()),
+    if(time_lag_hours_remainder &gt; 0, time_lag_hours_remainder . " hour" . if(time_lag_hours_remainder != 1, "s", ""), null()),
+    if(time_lag_minutes_remainder &gt; 0, time_lag_minutes_remainder . " minute" . if(time_lag_minutes_remainder != 1, "s", ""), null())
+)
+| eval time_lag_display = if(isnull(time_lag_display_parts) OR time_lag_display_parts="", "0 minutes", mvjoin(time_lag_display_parts, ", "))
+| table index sourcetype lastTime_formatted time_lag_display compliance_status</query>
+          <earliest>$timerange.earliest$</earliest>
+          <latest>$timerange.latest$</latest>
+        </search>
+        <option name="count">20</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">none</option>
+        <option name="percentagesRow">false</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="rowNumbers">false</option>
+        <option name="totalsRow">false</option>
+        <option name="wrap">true</option>
+      </table>
+    </panel>
+    <panel>
+      <title>Data Latency</title>
+      <table>
+        <search>
+          <query>| search index=$selected_raw_index$ sourcetype=$selected_raw_sourcetype$
+| eval ingestion_latency = _indextime - _time
+| stats avg(ingestion_latency) as avg_latency_sec, max(ingestion_latency) as max_latency_sec by index sourcetype
+| eval compliance_status = if(avg_latency_sec &lt;= 300, "Compliant", "Non-Compliant")
+| eval avg_latency_total_hr = avg_latency_sec / 3600
+| eval max_latency_total_hr = max_latency_sec / 3600
+| eval Avg_Latency = if(avg_latency_total_hr &lt; 24, round(avg_latency_total_hr, 2) . " hours", floor(avg_latency_total_hr / 24) . " " . if(floor(avg_latency_total_hr / 24) == 1, "day", "days") . " " . round(avg_latency_total_hr % 24, 2) . " hours")
+| eval Max_Latency = if(max_latency_total_hr &lt; 24, round(max_latency_total_hr, 2) . " hours", floor(max_latency_total_hr / 24) . " " . if(floor(max_latency_total_hr / 24) == 1, "day", "days") . " " . round(max_latency_total_hr % 24, 2) . " hours")
+| table index sourcetype Avg_Latency Max_Latency compliance_status</query>
+          <earliest>$timerange.earliest$</earliest>
+          <latest>$timerange.latest$</latest>
+        </search>
+        <option name="count">20</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">none</option>
+        <option name="percentagesRow">false</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="rowNumbers">false</option>
+        <option name="totalsRow">false</option>
+        <option name="wrap">true</option>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>SLA Compliance</title>
+      <table>
+        <search>
+          <query>| search index=$selected_raw_index$ sourcetype=$selected_raw_sourcetype$ earliest=$timerange.earliest$ latest=$timerange.latest$
+| stats count as total_events, max(_time) as last_event_epoch by index sourcetype
+| eval Last_Event_Date = strftime(last_event_epoch, "%Y-%m-%d %H:%M:%S")
+| eval avg_latency = 100
+| eval is_compliant_latency = if(avg_latency &lt;= 300, 1, 0)
+| eval is_compliant_volume = if(total_events &gt;= 1000, 1, 0)
+| eval Compliance_Rate = round((is_compliant_latency + is_compliant_volume) / 2 * 100, 2)
+| eval SLA_Status = if(Compliance_Rate = 100, "Compliant", if(Compliance_Rate &gt;= 75, "Partial Compliance", "Non-Compliant"))
+| table index sourcetype Compliance_Rate SLA_Status Last_Event_Date</query>
+          <earliest>$timerange.earliest$</earliest>
+          <latest>$timerange.latest$</latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+    <panel>
+      <title>Data Retention Compliance</title>
+      <table>
+        <search>
+          <query>| tstats min(_time) as oldest_event_time where index=$selected_raw_index$ sourcetype=$selected_raw_sourcetype$ by index sourcetype
+| eval retention_period_seconds = now() - oldest_event_time
+| eval Oldest_Event_Time_Date = strftime(oldest_event_time, "%Y-%m-%d %H:%M:%S")
+| eval retention_years = floor(retention_period_seconds / 31536000)
+| eval remaining_seconds_after_years = retention_period_seconds % 31536000
+| eval retention_months = floor(remaining_seconds_after_years / 2629743.83) 
+| eval remaining_seconds_after_months = remaining_seconds_after_years % 2629743.83
+| eval retention_days = floor(remaining_seconds_after_months / 86400)
+| eval Retention_Display = ""
+| eval Retention_Display = if(retention_years &gt; 0, Retention_Display + tostring(retention_years) + "y ", Retention_Display)
+| eval Retention_Display = if(retention_months &gt; 0, Retention_Display + tostring(retention_months) + "m ", Retention_Display)
+| eval Retention_Display = if(retention_days &gt; 0 AND retention_years = 0 AND retention_months = 0, Retention_Display + tostring(retention_days) + "d", Retention_Display)
+| eval Retention_Display = if(len(Retention_Display)=0, "Less than 1 day", Retention_Display)     
+| eval Compliance_Status = if(retention_period_seconds &gt;= 86400, "Compliant", "Non-Compliant")
+| table index, sourcetype, Oldest_Event_Time_Date, Retention_Display, Compliance_Status</query>
+          <earliest>$timerange.earliest$</earliest>
+          <latest>$timerange.latest$</latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Data Completeness</title>
+      <chart>
+        <search>
+          <query>
+                    <![CDATA[                        
+                        | tstats count WHERE index=$selected_raw_index$ sourcetype=$selected_raw_sourcetype$
+                            BY _time span=$schema_timespan$
+                        | eval wd=strftime(_time, "%u")
+                        | eventstats avg(count) AS mu stdev(count) AS sigma BY wd
+                        | eval z=round(if(sigma=0,0,(count-mu)/sigma),2)
+                        | eval status=case(
+                            abs(z)<=1, "Normal",
+                            abs(z)<=2, "Caution",
+                            1=1, "Anomaly")
+                        | timechart span=$schema_timespan$ values(count) AS events values(z) AS z_score values(status) AS status]]>
+                    </query>
+          <earliest>$timerange.earliest$</earliest>
+          <latest>$timerange.latest$</latest>
+        </search>
+        <option name="charting.chart">column</option>
+        <option name="charting.axisTitleX.text">Sourcetype</option>
+        <option name="charting.axisTitleY.text">Field Completeness (%)</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>Data Volume Monitoring</title>
+      <chart>
+        <search>
+          <query>
+                    | tstats count where index=$selected_raw_index$ sourcetype=$selected_raw_sourcetype$ by index, sourcetype, _time span=$schema_timespan$
+                    | eval source_identifier = index + "::" + sourcetype 
+                    | timechart span=$schema_timespan$ sum(count) as "Events Per Hour" by source_identifier
+                </query>
+          <earliest>$timerange.earliest$</earliest>
+          <latest>$timerange.latest$</latest>
+        </search>
+        <option name="charting.chart">line</option>
+        <option name="charting.axisTitleX.text">Time</option>
+        <option name="charting.axisTitleY.text">Event Count</option>
+        <option name="charting.legend.placement">right</option>
+        <option name="charting.chart.nullValueMode">zero</option>
+        <option name="charting.fieldColors">
+          <!-- Optional: Define colors for specific source_identifier combinations -->
+        </option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Data Source Health Over Time</title>
+      <chart>
+        <search>
+          <query>
+                    | tstats max(_time) as last_event_in_bucket
+                        where index=$selected_raw_index$ sourcetype=$selected_raw_sourcetype$
+                        by source, _time span=4h <!-- Aggregates by host per day -->
+                    | eval bucket_end_epoch = _time + 4*3600  <!-- End of the 1-day bucket -->
+                    | eval time_since_last_event_in_bucket = bucket_end_epoch - last_event_in_bucket
+                    
+                    <!-- Convert health status to a numeric value for plotting -->
+                    | eval health_status_numeric = if(time_since_last_event_in_bucket &lt;= 3600, 1, 0) <!-- Healthy=1, Inactive=0 -->
+                    
+                    <!-- Plot the average health status per day for each host -->
+                    | timechart span=1d avg(health_status_numeric) by source
+
+                    | fillnull value=0
+                </query>
+          <!-- Set the specific time range for this panel here -->
+          <earliest>-30d</earliest>
+          <latest>-2h</latest>
+        </search>
+        <option name="charting.chart">line</option>
+        <option name="charting.axisLabelsX.majorUnit">1d</option>
+        <option name="charting.axisTitleX.text">Time</option>
+        <option name="charting.axisTitleY.text">Health Status</option>
+        <option name="charting.legend.placement">right</option>
+        <option name="charting.chart.nullValueMode">connect</option>
+        <!-- Connect lines even if no data for a bucket -->
+        <option name="charting.axisY.minimumNumber">0</option>
+        <option name="charting.axisY.maximumNumber">1</option>
+        <option name="charting.fieldColors">{"0": "0xDC4E41", "1": "0x53A051"}</option>
+      </chart>
+    </panel>
+  </row>
+</form>
