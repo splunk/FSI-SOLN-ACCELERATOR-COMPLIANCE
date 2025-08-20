@@ -4,6 +4,7 @@
 ### macOS ###
 # General
 .DS_Store
+App/.DS_Store
 .AppleDouble
 .LSOverride
 
@@ -45,4 +46,3 @@ local.meta
 local
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,splunk
-App/.DS_Store
