@@ -1,7 +1,7 @@
 <nav>
    <view name="solution_accelerator_welcome_page" default='true' />
-   <collection label="Data Compliance">
-      <collection label="Defining Data Compliance">
+   <collection label="Data Compliance Pipelines">
+      <collection label="Defining Data Compliance Pipelines">
          <view name="solution_accelerator_data_compliance_introduction" />
          <view name="solution_accelerator_data_compliance_regions" />
          <view name="solution_accelerator_data_compliance_maturity" />
@@ -10,7 +10,7 @@
          <view name="solution_accelerator_define_ep" />
       </collection>
       <divider />
-      <collection label="Implementing Data Compliance">
+      <collection label="Implementing Data Compliance Pipelines">
          <view name="solution_accelerator_implementation_introduction" />
          <view name="solution_accelerator_ia_impl_use_case" />
          <view name="solution_accelerator_ip_impl_use_case" />

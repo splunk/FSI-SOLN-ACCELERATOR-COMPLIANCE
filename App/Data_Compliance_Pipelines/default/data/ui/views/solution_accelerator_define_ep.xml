@@ -7,7 +7,7 @@
                 <ul>
                     <h1>
                         <img width="35" src="/static/app/Data_Compliance/SA_image_icon_target.png" />
-                        <font color="#8B0000">Introduction to Edge Processor for Data Compliance</font>
+                        <font color="#8B0000">Introduction to Edge Processor for Data Compliance Pipelines</font>
                     </h1>
                     <p>The Edge Processor solution provides distributed data processing
                         capabilities, operating at the edge of your network. Its primary function is
@@ -251,7 +251,7 @@
                         </div>
 
                         <h2>
-                            <font color="#000000">Key Edge Processor Techniques for Data Compliance
+                            <font color="#000000">Key Edge Processor Techniques for Data Compliance Pipelines
                                 in <a href="https://en.wikipedia.org/wiki/Financial_services"
                                     target="_blank" rel="noopener noreferrer">FSI</a></font>
                         </h2>
@@ -489,7 +489,7 @@
                         <img width="45"
                             src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
                         <!-- Updated Help Header -->
-                        <b>Do you need help? Ask a Data Compliance Expert.</b>
+                        <b>Do you need help? Ask a Data Compliance Pipelines Expert.</b>
                     </h1>
                     <p> Need help with your environment or requirements? Send us your questions, and
                         we’ll get back to you as soon as possible. <ul>

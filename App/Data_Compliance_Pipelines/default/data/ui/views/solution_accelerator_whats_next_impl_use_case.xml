@@ -1,5 +1,5 @@
 <dashboard version="1.1">
-    <label>Data Compliance once in Splunk</label>
+    <label>Data Compliance Pipelines once in Splunk</label>
     <description>Use Case - Staying Compliant with Data in Splunk</description>
     <row>
         <panel>
@@ -7,7 +7,7 @@
                 <ul>
                     <h1>
                         <img width="35" src="/static/app/Data_Compliance/SA_image_icon_target.png" />
-                        <font color="#8B0000">Ensuring Ongoing Data Compliance once in Splunk</font>
+                        <font color="#8B0000">Ensuring Ongoing Data Compliance Pipelines once in Splunk</font>
                     </h1>
                     <p>
                         Achieving and maintaining compliance is a continuous process that extends beyond initial data onboarding. Once your sensitive or regulated data is in Splunk, you must ensure it remains protected, monitored, and managed according to regulatory and organizational requirements throughout its lifecycle.

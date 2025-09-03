@@ -1,6 +1,6 @@
 <dashboard version="1.1" theme="light" script="tabs.js" stylesheet="tabs.css">
    <!-- Updated Label -->
-   <label>Introduction to Data Compliance</label>
+   <label>Introduction to Data Compliance Pipelines</label>
    <!-- Updated Description -->
    <description>Understanding Key Data Compliance Regulations and Governed Data Types</description>
    <row>
@@ -196,7 +196,7 @@
                </ul>
                <br />
                <p>Centralizing and correlating these diverse data inputs is fundamental to the
-                  Solution Accelerator's ability to provide the necessary visibility for compliance
+                  Solution Accelerator for Data Compliance Pipelines's ability to provide the necessary visibility for compliance
                   across various regulations and to effectively monitor the interactions between
                   assets and identities.</p>
             </ul>

@@ -7,7 +7,7 @@
                 <ul>
                     <h1>
                         <img width="35" src="/static/app/Data_Compliance/SA_image_icon_target.png" />
-                        <font color="#8B0000">Introduction to Ingest Processor for Data Compliance</font>
+                        <font color="#8B0000">Introduction to Ingest Processor for Data Compliance Pipelines</font>
                     </h1>
                     <p>The Ingest Processor is a native data processing service within the Splunk
                         Cloud Platform. Its primary function is to enable the filtering, masking,

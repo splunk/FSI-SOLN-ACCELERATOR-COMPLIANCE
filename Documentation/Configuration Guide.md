@@ -1,12 +1,16 @@
 # Configuration Guide
 
-This guide provides details on how to configure the Solution Accelerator for Data Compliance after installation.
+This guide provides details on how to configure the Solution Accelerator for Data Compliance Pipelines after installation.
 
 ## Steps
 
-1. **Install the Solution Accelerator App**  
-   - Download the latest release from the releases section.
-   - Install via Splunk Web or CLI.
+1. **Install or Compile the Solution Accelerator App**  
+   - Download the latest release from the releases section, or compile/package the app from source if needed.
+   - To compile/package: Navigate to the app directory and run:
+     ```
+     tar -cvzf solution_accelerator_data_compliance_pipelines.spl *
+     ```
+   - Install via Splunk Web or CLI using the `.spl` file you downloaded or built.
 
 2. **Configure Knowledge Objects**  
    - Review and enable the included saved searches, event types, tags, and macros.

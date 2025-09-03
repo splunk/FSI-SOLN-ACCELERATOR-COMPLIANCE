@@ -1,12 +1,12 @@
-# Splunk Financial Services and Insurance Solution Accelerator - Data Compliance
+# Splunk Financial Services and Insurance Solution Accelerator - Data Compliance Pipelines
 
-This repository provides resources, guides, and Splunk app content to help Financial Services and Insurance organizations address data compliance requirements using Splunk. Releases can be directly installed in Splunk and are compatible with both Splunk Enterprise and Splunk Cloud.
+This repository provides resources, guides, and Splunk app content to help Financial Services and Insurance organizations address Data Compliance Pipelines requirements using Splunk. Releases can be directly installed in Splunk and are compatible with both Splunk Enterprise and Splunk Cloud.
 
 > [!IMPORTANT]  
-> The Solution Accelerator for Data Compliance App is not directly supported by Splunk Support.
+> The Solution Accelerator for Data Compliance Pipelines App is not directly supported by Splunk Support.
 
 > [!TIP]
-> For a more complete set of capabilities beyond the Solution Accelerator for Data Compliance and integration with Splunk, please see the [Compliance Essentials for Splunk](https://splunkbase.splunk.com/app/6696), related [app documentation](https://splunk.github.io/Compliance_Essentials/), or reach out to your Splunk Sales team.
+> For a more complete set of capabilities beyond the Solution Accelerator for Data Compliance Pipelines and integration with Splunk, please see the [Compliance Essentials for Splunk](https://splunkbase.splunk.com/app/6696), related [app documentation](https://splunk.github.io/Compliance_Essentials/), or reach out to your Splunk Sales team.
 
 ---
 
@@ -17,9 +17,9 @@ This repository provides resources, guides, and Splunk app content to help Finan
 
 - **Documentation Guides**:  
   This section includes the following guides:
-  - **Configuration Guide** – Details on configuring the Solution Accelerator for Data Compliance after installation, including knowledge objects.
+  - **Configuration Guide** – Details on configuring the Solution Accelerator for Data Compliance Pipelines after installation, including knowledge objects.
   - **Data Management Guide** – Information on data sources and data collection specific to Financial Services environments.
-  - **Install Guide** – Step-by-step instructions for installing and configuring the Solution Accelerator for Data Compliance.
+  - **Install Guide** – Step-by-step instructions for installing and configuring the Solution Accelerator for Data Compliance Pipelines.
   - **Images Folder** – Contains raw images and screenshots used in documentation. You can use these images as needed for your own documentation or presentations.
 
 - **Reference Architecture**:  

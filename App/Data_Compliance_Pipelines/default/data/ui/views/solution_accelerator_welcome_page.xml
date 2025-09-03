@@ -1,5 +1,5 @@
 <!-- 
-  Dashboard Refactored for: Solution Accelerator for Data Compliance
+    Dashboard Refactored for: Solution Accelerator for Data Compliance Pipelines
   Focus: General Data Compliance, PCI DSS, FSI Regulations
   Original Structure: Retained (Tabs, JS/CSS)
   Content: Completely rewritten for compliance focus.
@@ -14,9 +14,9 @@
                     src="/static/app/Data_Compliance/FSI_Data_Compliance_banner.jpg" />
                 <h1>
                     <img width="45" src="/static/app/Data_Compliance/SA_image_icon_07.png" />
-                    WELCOME TO SPLUNK SOLUTIONS ACCELERATOR: <font color="#006d9c">Data Compliance</font>
+                    WELCOME TO SPLUNK SOLUTIONS ACCELERATOR: <font color="#006d9c">Data Compliance Pipelines</font>
                 </h1>
-                <p> Explore the <b>Solution Accelerator for Data Compliance</b> to access solution
+                <p> Explore the <b>Solution Accelerator for Data Compliance Pipelines</b> to access solution
                     components designed to jump-start your journey to monitor, audit, and report on
                     compliance mandates like <a href="https://www.pcisecuritystandards.org/"
                         target="_blank" rel="noopener noreferrer">PCI DSS</a> and <a
@@ -411,7 +411,7 @@
                     <p>Achieving timely and comprehensive data compliance in the financial services
                         sector requires accommodating a wide array of architectures and disparate
                         data collection methods across numerous applications and systems.</p>
-                    <p>The Data Compliance Solutions Accelerator for Financial Services directly
+                    <p>The Data Compliance Pipelines Solutions Accelerator for Financial Services directly
                         addresses these challenges. It offers proven methodologies and pre-built
                         components to accelerate your Splunk deployment, ensuring robust and
                         compliant data ingestion from your complex financial ecosystem to meet

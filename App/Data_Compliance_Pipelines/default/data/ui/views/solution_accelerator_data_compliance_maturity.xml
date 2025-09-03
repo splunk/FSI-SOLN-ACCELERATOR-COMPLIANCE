@@ -1,5 +1,5 @@
 <dashboard version="1.1" script="securityjourney.js" stylesheet="securityjourney.css">
-  <!-- Updated Label for Data Compliance -->
+  <!-- Updated Label for Data Compliance Pipelines -->
   <label>Data Compliance Maturity</label>
   <row>
     <panel>
