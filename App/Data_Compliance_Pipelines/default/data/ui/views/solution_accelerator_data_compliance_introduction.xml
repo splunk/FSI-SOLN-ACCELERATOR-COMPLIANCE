@@ -14,25 +14,26 @@
             </h1>
             <ul>
                <!-- Updated Introduction Text -->
-               <p>Meeting today's complex web of data compliance mandates - spanning
+               <p>Meeting today's complex web of data compliance pipelines and mandates—spanning
                   security-focused frameworks like <a href="https://www.pcisecuritystandards.org/">PCI
                   DSS</a>, operational regulations like SOX, and privacy-centric laws such as <a
                      href="https://gdpr-info.eu/">GDPR</a> and <a
                      href="https://oag.ca.gov/privacy/ccpa">CCPA</a>, alongside numerous
-                  FSI-specific requirements - is a non-negotiable aspect of modern business. It's
+                  FSI-specific requirements—is a non-negotiable aspect of modern business. It's
                   crucial to understand the interplay between <strong>Data Security</strong>
                   (protecting data from unauthorized access, corruption, or theft through technical
-                  controls) and <strong>Data
-                     Privacy</strong> (governing how personal data is collected, used, stored,
-                  shared, and ensuring individual rights). While distinct, they are deeply
-                  intertwined: robust data security is the essential foundation upon which data
-                  privacy compliance is built.</p>
+                  controls) and <strong>Data Privacy</strong> (governing how personal data is
+                  collected, used, stored, shared, and ensuring individual rights). While distinct,
+                  they are deeply intertwined: robust data security is the essential foundation upon
+                  which data privacy compliance is built, and data compliance pipelines are the
+                  mechanism for achieving this at scale.</p>
                <p>Organizations face significant hurdles in achieving compliance across both
-                  domains. Fragmented data silos across hybrid and multi-cloud environments obscure
-                  visibility, evolving regulations demand constant adaptation, and reliance on
-                  manual checks and periodic audits creates gaps and inefficiencies. Splunk provides
-                  a unified data platform capable of ingesting, normalizing, and analyzing machine
-                  data from any source. This unique ability to break down data silos allows
+                  domains. Fragmented data silos and disconnected data compliance pipelines across
+                  hybrid and multi-cloud environments obscure visibility, evolving regulations
+                  demand constant adaptation, and reliance on manual checks and periodic audits
+                  creates gaps and inefficiencies. Splunk provides a unified data platform capable
+                  of ingesting, normalizing, and analyzing machine data from any source. This unique
+                  ability to break down data silos and unify compliance pipelines allows
                   organizations to continuously monitor security controls, gather evidence for
                   privacy adherence, streamline auditing, and accelerate incident response,
                   providing the foundational visibility required to manage the complexities of both
@@ -99,8 +100,8 @@
                   frameworks like <a href="https://www.pcisecuritystandards.org/">PCI DSS</a> (e.g.,
                   Requirement 10 for logging, Requirement 7 for access control), <a
                               href="https://gdpr-info.eu/">GDPR</a> (e.g., data subject rights,
-                  breach notification), SOX (financial reporting controls), HIPAA (health
-                  information privacy), and various FSI regulations.</li>
+                  breach notification), SOX (financial reporting controls), and various FSI
+                  regulations.</li>
                         <li>
                            <b>Protecting Sensitive Data:</b> Implementing robust security controls
                   (encryption, access management, vulnerability management) to prevent data breaches
@@ -143,7 +144,7 @@
                   the foundational inputs for monitoring controls, detecting deviations, and
                   providing the necessary audit trails across various regulatory mandates.</p>
                <p>The following data types are typically required for comprehensive data compliance
-                  monitoring and auditing within this Solution Accelerator:</p>
+                  pipeline monitoring and auditing within this Solution Accelerator:</p>
                <ul>
                   <ul>
                      <li>
@@ -196,9 +197,10 @@
                </ul>
                <br />
                <p>Centralizing and correlating these diverse data inputs is fundamental to the
-                  Solution Accelerator for Data Compliance Pipelines's ability to provide the necessary visibility for compliance
-                  across various regulations and to effectively monitor the interactions between
-                  assets and identities.</p>
+                  Solution Accelerator for Data Compliance Pipelines's ability to provide the
+                  necessary visibility for compliance across various regulations and to effectively
+                  monitor the interactions between assets and identities through unified data
+                  compliance pipelines.</p>
             </ul>
          </html>
       </panel>
@@ -211,7 +213,7 @@
                   <!-- Placeholder: Update icon path -->
                   <img width="35"
                      src="/static/app/Data_Compliance/SA_image_icon_target.png" />
-                  <b>DATA TYPES: Information Governed by Compliance Regulations</b>
+                  <b>KEY DATA CATEGORIES: Information Governed by Compliance Regulations</b>
                </h1>
                <!-- Expanded Data Types Text -->
                <p>Data compliance regulations are primarily focused on protecting specific
@@ -228,11 +230,11 @@
                      national ID), and sometimes even online identifiers or location data. PII is a
                      core focus of comprehensive privacy regulations worldwide, such as the <a
                         href="https://gdpr-info.eu/">GDPR</a> in Europe, <a
-                        href="https://oag.ca.gov/privacy/ccpa">CCPA</a>/<a href="https://thecpra.org/">CPRA</a> in the United States,
-                     LGPD in Brazil, and numerous national data protection acts across APAC and
-                     other regions. Compliance requires careful handling based on principles like
-                     consent, purpose limitation, data minimization, and ensuring data subject
-                     rights. </li>
+                        href="https://oag.ca.gov/privacy/ccpa">CCPA</a>/<a
+                        href="https://thecpra.org/">CPRA</a> in the United States, LGPD in Brazil,
+                     and numerous national data protection acts across APAC and other regions.
+                     Compliance requires careful handling based on principles like consent, purpose
+                     limitation, data minimization, and ensuring data subject rights. </li>
                   <li>
                      <b>Financial Data:</b> This encompasses information related to an individual's
                      or entity's financial standing, transactions, accounts, investments, and credit

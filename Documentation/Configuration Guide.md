@@ -6,9 +6,9 @@ This guide provides details on how to configure the Solution Accelerator for Dat
 
 1. **Install or Compile the Solution Accelerator App**  
    - Download the latest release from the releases section, or compile/package the app from source if needed.
-   - To compile/package: Navigate to the app directory and run:
+   - To compile/package: Navigate to the app directory - (usually `App/`) and run:
      ```
-     tar -cvzf solution_accelerator_data_compliance_pipelines.spl *
+     tar --exclude=.DS_Store --format=ustar -cvzf ../solution_accelerator_data_compliance_pipelines.spl Data_Compliance_Pipelines
      ```
    - Install via Splunk Web or CLI using the `.spl` file you downloaded or built.
 

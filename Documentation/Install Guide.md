@@ -10,10 +10,10 @@ If you want to build the Splunk app from source:
    - Clone or download the source code to your local machine.
 
 2. **Package the App**
-   - Navigate to the app directory (usually `App/Data_Compliance_Pipelines`).
+   - Navigate to the app directory (usually `App/`).
    - Run the following command to create a `.spl` package:
      ```
-     tar -cvzf solution_accelerator_data_compliance_pipelines.spl *
+     tar --exclude=.DS_Store --format=ustar -cvzf ../solution_accelerator_data_compliance_pipelines.spl Data_Compliance_Pipelines
      ```
    - Ensure the package includes all required files and folders.
 

@@ -36,7 +36,7 @@
                     <p>This section focuses on leveraging Splunk <a
                             href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/IngestActions"
                             target="_blank" rel="noopener noreferrer">Ingest Actions</a> to
-                        implement data compliance controls. <a
+                        implement data compliance pipeline controls. <a
                             href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/IngestActions"
                             target="_blank" rel="noopener noreferrer">Ingest Actions</a> allow for
                         data transformation and processing <b>before</b> data is written to an
@@ -46,7 +46,8 @@
                         defining these actions upfront, organizations can ensure that data is
                         correctly identified, sensitive information is masked or filtered, and data
                         is routed appropriately from the moment it enters the Splunk environment,
-                        thereby building a strong foundation for comprehensive data compliance.</p>
+                        thereby building a strong foundation for comprehensive data compliance
+                        pipelines.</p>
 
                     <p>The following technical resources are available to help you implement <a
                             href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/IngestActions"
@@ -142,9 +143,7 @@
                         rights, breach notification), <a
                                         href="https://www.congress.gov/bill/107th-congress/house-bill/3763"
                                         target="_blank" rel="noopener noreferrer">SOX</a> (financial
-                        reporting controls), <a href="https://www.hhs.gov/hipaa/index.html"
-                                        target="_blank" rel="noopener noreferrer">HIPAA</a> (health
-                        information privacy), and a multitude of varied <a
+                        reporting controls), and a multitude of varied <a
                                         href="https://en.wikipedia.org/wiki/Financial_services"
                                         target="_blank" rel="noopener noreferrer">FSI</a>
                         regulations applicable in specific markets.</li>
@@ -221,7 +220,8 @@
                             href="https://oag.ca.gov/privacy/ccpa" target="_blank"
                             rel="noopener noreferrer">CCPA</a>, etc.), the following categories of
                         data are typically required inputs for comprehensive data compliance
-                        monitoring and auditing within this Solution Accelerator:</p>
+                        pipelines monitoring and auditing within this Solution Accelerator for Data
+                        Compliance Pipelines:</p>
                     <ul>
                         <h3>User &amp; System Activity Logs</h3>
                         <ul>
@@ -314,7 +314,8 @@
                         </ul>
                     </ul>
                     <p>Centralizing and correlating these diverse data inputs is fundamental to the
-                        Solution Accelerator for Data Compliance Pipelines's ability to provide the necessary comprehensive
+                        Solution Accelerator for Data Compliance Pipelines's ability to provide the
+                        necessary comprehensive
                         visibility
                         for compliance across various regulations and to effectively monitor the
                         interactions between assets and identities in a globally distributed
@@ -4242,7 +4243,8 @@
                                 </td>
                                 <td style="padding: 8px;">Action taken in response to an alert or
                                     incident</td>
-                                <td style="padding: 8px;">Incident Management, Response &amp; Recovery</td>
+                                <td style="padding: 8px;">Incident Management, Response &amp;
+                                    Recovery</td>
                                 <td style="padding: 8px;">Retain. Archive original.</td>
                             </tr>
                             <tr>

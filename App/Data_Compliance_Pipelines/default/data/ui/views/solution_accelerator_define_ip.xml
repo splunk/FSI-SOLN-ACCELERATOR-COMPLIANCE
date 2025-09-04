@@ -397,14 +397,14 @@
                         <img width="45"
                             src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
                         <!-- Updated Help Header -->
-                        <b>Do you need help? Ask a Data Compliance Expert.</b>
+                        <b>Do you need help? Ask a Data Compliance Pipelines Expert.</b>
                     </h1>
                     <p> Need help with your environment or requirements? Send us your questions, and
                         we’ll get back to you as soon as possible. <ul>
                             <li> For detailed step-by-step instructions on implementing the solution
-                        using this Solutions Accelerator, visit our <a
+                        using this Solution Accelerator for Data Compliance Pipelines, visit our <a
                                     href="https://lantern.splunk.com/@go/page/Data_Compliance">
-                                    <b>Solutions Accelerator</b>
+                                    <b>Solution Accelerator for Data Compliance Pipelines</b>
                                 </a>
                         page.</li>
                             <li> To expedite implementation with professional services, please reach

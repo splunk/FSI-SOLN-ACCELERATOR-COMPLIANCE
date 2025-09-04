@@ -14,16 +14,17 @@
                     src="/static/app/Data_Compliance/FSI_Data_Compliance_banner.jpg" />
                 <h1>
                     <img width="45" src="/static/app/Data_Compliance/SA_image_icon_07.png" />
-                    WELCOME TO SPLUNK SOLUTIONS ACCELERATOR: <font color="#006d9c">Data Compliance Pipelines</font>
+                    WELCOME TO SPLUNK SOLUTIONS ACCELERATOR: <font color="#006d9c">Data Compliance
+                    Pipelines</font>
                 </h1>
-                <p> Explore the <b>Solution Accelerator for Data Compliance Pipelines</b> to access solution
-                    components designed to jump-start your journey to monitor, audit, and report on
-                    compliance mandates like <a href="https://www.pcisecuritystandards.org/"
+                <p> Explore the <b>Solution Accelerator for Data Compliance Pipelines</b> to access
+                    solution components designed to jump-start your journey to monitor, audit, and
+                    report on compliance pipelines for mandates like <a
+                        href="https://www.pcisecuritystandards.org/"
                         target="_blank" rel="noopener noreferrer">PCI DSS</a> and <a
                         href="https://en.wikipedia.org/wiki/Financial_services" target="_blank"
-                        rel="noopener noreferrer">FSI</a> regulations.</p>
-                <p> Use the <b>navigation tab</b> to understand the challenges, discover how Splunk
-                    helps, and find ready-to-use examples.</p>
+                        rel="noopener noreferrer">FSI</a> regulations. This accelerator helps you orchestrate, automate, and gain visibility into your end-to-end data compliance pipelines across hybrid environments.</p>
+                <p> Use the <b>navigation tab</b> to understand the challenges of managing compliance pipelines, discover how Splunk enables unified monitoring and automation, and find ready-to-use examples.</p>
             </html>
         </panel>
     </row>
@@ -38,12 +39,12 @@
                     </li>
                     <li class="active">
                         <a href="#" class="toggle-tab" data-toggle="tab" data-elements="tab_01">
-                            1 | INTRODUCTION TO DATA COMPLIANCE
+                            1 | INTRODUCTION TO DATA COMPLIANCE PIPELINES
                         </a>
                     </li>
                     <li>
                         <a href="#" class="toggle-tab" data-toggle="tab" data-elements="tab_02">
-                            2 | WHY SPLUNK FOR COMPLIANCE?
+                            2 | WHY SPLUNK FOR DATA COMPLIANCE PIPELINES?
                         </a>
                     </li>
                     <!-- Add more tabs here if needed for specific regulations like PCI, FSI -->
@@ -63,19 +64,17 @@
                 <h1>
                     <!-- Placeholder: Update icon -->
                     <img width="45" src="/static/app/Data_Compliance/SA_image_icon_target.png" />
-                    <b>INTRODUCTION TO DATA COMPLIANCE CHALLENGES</b>
+                    <b>INTRODUCTION TO DATA COMPLIANCE PIPELINES CHALLENGES</b>
                 </h1>
                 <ul>
-                    <h2>Navigating the evolving compliance landscape
+                    <h2>Navigating the evolving data compliance pipelines landscape
                         for Financial Services</h2>
                     <table>
                         <tr>
                             <td>
-                                <h3>The Complex and Evolving Data Compliance Landscape</h3>
-                                <p>The contemporary financial services landscape presents a dynamic
-                                    and intricate data compliance challenge, extending far beyond a
-                                    simple checklist exercise. Meeting the stringent requirements
-                                    imposed by regulations such as <a
+                                <h3>The Complex and Evolving Data Compliance Pipelines Landscape</h3>
+                                <p>The contemporary financial services sector is contending with a
+                                    rapidly shifting and increasingly intricate data compliance pipelines landscape. Today, compliance is no longer a matter of simply ticking boxes—it demands sophisticated, holistic strategies to manage the constant flux of regulatory requirements such as <a
                                         href="https://www.pcisecuritystandards.org/" target="_blank"
                                         rel="noopener noreferrer">PCI DSS</a>, <a
                                         href="https://www.congress.gov/bill/107th-congress/house-bill/3763"
@@ -83,47 +82,19 @@
                                         href="https://gdpr-info.eu/" target="_blank"
                                         rel="noopener noreferrer">GDPR</a>, <a
                                         href="https://oag.ca.gov/privacy/ccpa" target="_blank"
-                                        rel="noopener noreferrer">CCPA</a>, and a myriad of <a
+                                        rel="noopener noreferrer">CCPA</a>, and a host of <a
                                         href="https://en.wikipedia.org/wiki/Financial_services"
-                                        target="_blank" rel="noopener noreferrer">financial services
-                                    industry-specific</a> mandates is critical, yet increasingly
-                                    complex. This intricate environment is characterized by
-                                    fragmented data sources, the relentless evolution of regulatory
-                                    demands, labor-intensive manual audit processes, and the
-                                    constant pressure to definitively prove adherence to these
-                                    stringent standards.</p>
-                                <h3>Challenges of Fragmented Data and Manual Processes</h3>
-                                <p>The reliance on siloed tools and disjointed manual checks
-                                    significantly exacerbates these challenges. This often results
-                                    in significant gaps in crucial visibility across the <a
-                                        href="https://en.wikipedia.org/wiki/Information_technology"
-                                        target="_blank" rel="noopener noreferrer">IT</a>
-                                    environment, leading to sluggish response times when potential
-                                    compliance violations occur, and imposing considerable
-                                    operational overhead during demanding audit cycles.
-                                    Demonstrating continuous compliance under these conditions is
-                                    incredibly difficult, requiring a unified and cohesive approach
-                                    to comprehensively monitor control effectiveness and promptly
-                                    detect deviations.</p>
-                                <h3>The Need for a Unified Approach</h3>
-                                <p>Effective compliance today necessitates a unified approach to
-                                    comprehensively monitor control effectiveness, promptly detect
-                                    deviations from established policies, and efficiently generate
-                                    accurate and comprehensive reporting across diverse and complex <a
-                                        href="https://en.wikipedia.org/wiki/Information_technology"
-                                        target="_blank" rel="noopener noreferrer">IT</a>
-                                    environments. This is where a solution like the Splunk Solution
-                                    Accelerator becomes invaluable. It offers a robust foundation
-                                    for harnessing the power of Splunk, enabling organizations to
-                                    centralize critical compliance data, automate the continuous
-                                    monitoring of key controls, and significantly streamline the
-                                    often burdensome process of audit preparation for essential
-                                    frameworks like <a href="https://www.pcisecuritystandards.org/"
-                                        target="_blank" rel="noopener noreferrer">PCI DSS</a> and
-                                    various <a
+                                        target="_blank" rel="noopener noreferrer">financial industry-specific</a> mandates. These obligations are further complicated by the complex web of data compliance pipelines that connect fragmented data sources across cloud, on-premises, and hybrid environments.</p>
+                <h3>The Challenge of Fragmented Data Compliance Pipelines and Manual Processes</h3>
+                <p>Organizations now face the dual challenge of managing fragmented data compliance pipelines and disjointed manual compliance processes. Siloed tools and disparate manual audits create blind spots across the <a
+                    href="https://en.wikipedia.org/wiki/Information_technology"
+                    target="_blank" rel="noopener noreferrer">IT</a> environment, making it difficult to achieve end-to-end visibility into data flows and compliance pipeline status. This fragmentation impedes timely detection and response to potential compliance violations, while also increasing operational overhead during intensive audit cycles. The evolving nature of both regulatory demands and data infrastructure necessitates a more dynamic approach to compliance pipeline monitoring and reporting.</p>
+                                <h3>The Need for a Unified, Automated Data Compliance Pipeline Approach</h3>
+                                <p>Given the increasing complexity of data compliance pipelines, financial institutions require a unified approach capable of orchestrating and automating compliance pipeline monitoring across diverse data sources and environments. This approach must deliver real-time insights into control effectiveness, enable rapid detection of deviations from policy, and provide reliable, comprehensive reporting. Solutions such as the Splunk Solution Accelerator address these needs by centralizing compliance pipeline data, automating continuous monitoring of key controls, and streamlining audit preparation for major frameworks like <a href="https://www.pcisecuritystandards.org/"
+                                        target="_blank" rel="noopener noreferrer">PCI DSS</a>
+                                    and <a
                                         href="https://en.wikipedia.org/wiki/Financial_services"
-                                        target="_blank" rel="noopener noreferrer">FSI-specific</a>
-                                    requirements.</p>
+                                        target="_blank" rel="noopener noreferrer">financial services</a> industry-specific requirements. By leveraging a platform that unifies and automates compliance pipelines, organizations can significantly reduce risk, increase operational efficiency, and confidently demonstrate continuous compliance in the face of ever-changing regulatory and data landscape complexities.</p>
                             </td>
                             <td style="width: 30%; vertical-align: top; padding: 15px;">
                                 <img width="2500" usemap="#nav_banner_map"
@@ -264,7 +235,7 @@
                             and best practices for using Splunk in your <a
                                 href="https://www.pcisecuritystandards.org/glossary/cardholder-data-environment-cde/"
                                 target="_blank" rel="noopener noreferrer">Cardholder Data
-                            Environment
+                                Environment
                                 (CDE)</a>.</p>
 
                         <h2>
@@ -411,7 +382,8 @@
                     <p>Achieving timely and comprehensive data compliance in the financial services
                         sector requires accommodating a wide array of architectures and disparate
                         data collection methods across numerous applications and systems.</p>
-                    <p>The Data Compliance Pipelines Solutions Accelerator for Financial Services directly
+                    <p>The Data Compliance Pipelines Solutions Accelerator for Financial Services
+                        directly
                         addresses these challenges. It offers proven methodologies and pre-built
                         components to accelerate your Splunk deployment, ensuring robust and
                         compliant data ingestion from your complex financial ecosystem to meet
