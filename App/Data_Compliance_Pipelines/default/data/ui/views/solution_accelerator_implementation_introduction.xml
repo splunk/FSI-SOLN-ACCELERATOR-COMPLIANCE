@@ -1,5 +1,5 @@
 <dashboard version="1.1" theme="light" script="tabs.js" stylesheet="tabs.css">
-   <label>Introduction to Data Compliance Pipelines Implementation</label>
+   <label>Introduction to Implementating Data Compliance Pipelines</label>
    <description>Implementing Data Compliance Pipelines Controls During Splunk Data Ingestion.</description>
    <row>
       <panel>
@@ -7,7 +7,7 @@
             <h1>
                <!-- Placeholder: Update icon path -->
                <img width="40"
-                  src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                  src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                <b>INTRODUCTION: Implementing Data Compliance Pipelines with Splunk Data Management</b>
             </h1>
             <ul>
@@ -38,7 +38,7 @@
                   <li>
                      <!-- Placeholder: Update nav button image -->
                      <img width="200"
-                        src="/static/app/Data_Compliance/SA_image_icon_navi_gr_button.png" />
+                        src="/static/app/Data_Compliance_Pipelines/SA_image_icon_navi_gr_button.png" />
                   </li>
                   <li class="active">
                      <a href="#" class="toggle-tab" data-toggle="tab" data-elements="tab_objective">1
@@ -76,7 +76,7 @@
                <h1>
                   <!-- Placeholder: Update icon path -->
                   <img width="35"
-                     src="/static/app/Data_Compliance/SA_image_icon_bulb.png" />
+                     src="/static/app/Data_Compliance_Pipelines/SA_image_icon_bulb.png" />
                   <b>OBJECTIVE: Implement Data Compliance Pipelines During Splunk Data Ingestion</b>
                </h1>
                <!-- Updated Objective Text -->
@@ -98,7 +98,7 @@
                <h1>
                   <!-- Placeholder: Update icon path -->
                   <img width="35"
-                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                     src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                   <b>PREREQUISITES: Splunk Data Management Capabilities</b>
                </h1>
                <!-- Updated Prerequisites Text -->
@@ -135,11 +135,11 @@
             <ul>
                <h1>
                   <img width="35"
-                     src="/static/app/Data_Compliance/SA_image_icon_tool.png" />
+                     src="/static/app/Data_Compliance_Pipelines/SA_image_icon_tool.png" />
                   <b>ACCESS DATA: Foundation for Compliance Monitoring and Auditing</b>
                </h1>
                <div style="text-align: center; margin-top: 20px;">
-                  <img src="/static/app/Data_Compliance/dmx.png"
+                  <img src="/static/app/Data_Compliance_Pipelines/dmx.png"
                      alt="DMX Overview Diagram Placeholder" style="max-width: 70%; height: auto;" />
                   <p>
                      <em>Diagram illustrating Splunk's Data Pipeline Management strategy for
@@ -156,7 +156,7 @@
             <ul>
                <h1>
                   <img width="35"
-                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                     src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                   <b>DATA PIPELINE MANAGEMENT (DMX): Strategic Data Control for <a href="https://en.wikipedia.org/wiki/Financial_services" target="_blank" rel="noopener noreferrer">FSI</a> Compliance</b>
                </h1>
                <p>
@@ -265,7 +265,7 @@
                <h1>
                   <!-- Placeholder: Update icon path -->
                   <img width="35"
-                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                     src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                   <b>INGEST ACTIONS: Centralized Data Transformation for Compliance in <a href="https://www.splunk.com/en_us/software/splunk-cloud-platform.html" target="_blank" rel="noopener noreferrer">Splunk Cloud</a></b>
                </h1>
                <p>
@@ -348,12 +348,12 @@
                <h1>
                   <!-- Placeholder: Update icon path -->
                   <img width="35"
-                     src="/static/app/Data_Compliance/SA_image_icon_tool.png" />
+                     src="/static/app/Data_Compliance_Pipelines/SA_image_icon_tool.png" />
                   <b>ACCESS DATA: Foundation for Compliance Monitoring and Auditing</b>
                </h1>
                <!-- Placeholder for Ingest Actions Diagram -->
                <div style="text-align: center; margin-top: 20px;">
-                  <img src="/static/app/Data_Compliance/IngestProcessor-architecture-diagram.jpg"
+                  <img src="/static/app/Data_Compliance_Pipelines/IngestProcessor-architecture-diagram.jpg"
                      alt="Ingest Actions Diagram Placeholder" style="max-width: 70%; height: auto;" />
                   <p>
                      <em>Diagram illustrating Ingest Actions workflow for compliance.</em>
@@ -369,7 +369,7 @@
             <ul>
                <h1>
                   <img width="35"
-                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                     src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                   <b>INGEST PROCESSOR: Centralized Data Control for Compliance at Ingest</b>
                </h1>
                <p>
@@ -430,12 +430,12 @@
                <h1>
                   <!-- Placeholder: Update icon path -->
                   <img width="35"
-                     src="/static/app/Data_Compliance/SA_image_icon_tool.png" />
+                     src="/static/app/Data_Compliance_Pipelines/SA_image_icon_tool.png" />
                   <b>ACCESS DATA: Foundation for Compliance Monitoring and Auditing</b>
                </h1>
                <!-- Placeholder for Ingest Processor Diagram -->
                <div style="text-align: center; margin-top: 20px;">
-                  <img src="/static/app/Data_Compliance/IngestProcessor-architecture-diagram.jpg"
+                  <img src="/static/app/Data_Compliance_Pipelines/IngestProcessor-architecture-diagram.jpg"
                      alt="Ingest Processor Diagram" style="max-width: 70%; height: auto;" />
                   <p>
                      <em>Diagram illustrating Ingest Processor workflow for compliance.</em>
@@ -452,7 +452,7 @@
                <h1>
                   <!-- Placeholder: Update icon path -->
                   <img width="35"
-                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                     src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                   <b>EDGE PROCESSOR: Distributed Data Control for Compliance at the Source</b>
                </h1>
                <p>
@@ -537,12 +537,12 @@
                <h1>
                   <!-- Placeholder: Update icon path -->
                   <img width="35"
-                     src="/static/app/Data_Compliance/SA_image_icon_tool.png" />
+                     src="/static/app/Data_Compliance_Pipelines/SA_image_icon_tool.png" />
                   <b>ACCESS DATA: Foundation for Compliance Monitoring and Auditing</b>
                </h1>
                <!-- Placeholder for Edge Processor Diagram -->
                <div style="text-align: center; margin-top: 20px;">
-                  <img src="/static/app/Data_Compliance/EP-Diagram_HF-to-all.png"
+                  <img src="/static/app/Data_Compliance_Pipelines/EP-Diagram_HF-to-all.png"
                      alt="Edge Processor Diagram Placeholder" style="max-width: 70%; height: auto;" />
                   <p>
                      <em>Diagram illustrating Edge Processor workflow for compliance.</em>
@@ -559,7 +559,7 @@
                <h1>
                   <!-- Placeholder: Update icon path -->
                   <img width="45"
-                     src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                     src="/static/app/Data_Compliance_Pipelines/SA_image_icon_ques.png" />
                   <!-- Updated Help Header -->
                   <b>Do you need help? Ask a Data Compliance Pipelines Expert.</b>
                </h1>
@@ -584,7 +584,7 @@
                   </ul>
                </p>
                <!-- Placeholder: Update bullet image path -->
-               <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+               <img src="/static/app/Data_Compliance_Pipelines/SA_image_bullet_03.png" />
                <a
                   href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
                   class="btn" target="_ask_expert">Contact Us</a>

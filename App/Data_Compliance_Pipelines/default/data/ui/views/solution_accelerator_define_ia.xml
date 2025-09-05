@@ -6,7 +6,7 @@
             <html>
                 <ul>
                     <h1>
-                        <img width="35" src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                        <img width="35" src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                         <font color="#8B0000">Introduction to Ingest Actions</font>
                     </h1>
                     <p><a
@@ -26,11 +26,11 @@
                         efficiently within your existing Splunk Cloud Platform resources.</p>
                     <hr />
                     <h1>
-                        <img width="35" src="/static/app/Data_Compliance/SA_image_icon_tool.png" />
+                        <img width="35" src="/static/app/Data_Compliance_Pipelines/SA_image_icon_tool.png" />
                         <font color="#000000">Ingest Actions Reference Architecture</font>
                     </h1>
                     <div style="text-align: center; margin-top: 10px;">
-                        <img src="/static/app/Data_Compliance/ingest_action_diagram.png"
+                        <img src="/static/app/Data_Compliance_Pipelines/ingest_action_diagram.png"
                             alt="Ingest Action Arch Diagram Placeholder"
                             style="max-width: 60%; height: auto;" />
                         <p style="margin-top: 10px;">
@@ -40,7 +40,7 @@
 
                     <hr />
                     <h1>
-                        <img width="35" src="/static/app/Data_Compliance/SA_image_icon_tool.png" />
+                        <img width="35" src="/static/app/Data_Compliance_Pipelines/SA_image_icon_tool.png" />
                         <font color="#000000">Getting Started with Splunk
                             Ingest Actions</font>
                     </h1>
@@ -76,7 +76,7 @@
                             </td>
                             <td style="width: 30%; vertical-align: top; padding: 15px;">
                                 <img width="300"
-                                    src="/static/app/Data_Compliance/ingest_datasettings.jpg" />
+                                    src="/static/app/Data_Compliance_Pipelines/ingest_datasettings.jpg" />
                             </td>
                         </tr>
                     </table>
@@ -117,7 +117,7 @@
                         transforms can be processed at most one time per event, whereas rulesets
                         offer the versatility to process data at any point along the data path.</p>
                     <div style="text-align: center; margin-top: 10px; margin-bottom: 10px;">
-                        <img src="/static/app/Data_Compliance/ruleset_ia.jpg"
+                        <img src="/static/app/Data_Compliance_Pipelines/ruleset_ia.jpg"
                             alt="Ingest Action Ruleset Placeholder"
                             style="max-width: 80%; height: auto;" />
                         <p style="margin-top: 10px;">
@@ -156,7 +156,7 @@
                             statistics on the amount of data being masked. </li>
                     </ul>
                     <div style="text-align: center; margin-top: 10px; margin-bottom: 10px;">
-                        <img src="/static/app/Data_Compliance/ruleset_post_ia.jpg"
+                        <img src="/static/app/Data_Compliance_Pipelines/ruleset_post_ia.jpg"
                             alt="Ingest Action Ruleset Placeholder"
                             style="max-width: 80%; height: auto;" />
                         <p style="margin-top: 10px;">
@@ -191,7 +191,7 @@
                             your rule. </li>
                     </ul>
                     <div style="text-align: center; margin-top: 10px; margin-bottom: 10px;">
-                        <img src="/static/app/Data_Compliance/ruleset_filter_ia.jpg"
+                        <img src="/static/app/Data_Compliance_Pipelines/ruleset_filter_ia.jpg"
                             alt="Ingest Action Ruleset Placeholder"
                             style="max-width: 80%; height: auto;" />
                         <p style="margin-top: 10px;">
@@ -222,7 +222,7 @@
                             indexed normally, if desired. </li>
                     </ul>
                     <div style="text-align: center; margin-top: 10px; margin-bottom: 10px;">
-                        <img src="/static/app/Data_Compliance/ruleset_route_ia.png"
+                        <img src="/static/app/Data_Compliance_Pipelines/ruleset_route_ia.png"
                             alt="Ingest Action Ruleset Placeholder"
                             style="max-width: 80%; height: auto;" />
                         <p style="margin-top: 10px;">
@@ -231,7 +231,7 @@
                     </div>
                     <hr />
                     <h1>
-                        <img width="35" src="/static/app/Data_Compliance/SA_image_bullet_01.png" />
+                        <img width="35" src="/static/app/Data_Compliance_Pipelines/SA_image_bullet_01.png" />
                         <font color="#000000">NEXT STEPS</font>
                     </h1>
                     <ul>
@@ -269,7 +269,7 @@
                     <h1>
                         <!-- Placeholder: Update icon path -->
                         <img width="45"
-                            src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                            src="/static/app/Data_Compliance_Pipelines/SA_image_icon_ques.png" />
                         <!-- Updated Help Header -->
                         <b>Do you need help? Ask a Data Compliance Expert.</b>
                     </h1>
@@ -295,7 +295,7 @@
                         </ul>
                     </p>
                     <!-- Placeholder: Update bullet image path -->
-                    <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+                    <img src="/static/app/Data_Compliance_Pipelines/SA_image_bullet_03.png" />
                     <a
                         href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
                         class="btn" target="_ask_expert">Contact Us</a>

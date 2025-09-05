@@ -10,7 +10,7 @@
             <h1>
                <!-- Placeholder: Update icon path -->
                <img width="40"
-                  src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                  src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                <b>INTRODUCTION</b>
             </h1>
             <ul>
@@ -52,7 +52,7 @@
                   <li>
                      <!-- Placeholder: Update nav button image -->
                      <img width="200"
-                        src="/static/app/Data_Compliance/SA_image_icon_navi_gr_button.png" />
+                        src="/static/app/Data_Compliance_Pipelines/SA_image_icon_navi_gr_button.png" />
                   </li>
                   <li class="active">
                      <a href="#" class="toggle-tab" data-toggle="tab" data-elements="tab_objective">1
@@ -71,8 +71,8 @@
                         EMEA REGULATIONS</a>
                   </li>
                   <li>
-                     <a href="#" class="toggle-tab" data-toggle="tab" data-elements="tab_apac">5 |
-                        APAC REGULATIONS</a>
+                     <a href="#" class="toggle-tab" data-toggle="tab" data-elements="tab_apjc">5 |
+                        APJC REGULATIONS</a>
                   </li>
                   <li>
                      <a href="#" class="toggle-tab" data-toggle="tab" data-elements="tab_anz">6 |
@@ -90,7 +90,7 @@
                <h1>
                   <!-- Placeholder: Update icon path -->
                   <img width="35"
-                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                     src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                   <b>OBJECTIVE:</b>
                </h1>
                <!-- Updated Objective Text -->
@@ -166,7 +166,7 @@
                <h1>
                   <!-- Placeholder: Update icon path -->
                   <img width="35"
-                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                     src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                   <b>PREREQUISITES: Data Inputs for Global Compliance Visibility</b>
                </h1>
                <!-- Updated Prerequisites Text -->
@@ -288,7 +288,7 @@
                <h1>
                   <!-- Placeholder: Update icon path -->
                   <img width="35"
-                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                     src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                   <b>GLOBAL REGULATIONS</b>
                </h1>
                <table>
@@ -357,7 +357,7 @@
                      </td>
                      <td style="width: 30%; vertical-align: top; padding: 15px;">
                         <!-- Placeholder: Update image path -->
-                        <img width="2500" src="/static/app/Data_Compliance/global.png" />
+                        <img width="2500" src="/static/app/Data_Compliance_Pipelines/global.png" />
                      </td>
                   </tr>
                </table>
@@ -372,7 +372,7 @@
                <h1>
                   <!-- Placeholder: Update icon path -->
                   <img width="35"
-                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                     src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                   <b>AMER REGULATIONS</b>
                </h1>
                <table>
@@ -473,7 +473,7 @@
                      </td>
                      <td style="width: 30%; vertical-align: top; padding: 15px;">
                         <!-- Placeholder: Update image path -->
-                        <img width="2500" src="/static/app/Data_Compliance/amer.png" />
+                        <img width="2500" src="/static/app/Data_Compliance_Pipelines/amer.png" />
                      </td>
                   </tr>
                </table>
@@ -488,7 +488,7 @@
                <h1>
                   <!-- Placeholder: Update icon path -->
                   <img width="35"
-                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                     src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                   <b>EMEA REGULATIONS</b>
                </h1>
                <table>
@@ -599,7 +599,7 @@
                      </td>
                      <td style="width: 30%; vertical-align: top; padding: 15px;">
                         <!-- Placeholder: Update image path -->
-                        <img width="2500" src="/static/app/Data_Compliance/emea.png" />
+                        <img width="2500" src="/static/app/Data_Compliance_Pipelines/emea.png" />
                      </td>
                   </tr>
                </table>
@@ -607,15 +607,15 @@
          </html>
       </panel>
    </row>
-   <row id="tab_apac">
+   <row id="tab_apjc">
       <panel>
          <html>
             <ul>
                <h1>
                   <!-- Placeholder: Update icon path -->
                   <img width="35"
-                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
-                  <b>APAC REGULATIONS</b>
+                     src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
+                  <b>APJC REGULATIONS</b>
                </h1>
                <table>
                   <tr>
@@ -676,7 +676,7 @@
                               <p><b>Cross-Border Data Transfer Rules (Various Countries):</b> Many
                                  countries in the <a
                                     href="https://en.wikipedia.org/wiki/Asia-Pacific"
-                                    target="_blank" rel="noopener noreferrer">APAC</a> region have
+                                    target="_blank" rel="noopener noreferrer">APJC</a> region have
                                  specific national laws or regulations that govern how personal and
                                  sensitive data can be transferred outside their borders. These
                                  rules vary significantly and may require consent, adequacy
@@ -685,7 +685,7 @@
                                  protection.</p>
                               <p><b>In Brief:</b> Numerous national laws across <a
                                     href="https://en.wikipedia.org/wiki/Asia-Pacific"
-                                    target="_blank" rel="noopener noreferrer">APAC</a> impose
+                                    target="_blank" rel="noopener noreferrer">APJC</a> impose
                                  specific requirements for transferring personal and financial data
                                  outside of each respective country, often requiring specific
                                  consent or mechanisms.</p>
@@ -694,7 +694,7 @@
                      </td>
                      <td style="width: 30%; vertical-align: top; padding: 15px;">
                         <!-- Placeholder: Update image path -->
-                        <img width="2500" src="/static/app/Data_Compliance/apac.png" />
+                        <img width="2500" src="/static/app/Data_Compliance_Pipelines/apjc.png" />
                      </td>
                   </tr>
                </table>
@@ -709,7 +709,7 @@
                <h1>
                   <!-- Placeholder: Update icon path -->
                   <img width="35"
-                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                     src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                   <b>A/NZ REGULATIONS</b>
                </h1>
                <table>
@@ -816,7 +816,7 @@
                      </td>
                      <td style="width: 30%; vertical-align: top; padding: 15px;">
                         <!-- Placeholder: Update image path -->
-                        <img width="2500" src="/static/app/Data_Compliance/anz.png" />
+                        <img width="2500" src="/static/app/Data_Compliance_Pipelines/anz.png" />
                      </td>
                   </tr>
                </table>
@@ -831,7 +831,7 @@
                <h1>
                   <!-- Placeholder: Update icon path -->
                   <img width="45"
-                     src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                     src="/static/app/Data_Compliance_Pipelines/SA_image_icon_ques.png" />
                   <!-- Updated Help Header -->
                   <b>Do you need help? Ask a Data Compliance Expert.</b>
                </h1>
@@ -856,7 +856,7 @@
                   </ul>
                </p>
                <!-- Placeholder: Update bullet image path -->
-               <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+               <img src="/static/app/Data_Compliance_Pipelines/SA_image_bullet_03.png" />
                <a
                   href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
                   class="btn" target="_ask_expert">Contact Us</a>

@@ -1,11 +1,11 @@
 <dashboard version="1.1" theme="light" script="supertabs.js" stylesheet="tabs.css">
-    <label>Implement Ingest Processor</label>
-    <description>Use Case - Ingest Processor</description>
+    <label>Implement Ingest Processor Pipelines</label>
+    <description>Use Case - Ingest Processor Pipelines</description>
     <row>
         <panel>
             <html>
                 <h1>
-                    <img width="40" src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                    <img width="40" src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                     <b>INTRODUCTION</b>
                 </h1>
                 <ul>
@@ -74,7 +74,7 @@
                     <ul id="main_tabs_nav" class="nav nav-tabs">
                         <li>
                             <img width="200"
-                                src="/static/app/Data_Compliance/SA_image_icon_navi_gr_button.png" />
+                                src="/static/app/Data_Compliance_Pipelines/SA_image_icon_navi_gr_button.png" />
                         </li>
                         <li class="active">
                             <a href="#" class="toggle-tab" data-toggle="tab"
@@ -98,8 +98,8 @@
                         </li>
                         <li>
                             <a href="#" class="toggle-tab" data-toggle="tab"
-                                data-elements="tab_apac_header_row,apac_step1_content_row"
-                                data-token="show_apac_tab">5 | APAC REGULATIONS</a>
+                                data-elements="tab_apjc_header_row,apjc_step1_content_row"
+                                data-token="show_apjc_tab">5 | APJC REGULATIONS</a>
                         </li>
                         <li>
                             <a href="#" class="toggle-tab" data-toggle="tab"
@@ -118,7 +118,7 @@
             <html>
                 <ul>
                     <h1>
-                        <img width="35" src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                        <img width="35" src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                         <b>OBJECTIVE:</b>
                     </h1>
                     <p> The objective of this accelerator is to empower Financial Services
@@ -159,7 +159,7 @@
                 <hr width="100%" />
                 <ul>
                     <h1>
-                        <img width="35" src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                        <img width="35" src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                         <b>PREREQUISITES: Data Inputs for Global Compliance Visibility</b>
                     </h1>
                     <p>
@@ -194,7 +194,7 @@
                 <ul>
                     <h1>
                         <img width="35"
-                            src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                            src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                         <b>GLOBAL REGULATIONS</b>
                     </h1>
                     <table>
@@ -332,7 +332,7 @@
                 <ul>
                     <h1>
                         <img width="45"
-                            src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                            src="/static/app/Data_Compliance_Pipelines/SA_image_icon_ques.png" />
                         <b>Do you need help? Ask a Data Compliance Expert.</b>
                     </h1>
                     <p> Need help with your environment or requirements? Send us your questions, and
@@ -356,7 +356,7 @@
                                 </a>.</li>
                         </ul>
                     </p>
-                    <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+                    <img src="/static/app/Data_Compliance_Pipelines/SA_image_bullet_03.png" />
                     <a
                         href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
                         class="btn" target="_ask_expert">Contact Us</a>
@@ -864,7 +864,7 @@
                 <ul>
                     <h1>
                         <img width="45"
-                            src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                            src="/static/app/Data_Compliance_Pipelines/SA_image_icon_ques.png" />
                         <b>Do you need help? Ask a Data Compliance Expert.</b>
                     </h1>
                     <p> Need help with your environment or requirements? Send us your questions, and
@@ -888,7 +888,7 @@
                                 </a>.</li>
                         </ul>
                     </p>
-                    <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+                    <img src="/static/app/Data_Compliance_Pipelines/SA_image_bullet_03.png" />
                     <a
                         href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
                         class="btn" target="_ask_expert">Contact Us</a>
@@ -1030,7 +1030,7 @@ $processed_kyc
                 <ul>
                     <h1>
                         <img width="45"
-                            src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                            src="/static/app/Data_Compliance_Pipelines/SA_image_icon_ques.png" />
                         <b>Do you need help? Ask a Data Compliance Expert.</b>
                     </h1>
                     <p> Need help with your environment or requirements? Send us your questions, and
@@ -1054,7 +1054,7 @@ $processed_kyc
                                 </a>.</li>
                         </ul>
                     </p>
-                    <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+                    <img src="/static/app/Data_Compliance_Pipelines/SA_image_bullet_03.png" />
                     <a
                         href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
                         class="btn" target="_ask_expert">Contact Us</a>
@@ -1165,7 +1165,7 @@ $processed_kyc
                 <ul>
                     <h1>
                         <img width="45"
-                            src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                            src="/static/app/Data_Compliance_Pipelines/SA_image_icon_ques.png" />
                         <b>Do you need help? Ask a Data Compliance Expert.</b>
                     </h1>
                     <p> Need help with your environment or requirements? Send us your questions, and
@@ -1189,7 +1189,7 @@ $processed_kyc
                                 </a>.</li>
                         </ul>
                     </p>
-                    <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+                    <img src="/static/app/Data_Compliance_Pipelines/SA_image_bullet_03.png" />
                     <a
                         href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
                         class="btn" target="_ask_expert">Contact Us</a>
@@ -1204,7 +1204,7 @@ $processed_kyc
             <html>
                 <ul>
                     <h1>
-                        <img width="35" src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                        <img width="35" src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                         <b>AMER REGULATIONS</b>
                     </h1>
                     <table>
@@ -1362,7 +1362,7 @@ $processed_kyc
                 <ul>
                     <h1>
                         <img width="45"
-                            src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                            src="/static/app/Data_Compliance_Pipelines/SA_image_icon_ques.png" />
                         <b>Do you need help? Ask a Data Compliance Expert.</b>
                     </h1>
                     <p> Need help with your environment or requirements? Send us your questions, and
@@ -1386,7 +1386,7 @@ $processed_kyc
                                 </a>.</li>
                         </ul>
                     </p>
-                    <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+                    <img src="/static/app/Data_Compliance_Pipelines/SA_image_bullet_03.png" />
                     <a
                         href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
                         class="btn" target="_ask_expert">Contact Us</a>
@@ -1684,7 +1684,7 @@ $processed_kyc
                 <ul>
                     <h1>
                         <img width="45"
-                            src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                            src="/static/app/Data_Compliance_Pipelines/SA_image_icon_ques.png" />
                         <b>Do you need help? Ask a Data Compliance Expert.</b>
                     </h1>
                     <p> Need help with your environment or requirements? Send us your questions, and
@@ -1708,7 +1708,7 @@ $processed_kyc
                                 </a>.</li>
                         </ul>
                     </p>
-                    <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+                    <img src="/static/app/Data_Compliance_Pipelines/SA_image_bullet_03.png" />
                     <a
                         href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
                         class="btn" target="_ask_expert">Contact Us</a>
@@ -1847,7 +1847,7 @@ $processed_transactions = SELECT * FROM $raw_transactions
                 <ul>
                     <h1>
                         <img width="45"
-                            src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                            src="/static/app/Data_Compliance_Pipelines/SA_image_icon_ques.png" />
                         <b>Do you need help? Ask a Data Compliance Expert.</b>
                     </h1>
                     <p> Need help with your environment or requirements? Send us your questions, and
@@ -1871,7 +1871,7 @@ $processed_transactions = SELECT * FROM $raw_transactions
                                 </a>.</li>
                         </ul>
                     </p>
-                    <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+                    <img src="/static/app/Data_Compliance_Pipelines/SA_image_bullet_03.png" />
                     <a
                         href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
                         class="btn" target="_ask_expert">Contact Us</a>
@@ -1990,7 +1990,7 @@ $processed_transactions = SELECT * FROM $raw_transactions
                 <ul>
                     <h1>
                         <img width="45"
-                            src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                            src="/static/app/Data_Compliance_Pipelines/SA_image_icon_ques.png" />
                         <b>Do you need help? Ask a Data Compliance Expert.</b>
                     </h1>
                     <p> Need help with your environment or requirements? Send us your questions, and
@@ -2014,7 +2014,7 @@ $processed_transactions = SELECT * FROM $raw_transactions
                                 </a>.</li>
                         </ul>
                     </p>
-                    <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+                    <img src="/static/app/Data_Compliance_Pipelines/SA_image_bullet_03.png" />
                     <a
                         href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
                         class="btn" target="_ask_expert">Contact Us</a>
@@ -2029,7 +2029,7 @@ $processed_transactions = SELECT * FROM $raw_transactions
             <html>
                 <ul>
                     <h1>
-                        <img width="35" src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                        <img width="35" src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                         <b>EMEA REGULATIONS</b>
                     </h1>
                     <table>
@@ -2185,7 +2185,7 @@ $processed_transactions = SELECT * FROM $raw_transactions
                 <ul>
                     <h1>
                         <img width="45"
-                            src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                            src="/static/app/Data_Compliance_Pipelines/SA_image_icon_ques.png" />
                         <b>Do you need help? Ask a Data Compliance Expert.</b>
                     </h1>
                     <p> Need help with your environment or requirements? Send us your questions, and
@@ -2209,7 +2209,7 @@ $processed_transactions = SELECT * FROM $raw_transactions
                                 </a>.</li>
                         </ul>
                     </p>
-                    <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+                    <img src="/static/app/Data_Compliance_Pipelines/SA_image_bullet_03.png" />
                     <a
                         href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
                         class="btn" target="_ask_expert">Contact Us</a>
@@ -2469,7 +2469,7 @@ $processed_transactions = SELECT * FROM $raw_transactions
                 <ul>
                     <h1>
                         <img width="45"
-                            src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                            src="/static/app/Data_Compliance_Pipelines/SA_image_icon_ques.png" />
                         <b>Do you need help? Ask a Data Compliance Expert.</b>
                     </h1>
                     <p> Need help with your environment or requirements? Send us your questions, and
@@ -2493,7 +2493,7 @@ $processed_transactions = SELECT * FROM $raw_transactions
                                 </a>.</li>
                         </ul>
                     </p>
-                    <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+                    <img src="/static/app/Data_Compliance_Pipelines/SA_image_bullet_03.png" />
                     <a
                         href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
                         class="btn" target="_ask_expert">Contact Us</a>
@@ -2626,7 +2626,7 @@ $processed_logs
                 <ul>
                     <h1>
                         <img width="45"
-                            src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                            src="/static/app/Data_Compliance_Pipelines/SA_image_icon_ques.png" />
                         <b>Do you need help? Ask a Data Compliance Expert.</b>
                     </h1>
                     <p> Need help with your environment or requirements? Send us your questions, and
@@ -2650,7 +2650,7 @@ $processed_logs
                                 </a>.</li>
                         </ul>
                     </p>
-                    <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+                    <img src="/static/app/Data_Compliance_Pipelines/SA_image_bullet_03.png" />
                     <a
                         href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
                         class="btn" target="_ask_expert">Contact Us</a>
@@ -2768,7 +2768,7 @@ $processed_logs
                 <ul>
                     <h1>
                         <img width="45"
-                            src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                            src="/static/app/Data_Compliance_Pipelines/SA_image_icon_ques.png" />
                         <b>Do you need help? Ask a Data Compliance Expert.</b>
                     </h1>
                     <p> Need help with your environment or requirements? Send us your questions, and
@@ -2792,7 +2792,7 @@ $processed_logs
                                 </a>.</li>
                         </ul>
                     </p>
-                    <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+                    <img src="/static/app/Data_Compliance_Pipelines/SA_image_bullet_03.png" />
                     <a
                         href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
                         class="btn" target="_ask_expert">Contact Us</a>
@@ -2801,14 +2801,14 @@ $processed_logs
         </panel>
     </row>
 
-    <!-- APAC REGULATIONS TAB HEADER AND SUB-NAV -->
-    <row id="tab_apac_header_row" style="display:none;">
+    <!-- APJC REGULATIONS TAB HEADER AND SUB-NAV -->
+    <row id="tab_apjc_header_row" style="display:none;">
         <panel>
             <html>
                 <ul>
                     <h1>
-                        <img width="35" src="/static/app/Data_Compliance/SA_image_icon_target.png" />
-                        <b>APAC REGULATIONS</b>
+                        <img width="35" src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
+                        <b>APJC REGULATIONS</b>
                     </h1>
                     <table>
                         <tr>
@@ -2843,31 +2843,31 @@ $processed_logs
                     <font color="#000000" style="margin-left: 20px;">How to use Splunk Ingest
                         Processor for RMiT Compliance</font>
                 </h1>
-                <ul id="apac_steps_tabs" class="nav nav-tabs" style="margin-bottom: 15px;">
+                <ul id="apjc_steps_tabs" class="nav nav-tabs" style="margin-bottom: 15px;">
                     <li class="active">
                         <a href="#" class="toggle-tab" data-toggle="tab"
-                            data-elements="apac_step1_content_row">STEP 1: Identify Use Case</a>
+                            data-elements="apjc_step1_content_row">STEP 1: Identify Use Case</a>
                     </li>
                     <li>
                         <a href="#" class="toggle-tab" data-toggle="tab"
-                            data-elements="apac_step2_intro_row,apac_step2_search_panel_row,apac_step2_table_row">STEP
+                            data-elements="apjc_step2_intro_row,apjc_step2_search_panel_row,apjc_step2_table_row">STEP
                             2: Define Data Sample</a>
                     </li>
                     <li>
                         <a href="#" class="toggle-tab" data-toggle="tab"
-                            data-elements="apac_step3_content_row">STEP 3: Define the
+                            data-elements="apjc_step3_content_row">STEP 3: Define the
                             Pipelines/Search</a>
                     </li>
                     <li>
                         <a href="#" class="toggle-tab" data-toggle="tab"
-                            data-elements="apac_step4_content_row">STEP 4: Explaining the
+                            data-elements="apjc_step4_content_row">STEP 4: Explaining the
                             Pipeline/Search</a>
                     </li>
                 </ul>
             </html>
         </panel>
     </row>
-    <row id="apac_step1_content_row" style="display:none;">
+    <row id="apjc_step1_content_row" style="display:none;">
         <panel>
             <html>
                 <div style="padding: 10px; margin-left: 15px;">
@@ -2880,7 +2880,7 @@ $processed_logs
                                 target="_blank" rel="noopener noreferrer">Risk Management in
                         Technology (RMiT)</a>
                         </strong> guidelines, such as
-                        those from Bank Negara Malaysia (BNM) and similar frameworks across the APAC
+                        those from Bank Negara Malaysia (BNM) and similar frameworks across the APJC
                         region. RMiT mandates robust governance and controls over technology risks,
                         covering areas like cybersecurity, technology operations, data governance,
                         and third-party vendor management. Splunk Ingest Processor can be pivotal in
@@ -2949,7 +2949,7 @@ $processed_logs
                 <ul>
                     <h1>
                         <img width="45"
-                            src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                            src="/static/app/Data_Compliance_Pipelines/SA_image_icon_ques.png" />
                         <b>Do you need help? Ask a Data Compliance Expert.</b>
                     </h1>
                     <p> Need help with your environment or requirements? Send us your questions, and
@@ -2973,7 +2973,7 @@ $processed_logs
                                 </a>.</li>
                         </ul>
                     </p>
-                    <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+                    <img src="/static/app/Data_Compliance_Pipelines/SA_image_bullet_03.png" />
                     <a
                         href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
                         class="btn" target="_ask_expert">Contact Us</a>
@@ -2981,7 +2981,7 @@ $processed_logs
             </html>
         </panel>
     </row>
-    <row id="apac_step2_intro_row" style="display:none;">
+    <row id="apjc_step2_intro_row" style="display:none;">
         <panel>
             <html>
                 <div style="padding: 10px; margin-left: 15px;">
@@ -2989,7 +2989,7 @@ $processed_logs
                         <font color="#000000">STEP 2: Define Data Sample</font>
                     </h2>
                     <p>This data sample represents a typical log event from a critical IT system or
-                        security device within an APAC financial institution's environment, received
+                        security device within an APJC financial institution's environment, received
                         by the Splunk Ingest Processor. This could be a system error log from a core
                         banking application server, an authentication log from a domain controller,
                         a security alert from a network intrusion detection system (NIDS), or a
@@ -3026,18 +3026,18 @@ $processed_logs
         </panel>
     </row>
 
-    <!-- APAC STEP 2 SEARCH PANEL ROW -->
-    <row id="apac_step2_search_panel_row" style="display:none;">
+    <!-- APJC STEP 2 SEARCH PANEL ROW -->
+    <row id="apjc_step2_search_panel_row" style="display:none;">
         <panel>
-            <title>Sample RMiT Event (Raw Data at Ingest - APAC)</title>
-            <search id="apac_rmit_sample_search_ip_unique_id_04">
+            <title>Sample RMiT Event (Raw Data at Ingest - APJC)</title>
+            <search id="apjc_rmit_sample_search_ip_unique_id_04">
                 <query>
                     index="test_rmit" sourcetype="rmit:synthetic:event" | head 1 | table _raw</query>
                 <earliest>0</earliest>
                 <latest></latest>
             </search>
             <event>
-                <search base="apac_rmit_sample_search_ip_unique_id_04"></search>
+                <search base="apjc_rmit_sample_search_ip_unique_id_04"></search>
                 <option name="count">1</option>
                 <option name="list.drilldown">none</option>
                 <option name="type">list</option>
@@ -3046,7 +3046,7 @@ $processed_logs
             </event>
         </panel>
     </row>
-    <row id="apac_step2_table_row" style="display:none;">
+    <row id="apjc_step2_table_row" style="display:none;">
         <panel>
             <html>
                 <div style="padding: 10px; margin-left: 15px;">
@@ -3258,7 +3258,7 @@ $processed_logs
                 <ul>
                     <h1>
                         <img width="45"
-                            src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                            src="/static/app/Data_Compliance_Pipelines/SA_image_icon_ques.png" />
                         <b>Do you need help? Ask a Data Compliance Expert.</b>
                     </h1>
                     <p> Need help with your environment or requirements? Send us your questions, and
@@ -3282,7 +3282,7 @@ $processed_logs
                                 </a>.</li>
                         </ul>
                     </p>
-                    <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+                    <img src="/static/app/Data_Compliance_Pipelines/SA_image_bullet_03.png" />
                     <a
                         href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
                         class="btn" target="_ask_expert">Contact Us</a>
@@ -3290,7 +3290,7 @@ $processed_logs
             </html>
         </panel>
     </row>
-    <row id="apac_step3_content_row" style="display:none;">
+    <row id="apjc_step3_content_row" style="display:none;">
         <panel>
             <html>
                 <div style="padding: 10px; margin-left: 15px;">
@@ -3300,13 +3300,13 @@ $processed_logs
                     </h2>
                     <p>An Ingest Processor pipeline for RMiT compliance aims to filter, enrich, mask
                         sensitive operational details, and intelligently route system and security
-                        logs from the APAC region's distributed environments. This ensures that
+                        logs from the APJC region's distributed environments. This ensures that
                         central monitoring systems receive relevant, contextualized, and
                         appropriately sanitized data.</p>
 
                     <p>
                         <strong>Pipeline Name (Conceptual):</strong>
-                        <code>rmit_tech_log_conditioning_ingest_apac</code>
+                        <code>rmit_tech_log_conditioning_ingest_apjc</code>
                     </p>
 
                     <div
@@ -3314,7 +3314,7 @@ $processed_logs
                         <h4>Stage 1: Receive Logs from Diverse Sources</h4>
                         <p><strong>Description:</strong> The Ingest Processor receives logs from
                             various sources like critical application servers, network devices,
-                            security tools, and infrastructure components across APAC locations via
+                            security tools, and infrastructure components across APJC locations via
                             HEC or forwarders.</p>
                         <p>
                             <strong>Conceptual SPL2:</strong>
@@ -3335,9 +3335,9 @@ $processed_logs
                         <pre
                             style="background-color: #e8e8e8; padding: 5px; border-radius: 4px; font-family: monospace; white-space: pre-wrap;">
 $contextualized_logs = SELECT * FROM $raw_logs
-| eval system_criticality = lookup("apac_asset_inventory.csv", host, "criticality") 
-| eval business_service = lookup("apac_asset_inventory.csv", host, "service_impacted")
-| eval data_center_location = lookup("apac_asset_inventory.csv", host, "dc_location");
+| eval system_criticality = lookup("apjc_asset_inventory.csv", host, "criticality") 
+| eval business_service = lookup("apjc_asset_inventory.csv", host, "service_impacted")
+| eval data_center_location = lookup("apjc_asset_inventory.csv", host, "dc_location");
         </pre>
                     </div>
 
@@ -3397,18 +3397,18 @@ $contextualized_logs = SELECT * FROM $raw_logs
 ...
 // Branch for critical security/operational alerts
 $critical_alerts = SELECT * FROM $contextualized_logs WHERE severity_level IN ("CRITICAL", "FATAL") AND system_criticality IN ("Tier0", "Tier1");
-$critical_alerts | INTO splunk_apac_critical_alerts_index;
+$critical_alerts | INTO splunk_apjc_critical_alerts_index;
 
 // Branch for change-related logs
 $change_logs = SELECT * FROM $contextualized_logs WHERE isnotnull(change_id);
-$change_logs | INTO splunk_apac_change_audit_index;
+$change_logs | INTO splunk_apjc_change_audit_index;
 
 // Branch for other important operational logs
 $other_logs = SELECT * FROM $contextualized_logs WHERE NOT (severity_level IN ("CRITICAL", "FATAL") AND system_criticality IN ("Tier0", "Tier1")) AND isnull(change_id);
-$other_logs | INTO splunk_apac_operational_monitoring_index;
+$other_logs | INTO splunk_apjc_operational_monitoring_index;
         </pre>
                     </div>
-                    <p>This Ingest Processor pipeline helps ensure that data sent from APAC sources
+                    <p>This Ingest Processor pipeline helps ensure that data sent from APJC sources
                         to Splunk is optimized for RMiT compliance, security monitoring, and
                         operational efficiency.</p>
                 </div>
@@ -3416,7 +3416,7 @@ $other_logs | INTO splunk_apac_operational_monitoring_index;
                 <ul>
                     <h1>
                         <img width="45"
-                            src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                            src="/static/app/Data_Compliance_Pipelines/SA_image_icon_ques.png" />
                         <b>Do you need help? Ask a Data Compliance Expert.</b>
                     </h1>
                     <p> Need help with your environment or requirements? Send us your questions, and
@@ -3440,7 +3440,7 @@ $other_logs | INTO splunk_apac_operational_monitoring_index;
                                 </a>.</li>
                         </ul>
                     </p>
-                    <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+                    <img src="/static/app/Data_Compliance_Pipelines/SA_image_bullet_03.png" />
                     <a
                         href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
                         class="btn" target="_ask_expert">Contact Us</a>
@@ -3448,7 +3448,7 @@ $other_logs | INTO splunk_apac_operational_monitoring_index;
             </html>
         </panel>
     </row>
-    <row id="apac_step4_content_row" style="display:none;">
+    <row id="apjc_step4_content_row" style="display:none;">
         <panel>
             <html>
                 <div style="padding: 10px; margin-left: 15px;">
@@ -3457,8 +3457,8 @@ $other_logs | INTO splunk_apac_operational_monitoring_index;
                             (RMiT)</font>
                     </h2>
                     <p>The conceptual Ingest Processor pipeline (e.g., <code>
-                        rmit_tech_log_conditioning_ingest_apac</code>) outlined in Step 3 is
-                        designed to help financial institutions in the APAC region meet <strong>
+                        rmit_tech_log_conditioning_ingest_apjc</code>) outlined in Step 3 is
+                        designed to help financial institutions in the APJC region meet <strong>
                             <a
                                 href="https://www.bnm.gov.my/documents/20124/938039/Risk+Management+in+Technology+(RMiT).pdf"
                                 target="_blank" rel="noopener noreferrer">RMiT</a>
@@ -3529,7 +3529,7 @@ $other_logs | INTO splunk_apac_operational_monitoring_index;
                         </li>
                     </ol>
 
-                    <h3>Advantages of Ingest Processing for RMiT in APAC:</h3>
+                    <h3>Advantages of Ingest Processing for RMiT in APJC:</h3>
                     <ul>
                         <li><strong>Improved Operational Resilience:</strong> Faster identification
                             and contextualization of issues affecting critical systems at ingest can
@@ -3541,7 +3541,7 @@ $other_logs | INTO splunk_apac_operational_monitoring_index;
                             cleaner, more relevant, and contextualized data, simplifying the
                             generation of reports for RMiT audits and internal governance.</li>
                         <li><strong>Cost-Effective Data Management:</strong> Reducing the volume of
-                            data indexed from numerous APAC sources can lead to significant savings
+                            data indexed from numerous APJC sources can lead to significant savings
                             on Splunk license and storage costs.</li>
                         <li><strong>Support for Diverse and Legacy Systems:</strong> Ingest
                             Processor can help normalize data from a wide array of systems often
@@ -3549,7 +3549,7 @@ $other_logs | INTO splunk_apac_operational_monitoring_index;
                             analytics platform.</li>
                     </ul>
                     <p>By implementing such an Ingest Processor strategy, financial institutions in
-                        the APAC region can more effectively manage their technology risks, ensure
+                        the APJC region can more effectively manage their technology risks, ensure
                         operational stability, and demonstrate robust compliance with RMiT and other
                         local regulatory expectations.</p>
                 </div>
@@ -3557,7 +3557,7 @@ $other_logs | INTO splunk_apac_operational_monitoring_index;
                 <ul>
                     <h1>
                         <img width="45"
-                            src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                            src="/static/app/Data_Compliance_Pipelines/SA_image_icon_ques.png" />
                         <b>Do you need help? Ask a Data Compliance Expert.</b>
                     </h1>
                     <p> Need help with your environment or requirements? Send us your questions, and
@@ -3581,7 +3581,7 @@ $other_logs | INTO splunk_apac_operational_monitoring_index;
                                 </a>.</li>
                         </ul>
                     </p>
-                    <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+                    <img src="/static/app/Data_Compliance_Pipelines/SA_image_bullet_03.png" />
                     <a
                         href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
                         class="btn" target="_ask_expert">Contact Us</a>
@@ -3596,7 +3596,7 @@ $other_logs | INTO splunk_apac_operational_monitoring_index;
             <html>
                 <ul>
                     <h1>
-                        <img width="35" src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                        <img width="35" src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                         <b>A/NZ REGULATIONS</b>
                     </h1>
                     <table>
@@ -3748,7 +3748,7 @@ $other_logs | INTO splunk_apac_operational_monitoring_index;
                 <ul>
                     <h1>
                         <img width="45"
-                            src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                            src="/static/app/Data_Compliance_Pipelines/SA_image_icon_ques.png" />
                         <b>Do you need help? Ask a Data Compliance Expert.</b>
                     </h1>
                     <p> Need help with your environment or requirements? Send us your questions, and
@@ -3772,7 +3772,7 @@ $other_logs | INTO splunk_apac_operational_monitoring_index;
                                 </a>.</li>
                         </ul>
                     </p>
-                    <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+                    <img src="/static/app/Data_Compliance_Pipelines/SA_image_bullet_03.png" />
                     <a
                         href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
                         class="btn" target="_ask_expert">Contact Us</a>
@@ -4063,7 +4063,7 @@ $other_logs | INTO splunk_apac_operational_monitoring_index;
                 <ul>
                     <h1>
                         <img width="45"
-                            src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                            src="/static/app/Data_Compliance_Pipelines/SA_image_icon_ques.png" />
                         <b>Do you need help? Ask a Data Compliance Expert.</b>
                     </h1>
                     <p> Need help with your environment or requirements? Send us your questions, and
@@ -4087,7 +4087,7 @@ $other_logs | INTO splunk_apac_operational_monitoring_index;
                                 </a>.</li>
                         </ul>
                     </p>
-                    <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+                    <img src="/static/app/Data_Compliance_Pipelines/SA_image_bullet_03.png" />
                     <a
                         href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
                         class="btn" target="_ask_expert">Contact Us</a>
@@ -4215,7 +4215,7 @@ $sp_events | INTO splunk_anz_service_provider_monitoring_index;
                 <ul>
                     <h1>
                         <img width="45"
-                            src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                            src="/static/app/Data_Compliance_Pipelines/SA_image_icon_ques.png" />
                         <b>Do you need help? Ask a Data Compliance Expert.</b>
                     </h1>
                     <p> Need help with your environment or requirements? Send us your questions, and
@@ -4239,7 +4239,7 @@ $sp_events | INTO splunk_anz_service_provider_monitoring_index;
                                 </a>.</li>
                         </ul>
                     </p>
-                    <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+                    <img src="/static/app/Data_Compliance_Pipelines/SA_image_bullet_03.png" />
                     <a
                         href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
                         class="btn" target="_ask_expert">Contact Us</a>
@@ -4362,7 +4362,7 @@ $sp_events | INTO splunk_anz_service_provider_monitoring_index;
                 <ul>
                     <h1>
                         <img width="45"
-                            src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                            src="/static/app/Data_Compliance_Pipelines/SA_image_icon_ques.png" />
                         <b>Do you need help? Ask a Data Compliance Expert.</b>
                     </h1>
                     <p> Need help with your environment or requirements? Send us your questions, and
@@ -4386,7 +4386,7 @@ $sp_events | INTO splunk_anz_service_provider_monitoring_index;
                                 </a>.</li>
                         </ul>
                     </p>
-                    <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+                    <img src="/static/app/Data_Compliance_Pipelines/SA_image_bullet_03.png" />
                     <a
                         href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
                         class="btn" target="_ask_expert">Contact Us</a>

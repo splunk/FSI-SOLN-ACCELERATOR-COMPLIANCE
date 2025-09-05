@@ -45,4 +45,7 @@ local.meta
 # Splunk local folder
 local
 
+# Splunk local builds
+solution_accelerator_data_compliance_pipelines.spl
+
 # End of https://www.toptal.com/developers/gitignore/api/macos,splunk

@@ -6,7 +6,7 @@
             <html>
                 <ul>
                     <h1>
-                        <img width="35" src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                        <img width="35" src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                         <font color="#8B0000">Introduction to Edge Processor for Data Compliance Pipelines</font>
                     </h1>
                     <p>The Edge Processor solution provides distributed data processing
@@ -41,16 +41,16 @@
                         service.</p>
                     <hr />
                     <h1>
-                        <img width="35" src="/static/app/Data_Compliance/SA_image_icon_tool.png" />
+                        <img width="35" src="/static/app/Data_Compliance_Pipelines/SA_image_icon_tool.png" />
                         <font color="#000000">Edge Processor Reference Architecture</font>
                     </h1>
                     <p>Ingest logs data and generate metrics to power real-time dashboards and
                         alerts:</p>
-                    <img src="/static/app/Data_Compliance/ep-fed-s3.avif"
+                    <img src="/static/app/Data_Compliance_Pipelines/ep-fed-s3.avif"
                         style="display: block; margin-left: auto; margin-right: auto; width: 66%;" />
                     <hr />
                     <h1>
-                        <img width="35" src="/static/app/Data_Compliance/SA_image_icon_tool.png" />
+                        <img width="35" src="/static/app/Data_Compliance_Pipelines/SA_image_icon_tool.png" />
                         <font color="#000000">Getting Started with Splunk Edge
                             Processor</font>
                     </h1>
@@ -242,7 +242,7 @@
                                 rel="noopener noreferrer">S3</a>.</p>
 
                         <div style="text-align: center; margin-top: 10px; margin-bottom: 10px;">
-                            <img src="/static/app/Data_Compliance/diag-edge-processor.avif"
+                            <img src="/static/app/Data_Compliance_Pipelines/diag-edge-processor.avif"
                                 alt="Ingest Action Ruleset Placeholder"
                                 style="max-width: 80%; height: auto;" />
                             <p style="margin-top: 10px;">
@@ -444,7 +444,7 @@
 
                     <hr />
                     <h1>
-                        <img width="35" src="/static/app/Data_Compliance/SA_image_bullet_01.png" />
+                        <img width="35" src="/static/app/Data_Compliance_Pipelines/SA_image_bullet_01.png" />
                         <font color="#000000">NEXT STEPS</font>
                     </h1>
                     <ul>
@@ -487,7 +487,7 @@
                     <h1>
                         <!-- Placeholder: Update icon path -->
                         <img width="45"
-                            src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                            src="/static/app/Data_Compliance_Pipelines/SA_image_icon_ques.png" />
                         <!-- Updated Help Header -->
                         <b>Do you need help? Ask a Data Compliance Pipelines Expert.</b>
                     </h1>
@@ -513,7 +513,7 @@
                         </ul>
                     </p>
                     <!-- Placeholder: Update bullet image path -->
-                    <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+                    <img src="/static/app/Data_Compliance_Pipelines/SA_image_bullet_03.png" />
                     <a
                         href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
                         class="btn" target="_ask_expert">Contact Us</a>

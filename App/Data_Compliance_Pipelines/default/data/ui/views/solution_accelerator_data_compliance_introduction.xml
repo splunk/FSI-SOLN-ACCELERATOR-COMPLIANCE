@@ -9,7 +9,7 @@
             <h1>
                <!-- Placeholder: Update icon path -->
                <img width="40"
-                  src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                  src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                <b>INTRODUCTION</b>
             </h1>
             <ul>
@@ -50,7 +50,7 @@
                   <li>
                      <!-- Placeholder: Update nav button image -->
                      <img width="200"
-                        src="/static/app/Data_Compliance/SA_image_icon_navi_gr_button.png" />
+                        src="/static/app/Data_Compliance_Pipelines/SA_image_icon_navi_gr_button.png" />
                   </li>
                   <li class="active">
                      <a href="#" class="toggle-tab" data-toggle="tab" data-elements="tab_objective">1
@@ -83,7 +83,7 @@
                <h1>
                   <!-- Placeholder: Update icon path -->
                   <img width="35"
-                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                     src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                   <b>OBJECTIVE:</b>
                </h1>
                <!-- Updated Objective Text -->
@@ -133,7 +133,7 @@
                <h1>
                   <!-- Placeholder: Update icon path -->
                   <img width="35"
-                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                     src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                   <b>PREREQUISITES:</b>
                </h1>
                <!-- Updated Prerequisites Text -->
@@ -212,7 +212,7 @@
                <h1>
                   <!-- Placeholder: Update icon path -->
                   <img width="35"
-                     src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                     src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                   <b>KEY DATA CATEGORIES: Information Governed by Compliance Regulations</b>
                </h1>
                <!-- Expanded Data Types Text -->
@@ -232,7 +232,7 @@
                         href="https://gdpr-info.eu/">GDPR</a> in Europe, <a
                         href="https://oag.ca.gov/privacy/ccpa">CCPA</a>/<a
                         href="https://thecpra.org/">CPRA</a> in the United States, LGPD in Brazil,
-                     and numerous national data protection acts across APAC and other regions.
+                     and numerous national data protection acts across APJC and other regions.
                      Compliance requires careful handling based on principles like consent, purpose
                      limitation, data minimization, and ensuring data subject rights. </li>
                   <li>
@@ -294,7 +294,7 @@
                <h1>
                   <!-- Placeholder: Update icon path -->
                   <img width="45"
-                     src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                     src="/static/app/Data_Compliance_Pipelines/SA_image_icon_ques.png" />
                   <!-- Updated Help Header -->
                   <b>HELP: Ask a Data Compliance Expert</b>
                </h1>
@@ -319,7 +319,7 @@
                   </ul>
                </p>
                <!-- Placeholder: Update bullet image path -->
-               <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+               <img src="/static/app/Data_Compliance_Pipelines/SA_image_bullet_03.png" />
                <a
                   href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=data_compliance_solutions_accelerator"
                   class="btn" target="_ask_expert">Contact Us</a>

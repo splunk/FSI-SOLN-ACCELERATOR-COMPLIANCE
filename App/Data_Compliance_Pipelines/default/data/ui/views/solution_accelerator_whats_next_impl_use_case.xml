@@ -6,7 +6,7 @@
             <html>
                 <ul>
                     <h1>
-                        <img width="35" src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                        <img width="35" src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                         <font color="#8B0000">Ensuring Ongoing Data Compliance Pipelines once in Splunk</font>
                     </h1>
                     <p>
@@ -87,7 +87,7 @@
             <html tokens="true">
                 <ul>
                     <h1>
-                        <img width="45" src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                        <img width="45" src="/static/app/Data_Compliance_Pipelines/SA_image_icon_ques.png" />
                         <b>Need Help with Compliance?</b>
                     </h1>
                     <p>
@@ -99,7 +99,7 @@
                             <li>Explore our community forum, <a href="http://answers.splunk.com/"><b>Splunk Answers</b></a>, for additional insights and assistance from the Splunk community.</li>
                         </ul>
                     </p>
-                    <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+                    <img src="/static/app/Data_Compliance_Pipelines/SA_image_bullet_03.png" />
                     <a href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=ot_security" class="btn" target="_ask_expert">Contact Us</a>
                 </ul>
             </html>

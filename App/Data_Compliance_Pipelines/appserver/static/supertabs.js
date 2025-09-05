@@ -45,7 +45,7 @@ require([
     $('#tab_global_header_row').hide();
     $('#tab_amer_header_row').hide();
     $('#tab_emea_header_row').hide();
-    $('#tab_apac_header_row').hide();
+    $('#tab_apjc_header_row').hide();
     $('#tab_anz_header_row').hide();
     
     // Hide all Global step content rows
@@ -72,13 +72,13 @@ require([
     $('#emea_step3_content_row').hide();
     $('#emea_step4_content_row').hide();
     
-    // Hide all APAC step content rows
-    $('#apac_step1_content_row').hide();
-    $('#apac_step2_intro_row').hide();
-    $('#apac_step2_search_panel_row').hide();
-    $('#apac_step2_table_row').hide();
-    $('#apac_step3_content_row').hide();
-    $('#apac_step4_content_row').hide();
+    // Hide all APJC step content rows
+    $('#apjc_step1_content_row').hide();
+    $('#apjc_step2_intro_row').hide();
+    $('#apjc_step2_search_panel_row').hide();
+    $('#apjc_step2_table_row').hide();
+    $('#apjc_step3_content_row').hide();
+    $('#apjc_step4_content_row').hide();
     
     // Hide all ANZ step content rows
     $('#anz_step1_content_row').hide();

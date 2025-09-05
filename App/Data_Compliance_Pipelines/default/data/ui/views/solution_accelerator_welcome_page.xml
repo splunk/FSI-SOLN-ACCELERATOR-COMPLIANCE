@@ -11,9 +11,9 @@
         <panel>
             <html>
                 <img height="500" usemap="#nav_banner_map"
-                    src="/static/app/Data_Compliance/FSI_Data_Compliance_banner.jpg" />
+                    src="/static/app/Data_Compliance_Pipelines/FSI_Data_Compliance_banner.jpg" />
                 <h1>
-                    <img width="45" src="/static/app/Data_Compliance/SA_image_icon_07.png" />
+                    <img width="45" src="/static/app/Data_Compliance_Pipelines/SA_image_icon_07.png" />
                     WELCOME TO SPLUNK SOLUTIONS ACCELERATOR: <font color="#006d9c">Data Compliance
                     Pipelines</font>
                 </h1>
@@ -35,7 +35,7 @@
                     <li>
                         <!-- Placeholder: Update nav button image -->
                         <img width="200"
-                            src="/static/app/Data_Compliance/SA_image_icon_navi_gr_button.png" />
+                            src="/static/app/Data_Compliance_Pipelines/SA_image_icon_navi_gr_button.png" />
                     </li>
                     <li class="active">
                         <a href="#" class="toggle-tab" data-toggle="tab" data-elements="tab_01">
@@ -63,7 +63,7 @@
             <html>
                 <h1>
                     <!-- Placeholder: Update icon -->
-                    <img width="45" src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                    <img width="45" src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                     <b>INTRODUCTION TO DATA COMPLIANCE PIPELINES CHALLENGES</b>
                 </h1>
                 <ul>
@@ -98,14 +98,14 @@
                             </td>
                             <td style="width: 30%; vertical-align: top; padding: 15px;">
                                 <img width="2500" usemap="#nav_banner_map"
-                                    src="/static/app/Data_Compliance/FSI_Data_Compliance_shield.jpg" />
+                                    src="/static/app/Data_Compliance_Pipelines/FSI_Data_Compliance_shield.jpg" />
                             </td>
                         </tr>
                     </table>
                 </ul>
                 <h1>
                     <!-- Placeholder: Update icon -->
-                    <img width="45" src="/static/app/Data_Compliance/SA_image_icon_target.png" />
+                    <img width="45" src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                     <b>The Role of Assets and Identities in Data Compliance</b>
                 </h1>
                 <ul>
@@ -169,7 +169,7 @@
                             </td>
                             <td style="width: 30%; vertical-align: top; padding: 15px;">
                                 <img width="2500" usemap="#nav_banner_map"
-                                    src="/static/app/Data_Compliance/compliance.jpg" />
+                                    src="/static/app/Data_Compliance_Pipelines/compliance.jpg" />
                             </td>
                         </tr>
                     </table>
@@ -177,7 +177,7 @@
 
                 <hr />
                 <h1>
-                    <img width="45" src="/static/app/Data_Compliance/SA_image_icon_bulb.png" />
+                    <img width="45" src="/static/app/Data_Compliance_Pipelines/SA_image_icon_bulb.png" />
                     <b>HELPFUL RESOURCES</b>
                 </h1>
                 <ul>
@@ -286,7 +286,7 @@
         <panel>
             <html>
                 <h1>
-                    <img width="45" src="/static/app/Data_Compliance/SA_image_icon_bulb.png" />
+                    <img width="45" src="/static/app/Data_Compliance_Pipelines/SA_image_icon_bulb.png" />
                     <b>WHY SPLUNK?</b>
                 </h1>
                 <ul>
@@ -362,7 +362,7 @@
         <panel>
             <html tokens="true">
                 <h1>
-                    <img width="45" src="/static/app/Data_Compliance/SA_image_icon_tool.png" />
+                    <img width="45" src="/static/app/Data_Compliance_Pipelines/SA_image_icon_tool.png" />
                     <b>DATA PIPELINE MANAGEMENT REFERENCE ARCHITECTURE:</b>
                 </h1>
 
@@ -370,12 +370,12 @@
                     sector requires accommodating a wide array of architectures and disparate
                     data collection methods across numerous applications and systems.</p>
 
-                <img src="/static/app/Data_Compliance/ref_arch.jpg"
+                <img src="/static/app/Data_Compliance_Pipelines/ref_arch.jpg"
                     style="display: block; margin-left: auto; margin-right: auto; width: 66%;" />
 
                 <hr />
                 <h1>
-                    <img width="45" src="/static/app/Data_Compliance/SA_image_icon_bulb.png" />
+                    <img width="45" src="/static/app/Data_Compliance_Pipelines/SA_image_icon_bulb.png" />
                     <b>ADDITIONAL REFERENCES:</b>
                 </h1>
                 <ul>
@@ -455,7 +455,7 @@
         <panel>
             <html tokens="true">
                 <h1>
-                    <img width="45" src="/static/app/Data_Compliance/SA_image_icon_ques.png" />
+                    <img width="45" src="/static/app/Data_Compliance_Pipelines/SA_image_icon_ques.png" />
                     <b>Do you need help? Ask a Data Compliance Expert.</b>
                 </h1>
                 <ul>
@@ -488,7 +488,7 @@
                             </a>.</li>
                     </ul>
                     <!-- Placeholder: Update bullet image if needed -->
-                    <img src="/static/app/Data_Compliance/SA_image_bullet_03.png" />
+                    <img src="/static/app/Data_Compliance_Pipelines/SA_image_bullet_03.png" />
                     <!-- Placeholder: Update expertCode -->
                     <a
                         href="https://www.splunk.com/en_us/ask-an-expert.html?expertCode=Data_Compliance_expert_code"
