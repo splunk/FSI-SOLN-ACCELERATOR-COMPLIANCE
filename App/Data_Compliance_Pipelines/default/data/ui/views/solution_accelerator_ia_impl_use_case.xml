@@ -564,7 +564,7 @@
             <title>Sample KYC Event</title>
             <search id="global_kyc_sample_search_ia_unique_id_01">
                 <query>
-                    index="test_kyc" sourcetype="kyc:synthetic:event"
+                    index="sample_kyc" sourcetype="kyc:synthetic:event"
                     | head 1
                     | table _raw, _time, index, sourcetype
                 </query>
@@ -1170,7 +1170,7 @@
                         <ul>
                             <li><code>route</code>: <ul>
                                     <li><code>destination_type</code>: <code>splunk_index</code></li>
-                                    <li><code>destination_name</code>: <code>test_kyc</code> (This
+                                    <li><code>destination_name</code>: <code>sample_kyc</code> (This
                                 would be your target Splunk index)</li>
                                     <li>(Optionally specify <code>sourcetype</code>, <code>host</code>,
                                 etc. if not set by the input or if you want to override)</li>
@@ -1596,7 +1596,7 @@
                     <h2>
                         <font color="#000000">STEP 2: Define Data Sample</font>
                     </h2>
-                    <p>This data sample, sourced from <code>index="test_pci"
+                    <p>This data sample, sourced from <code>index="sample_pci"
                         sourcetype="pci:transaction:raw"</code>, represents a raw event generated
                         during a payment card transaction. Such events are of paramount importance
                         for <strong>
@@ -1635,7 +1635,7 @@
         <panel>
             <title>Sample Credit Card Transaction</title>
             <search id="amer_kyc_sample_search_ia_unique_id_02">
-                <query>index="test_pci" sourcetype="pci:transaction:raw" | head 1 | table _raw</query>
+                <query>index="sample_pci" sourcetype="pci:transaction:raw" | head 1 | table _raw</query>
                 <earliest>0</earliest>
                 <latest />
             </search>
@@ -2441,7 +2441,7 @@
                     <h2>
                         <font color="#000000">STEP 2: Define Data Sample</font>
                     </h2>
-                    <p>This data sample, sourced from <code>index="test_dora"
+                    <p>This data sample, sourced from <code>index="sample_dora"
                         sourcetype="dora:synthetic:event"</code>, represents a synthetic ICT-related
                         event that is relevant to the <strong>
                             <a href="https://eur-lex.europa.eu/eli/reg/2022/2554/oj" target="_blank"
@@ -2480,7 +2480,7 @@
         <panel>
             <title>Sample DORA Event (EMEA)</title>
             <search id="emea_dora_sample_search_ia_unique_id_03">
-                <query>index="test_dora" sourcetype="dora:synthetic:event" | head 1 | table _raw</query>
+                <query>index="sample_dora" sourcetype="dora:synthetic:event" | head 1 | table _raw</query>
                 <earliest>0</earliest>
                 <latest />
             </search>
@@ -3204,7 +3204,7 @@
                     <h2>
                         <font color="#000000">STEP 2: Define Data Sample</font>
                     </h2>
-                    <p>This data sample, sourced from <code>index="test_rmit"
+                    <p>This data sample, sourced from <code>index="sample_rmit"
                         sourcetype="rmit:synthetic:event"</code>, represents a synthetic event
                         relevant to <strong>
                             <a
@@ -3252,7 +3252,7 @@
         <panel>
             <title>Sample RMiT Event (APJC)</title>
             <search id="apjc_rmit_sample_search_ia_unique_id_04">
-                <query>index="test_rmit" sourcetype="rmit:synthetic:event" | head 1 | table _raw</query>
+                <query>index="sample_rmit" sourcetype="rmit:synthetic:event" | head 1 | table _raw</query>
                 <earliest>0</earliest>
                 <latest />
             </search>
@@ -4067,7 +4067,7 @@
                     <h2>
                         <font color="#000000">STEP 2: Define Data Sample</font>
                     </h2>
-                    <p>This data sample, sourced from <code>index="test_cps"
+                    <p>This data sample, sourced from <code>index="sample_cps"
                         sourcetype="cps230:synthetic:event"</code>, represents a synthetic event
                         relevant to <strong>
                             <a
@@ -4114,7 +4114,7 @@
         <panel>
             <title>Sample CPS 230 Event (A/NZ)</title>
             <search id="anz_cps_sample_search_ia_unique_id_05">
-                <query>index="test_cps" sourcetype="cps230:synthetic:event" | head 1 | table _raw</query>
+                <query>index="sample_cps" sourcetype="cps230:synthetic:event" | head 1 | table _raw</query>
                 <earliest>0</earliest>
                 <latest />
             </search>

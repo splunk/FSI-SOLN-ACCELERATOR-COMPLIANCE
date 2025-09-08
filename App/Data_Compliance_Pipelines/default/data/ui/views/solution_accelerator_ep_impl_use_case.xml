@@ -493,7 +493,7 @@
             <title>Sample KYC Event (Raw Data at Edge)</title>
             <search id="global_kyc_sample_search_ep_unique_id_01">
                 <query>
-                    index="test_kyc" sourcetype="kyc:synthetic:event"
+                    index="sample_kyc" sourcetype="kyc:synthetic:event"
                     | head 1
                     | table _raw, _time, index, sourcetype
                 </query>
@@ -1093,7 +1093,7 @@ $processed_kyc
                         <pre
                             style="background-color: #e8e8e8; padding: 5px; border-radius: 4px; font-family: monospace; white-space: pre-wrap;">
 ...
-| INTO splunk_test_kyc_index;
+| INTO splunk_sample_kyc_index;
         </pre>
                     </div>
                     <p>This conceptual pipeline demonstrates how Edge Processor can be used to apply
@@ -1516,7 +1516,7 @@ $processed_kyc
         <panel>
             <title>Sample Raw Transaction Event (Captured at Edge - AMER)</title>
             <search id="amer_pci_sample_search_ep_unique_id_02">
-                <query>index="test_pci" sourcetype="pci:transaction:raw" | head 1 | table _raw</query>
+                <query>index="sample_pci" sourcetype="pci:transaction:raw" | head 1 | table _raw</query>
                 <earliest>0</earliest>
                 <latest />
             </search>
@@ -2344,7 +2344,7 @@ $processed_transactions = SELECT * FROM $raw_transactions
         <panel>
             <title>Sample DORA Event (Raw Data at Edge - EMEA)</title>
             <search id="emea_gdpr_sample_search_ep_unique_id_03">
-                <query>index="test_dora" sourcetype="dora:synthetic:event" | head 1 | table _raw</query>
+                <query>index="sample_dora" sourcetype="dora:synthetic:event" | head 1 | table _raw</query>
                 <earliest>0</earliest>
                 <latest></latest>
             </search>
@@ -3112,7 +3112,7 @@ $processed_logs
             <title>Sample System/Security Log (Raw Data at Edge - APJC)</title>
             <search id="apjc_rmit_sample_search_ep_unique_id_04">
                 <query>
-                    index="test_rmit" sourcetype="rmit:synthetic:event" | head 1 | table _raw
+                    index="sample_rmit" sourcetype="rmit:synthetic:event" | head 1 | table _raw
                 </query>
                 <earliest>0</earliest>
                 <latest></latest>
@@ -3908,7 +3908,7 @@ $contextualized_logs = SELECT * FROM $raw_edge_logs
         <panel>
             <title>Sample Operational Event Log (Raw Data at Edge - A/NZ)</title>
             <search id="anz_cps230_sample_search_ep_unique_id_05">
-                <query>index="test_cps" sourcetype="cps230:synthetic:event" | head 1 | table _raw</query>
+                <query>index="sample_cps" sourcetype="cps230:synthetic:event" | head 1 | table _raw</query>
                 <earliest>0</earliest>
                 <latest></latest>
             </search>

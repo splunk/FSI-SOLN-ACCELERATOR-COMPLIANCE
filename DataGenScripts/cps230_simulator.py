@@ -22,7 +22,7 @@ HOURS_BACKFILL_PER_100_EVENTS = 1.0  # Match PCI and RMiT simulators: 1 hour per
 # --- Splunk HEC Configuration (Defaults, can be overridden) ---
 SPLUNK_HEC_URL_DEFAULT = "YOUR_SPLUNK_HEC_URL"  # e.g., "https://splunk.example.com:8088/services/collector"
 SPLUNK_HEC_TOKEN_DEFAULT = "YOUR_SPLUNK_HEC_TOKEN"
-SPLUNK_HEC_INDEX_DEFAULT = "test_cps"
+SPLUNK_HEC_INDEX_DEFAULT = "sample_cps"
 SPLUNK_HEC_SOURCETYPE_DEFAULT = "cps230:synthetic:event"
 SPLUNK_HEC_SOURCE_DEFAULT = "cps_simulator"
 SPLUNK_HEC_VERIFY_SSL_DEFAULT = False
@@ -115,7 +115,7 @@ def generate_bcp_event_details():
         "scenario_type": scenario,
         "activation_reason": "Scheduled Test" if is_test else f"Actual Event - {scenario}",
         "activation_level": random.choice(["Partial", "Full", "Departmental"]),
-        "outcome": random.choice(BCP_TEST_OUTCOMES) if is_test else random.choice(["Operations Restored", "Degraded Service", "Failed to Restore"]),
+        "outcome": random.choice(BCP_sample_OUTCOMES) if is_test else random.choice(["Operations Restored", "Degraded Service", "Failed to Restore"]),
         "duration_minutes": random.randint(30, 1440) if not is_test else random.randint(60, 480), # Actual events can be longer
         "lessons_learned_summary": fake.paragraph(nb_sentences=2) if random.random() > 0.4 else None,
     }
