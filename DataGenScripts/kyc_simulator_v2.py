@@ -5,13 +5,20 @@ import random
 import uuid
 import math
 import time # For epoch time conversion and potential sleep for retries
+from typing import Any, Dict
 
 import pytz # For timezone handling
 import requests # For Splunk HEC
 from faker import Faker
+try:
+    import pandas as pd  # Optional dependency for CSV output
+except ImportError:  # We'll fall back to csv module if missing
+    pd = None
+import csv
 
 # --- Configuration ---
 NUM_EVENTS_TOTAL = 1000  # Number of KYC events to generate
+DEFAULT_CSV_FILENAME = "kyc_events.csv"  # Default CSV output if none specified
 
 # Target "local" timezone for business hours definition
 TARGET_LOCAL_TIMEZONE = "America/New_York"
@@ -363,9 +370,19 @@ def main():
         default=None,
         help="Optional: File path to save JSON output (e.g., kyc_events.json). If not provided, prints to stdout.",
     )
+    parser.add_argument(
+        "--output-csv",
+        type=str,
+        default=None,
+        help="Optional: File path to save flattened CSV output (e.g., kyc_events.csv). Nested objects are flattened; documents stored as JSON string.",
+    )
 
 
     args = parser.parse_args()
+    # Provide default CSV if no outputs and not sending to Splunk (parity with other simulators)
+    if (not args.send_to_splunk) and (not args.output_file) and (not args.output_csv):
+        args.output_csv = DEFAULT_CSV_FILENAME
+        print(f"No explicit output specified. Defaulting to save to CSV: {args.output_csv}", file=sys.stderr)
 
     # Update config from args
     current_num_events = args.num_events
@@ -398,7 +415,7 @@ def main():
         current_num_events, current_time_utc, TARGET_LOCAL_TIMEZONE
     )
 
-    all_generated_events = [] # For local saving if requested
+    all_generated_events = [] # For local saving if requested (JSON or CSV)
     splunk_batch = []
     total_sent_to_splunk = 0
     total_failed_splunk = 0
@@ -420,7 +437,7 @@ def main():
         add_address_data(event)
         add_document_data(event, progress)
 
-        if args.output_file or not args.send_to_splunk: # Store if saving to file or not sending to Splunk
+        if args.output_file or args.output_csv or not args.send_to_splunk:  # Ensure events retained when CSV requested
             all_generated_events.append(event)
 
         if args.send_to_splunk:
@@ -455,14 +472,53 @@ def main():
         print(f"  Failed to send:    {total_failed_splunk} events", file=sys.stderr)
 
 
-    # Output to file or stdout if not sending to Splunk (or if file output is specified)
+    # JSON output handling
     if args.output_file:
         print(f"\nSaving {len(all_generated_events)} events to {args.output_file}...", file=sys.stderr)
-        with open(args.output_file, 'w') as f:
-            json.dump(all_generated_events, f, indent=2)
-        print(f"Successfully saved events to {args.output_file}", file=sys.stderr)
-    elif not args.send_to_splunk: # If not sending to Splunk and no output file, print to stdout
-        print(json.dumps(all_generated_events, indent=2))
+        try:
+            with open(args.output_file, 'w', encoding='utf-8') as f:
+                json.dump(all_generated_events, f, indent=2, ensure_ascii=False)
+            print(f"Successfully saved events to {args.output_file}", file=sys.stderr)
+        except Exception as e:
+            print(f"Error writing JSON file {args.output_file}: {e}", file=sys.stderr)
+
+    # CSV output handling (flatten nested structures)
+    if args.output_csv:
+        print(f"\nWriting raw events to CSV ({len(all_generated_events)} events)...", file=sys.stderr)
+        try:
+            if pd is not None:
+                # pandas will auto-expand top-level keys; nested dict/list become string reps
+                df = pd.DataFrame(all_generated_events)
+                df.to_csv(args.output_csv, index=False)
+            else:
+                print("pandas not available; using csv module; nested structures stringified via json.", file=sys.stderr)
+                # Collect union of scalar top-level keys (include nested containers as JSON strings)
+                all_keys = set()
+                serializable_rows = []
+                for ev in all_generated_events:
+                    row = {}
+                    for k, v in ev.items():
+                        if isinstance(v, (dict, list)):
+                            try:
+                                row[k] = json.dumps(v, ensure_ascii=False)
+                            except Exception:
+                                row[k] = str(v)
+                        else:
+                            row[k] = v
+                    all_keys.update(row.keys())
+                    serializable_rows.append(row)
+                fieldnames = sorted(all_keys)
+                with open(args.output_csv, 'w', newline='', encoding='utf-8') as f:
+                    writer = csv.DictWriter(f, fieldnames=fieldnames)
+                    writer.writeheader()
+                    writer.writerows(serializable_rows)
+            print(f"Successfully saved CSV to {args.output_csv}", file=sys.stderr)
+        except Exception as e:
+            print(f"Error writing CSV file {args.output_csv}: {e}", file=sys.stderr)
+
+    # If no outputs requested and not sending, print JSON to stdout
+    if not args.send_to_splunk and not args.output_file and not args.output_csv:
+        print(json.dumps(all_generated_events, indent=2, ensure_ascii=False))
 
     print(f"\nScript finished. Generated {len(event_timestamps)} events in total.", file=sys.stderr)
 

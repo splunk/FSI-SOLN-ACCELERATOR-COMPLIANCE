@@ -115,7 +115,7 @@ def generate_bcp_event_details():
         "scenario_type": scenario,
         "activation_reason": "Scheduled Test" if is_test else f"Actual Event - {scenario}",
         "activation_level": random.choice(["Partial", "Full", "Departmental"]),
-        "outcome": random.choice(BCP_sample_OUTCOMES) if is_test else random.choice(["Operations Restored", "Degraded Service", "Failed to Restore"]),
+        "outcome": random.choice(BCP_TEST_OUTCOMES) if is_test else random.choice(["Operations Restored", "Degraded Service", "Failed to Restore"]),
         "duration_minutes": random.randint(30, 1440) if not is_test else random.randint(60, 480), # Actual events can be longer
         "lessons_learned_summary": fake.paragraph(nb_sentences=2) if random.random() > 0.4 else None,
     }

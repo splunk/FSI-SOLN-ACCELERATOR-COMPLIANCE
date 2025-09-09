@@ -130,7 +130,7 @@ def generate_bcm_dr_activity_details():
     return {
         "bcm_activity_id": f"BCMDR-{str(uuid.uuid4())[:7].upper()}",
         "activity_type": activity,
-        "scenario_tested": random.choice(BCM_DR_sample_SCENARIOS_MY) if "Test" in activity or "Invocation" in activity else None,
+        "scenario_tested": random.choice(BCM_DR_TEST_SCENARIOS_MY) if "Test" in activity or "Invocation" in activity else None,
         "outcome": random.choice(["Successful", "Issues_Identified", "Completed", "Failed"]) if "Test" in activity or "Invocation" in activity else "Scheduled",
         "rto_achieved_minutes": random.randint(30, 480) if "Test" in activity or "Invocation" in activity else None,
         "rpo_achieved_minutes": random.randint(0, 60) if "Test" in activity or "Invocation" in activity else None,
