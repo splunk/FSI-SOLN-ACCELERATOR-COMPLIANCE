@@ -13,7 +13,7 @@ from faker import Faker
 SPLUNK_HEC_URL_DEFAULT = "https://localhost:8088/services/collector/event"
 SPLUNK_HEC_TOKEN_DEFAULT = "YOUR_HEC_TOKEN"  # Placeholder - MUST be configured
 SPLUNK_INDEX_DEFAULT = "sample_pci"
-SPLUNK_SOURCETYPE_DEFAULT = "pci:transaction:raw"
+SPLUNK_SOURCETYPE_DEFAULT = "pci:synthetic:event"
 SPLUNK_HEC_SOURCE_DEFAULT = "pci_simulator"
 SPLUNK_VERIFY_SSL_DEFAULT = False
 

@@ -1516,7 +1516,7 @@ $processed_kyc
         <panel>
             <title>Sample Raw Transaction Event (Captured at Edge - AMER)</title>
             <search id="amer_pci_sample_search_ep_unique_id_02">
-                <query>index="sample_pci" sourcetype="pci:transaction:raw" | head 1 | table _raw</query>
+                <query>index="sample_pci" sourcetype="pci:synthetic:event" | head 1 | table _raw</query>
                 <earliest>0</earliest>
                 <latest />
             </search>
@@ -1536,7 +1536,7 @@ $processed_kyc
                 <div style="padding: 10px; margin-left: 15px;">
                     <h3>Data Handling Strategy for PCI DSS Compliance</h3>
                     <p>The following table outlines example data fields commonly found in raw
-                        transaction logs (<code>sourcetype="pci:transaction:raw"</code>), their
+                        transaction logs (<code>sourcetype="pci:synthetic:event"</code>), their
                         relevance to PCI DSS, and the proposed Edge Processor strategy to ensure
                         compliance.</p>
                     <table border="1"

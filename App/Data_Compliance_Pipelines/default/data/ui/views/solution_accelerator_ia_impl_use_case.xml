@@ -1597,7 +1597,7 @@
                         <font color="#000000">STEP 2: Define Data Sample</font>
                     </h2>
                     <p>This data sample, sourced from <code>index="sample_pci"
-                        sourcetype="pci:transaction:raw"</code>, represents a raw event generated
+                        sourcetype="pci:synthetic:event"</code>, represents a raw event generated
                         during a payment card transaction. Such events are of paramount importance
                         for <strong>
                             <a href="https://www.pcisecuritystandards.org/pci_dss/" target="_blank"
@@ -1635,7 +1635,7 @@
         <panel>
             <title>Sample Credit Card Transaction</title>
             <search id="amer_kyc_sample_search_ia_unique_id_02">
-                <query>index="sample_pci" sourcetype="pci:transaction:raw" | head 1 | table _raw</query>
+                <query>index="sample_pci" sourcetype="pci:synthetic:event" | head 1 | table _raw</query>
                 <earliest>0</earliest>
                 <latest />
             </search>
@@ -1653,7 +1653,7 @@
                 <div style="padding: 10px; margin-left: 15px;">
                     <h3>Data Handling Strategy for PCI DSS Compliance</h3>
                     <p>The following table outlines example data fields commonly found in raw
-                        transaction logs (<code>sourcetype="pci:transaction:raw"</code>), their
+                        transaction logs (<code>sourcetype="pci:synthetic:event"</code>), their
                         relevance to PCI DSS, and the proposed Ingest Action strategy to ensure
                         compliance.</p>
                     <table border="1"
@@ -1906,7 +1906,7 @@
                         <code>pci_dss_data_processing_amer</code>
                     </p>
                     <p>This pipeline is designed to process raw payment transaction data (e.g., <code>
-                        sourcetype="pci:transaction:raw"</code>) to meet critical <strong>
+                        sourcetype="pci:synthetic:event"</code>) to meet critical <strong>
                             <a href="https://www.pcisecuritystandards.org/pci_dss/" target="_blank"
                                 rel="noopener noreferrer">PCI DSS</a>
                         </strong>
@@ -1935,7 +1935,7 @@
                             <strong>Filter Condition (Example):</strong>
                         </p>
                         <ul>
-                            <li><code>sourcetype == "pci:transaction:raw"</code> (Adjust if your
+                            <li><code>sourcetype == "pci:synthetic:event"</code> (Adjust if your
                                 transaction sourcetype is different)</li>
                         </ul>
                         <p>
@@ -1967,7 +1967,7 @@
                         </p>
                         <ul>
                             <li>
-                                <code>sourcetype == "pci:transaction:raw"</code>
+                                <code>sourcetype == "pci:synthetic:event"</code>
                             </li>
                         </ul>
                         <p>
@@ -2006,7 +2006,7 @@
                         </p>
                         <ul>
                             <li>
-                                <code>sourcetype == "pci:transaction:raw"</code>
+                                <code>sourcetype == "pci:synthetic:event"</code>
                             </li>
                         </ul>
                         <p>
@@ -2038,7 +2038,7 @@
                         </p>
                         <ul>
                             <li>
-                                <code>sourcetype == "pci:transaction:raw"</code>
+                                <code>sourcetype == "pci:synthetic:event"</code>
                             </li>
                         </ul>
                         <p>
@@ -2114,7 +2114,7 @@
                         </strong>
                         requirements for handling Cardholder Data (CHD) and Sensitive Authentication
                         Data (SAD) from raw transaction logs (e.g., <code>
-                        sourcetype="pci:transaction:raw"</code>).</p>
+                        sourcetype="pci:synthetic:event"</code>).</p>
                     <h3>Pipeline Logic and Rule Breakdown:</h3>
                     <ol>
                         <li>
