@@ -17,6 +17,7 @@ fake = Faker()
 # --- Configuration ---
 DEFAULT_NUM_EVENTS = 500
 DEFAULT_CSV_FILENAME = "cps230_synthetic_events.csv"
+DEFAULT_JSON_FILENAME = "cps230_synthetic_events.json"
 HOURS_BACKFILL_PER_100_EVENTS = 1.0  # Match PCI and RMiT simulators: 1 hour per 100 events
 
 # --- Splunk HEC Configuration (Defaults, can be overridden) ---
@@ -29,7 +30,14 @@ SPLUNK_HEC_VERIFY_SSL_DEFAULT = False
 SPLUNK_HEC_BATCH_SIZE_DEFAULT = 100
 
 # --- CPS 230 Specific Data Elements ---
-ENTITY_IDS = [f"ENTITY_{str(uuid.uuid4())[:4].upper()}" for _ in range(5)] # Simulating a few regulated entities
+# Entity IDs extracted from the ANZ critical operations lookup
+ENTITY_IDS = [
+    "ENTITY_6885",
+    "ENTITY_961C",
+    "ENTITY_1790",
+    "ENTITY_4FC0",
+    "ENTITY_FA49"
+]
 CRITICAL_OPERATIONS = [
     "Payments Processing", "Customer Account Management", "Regulatory Reporting",
     "Insurance Claims Processing", "Superannuation Fund Administration", "Online Banking Services",
@@ -64,7 +72,7 @@ def generate_operational_incident_details():
     critical_op = random.choice(CRITICAL_OPERATIONS)
     severity = random.choice(INCIDENT_SEVERITY_LEVELS)
     status = random.choice(INCIDENT_STATUSES)
-    description = f"{severity} incident impacting {critical_op}: {fake.sentence(nb_words=10)}"
+    description = f"{severity} incident impacting {critical_op}: {random.choice(['system outage', 'data loss', 'service disruption', 'security breach'])} detected. Immediate action required."
     resolution_time_hours = None
     if status in ["Resolved", "Closed"]:
         resolution_time_hours = round(random.uniform(0.5, 72), 1)
@@ -90,18 +98,22 @@ def generate_control_assessment_details():
         "assessment_date": (datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=random.randint(1, 180))).date().isoformat(),
         "assessor_department": random.choice(["Internal Audit", "Risk Management", "Compliance", "First Line Operations"]),
         "assessment_outcome": random.choice(ASSESSMENT_OUTCOMES),
-        "findings_summary": fake.sentence(nb_words=15) if random.random() > 0.3 else None,
+        "findings_summary": generate_findings_summary() if random.random() > 0.3 else None,
         "remediation_plan_id": f"REMPLN-{str(uuid.uuid4())[:6].upper()}" if random.random() > 0.5 else None,
     }
 
 def generate_third_party_risk_event_details():
-    vendor_name = fake.company()
+    vendor_name = random.choice([
+        "Acme Financial Services", "Global Data Solutions", "SecureTech Partners", "Prime Risk Advisors", "NextGen IT Solutions"
+    ])
     return {
         "vendor_id": f"VEND-{str(uuid.uuid4())[:6].upper()}",
         "vendor_name": vendor_name,
-        "service_provided": fake.bs(),
+        "service_provided": random.choice([
+            "cloud hosting", "transaction processing", "data analytics", "IT support", "risk assessment"
+        ]),
         "risk_type": random.choice(THIRD_PARTY_RISK_TYPES),
-        "event_description": f"Risk event identified for {vendor_name}: {fake.sentence(nb_words=8)}",
+        "event_description": f"Risk event identified for {vendor_name}: {random.choice(['service disruption', 'data breach', 'compliance issue', 'contract violation'])} reported.",
         "assessment_date": (datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=random.randint(1, 90))).date().isoformat(),
         "assessment_rating": random.choice(RISK_LEVELS),
         "mitigation_actions_status": random.choice(["Pending", "In Progress", "Completed", "Not Required"]),
@@ -117,7 +129,7 @@ def generate_bcp_event_details():
         "activation_level": random.choice(["Partial", "Full", "Departmental"]),
         "outcome": random.choice(BCP_TEST_OUTCOMES) if is_test else random.choice(["Operations Restored", "Degraded Service", "Failed to Restore"]),
         "duration_minutes": random.randint(30, 1440) if not is_test else random.randint(60, 480), # Actual events can be longer
-        "lessons_learned_summary": fake.paragraph(nb_sentences=2) if random.random() > 0.4 else None,
+        "lessons_learned_summary": generate_lessons_learned_summary() if random.random() > 0.4 else None,
     }
 
 def generate_change_management_event_details():
@@ -139,9 +151,87 @@ def generate_data_management_alert_details():
         "alert_type": random.choice(["Data Quality Anomaly", "Unauthorized Data Access Attempt", "Data Loss Prevention Alert", "Data Retention Policy Violation"]),
         "data_source": f"DB_{random.choice(['CUSTOMER', 'TRANSACTION', 'RISK_MODEL'])}",
         "severity": random.choice(["Medium", "High"]),
-        "description": fake.sentence(nb_words=12),
+        "description": random.choice([
+            "Unauthorized access attempt detected in customer database.",
+            "Data retention policy violation identified.",
+            "Data loss prevention alert triggered by abnormal activity.",
+            "Quality anomaly found in transaction records."
+        ]),
         "action_taken": random.choice(["Investigating", "Escalated", "No Action Required", "Access Blocked"]),
     }
+
+def generate_findings_summary():
+    templates = [
+        "Assessment revealed {issue} in {area}, requiring {action}.",
+        "Control effectiveness was rated as {rating} due to {reason}.",
+        "Audit identified {issue} impacting {process}, with {recommendation}.",
+        "Review found {issue} in {system}, suggesting {action} for remediation."
+    ]
+    issues = [
+        "insufficient access controls", "data retention gaps", "unpatched vulnerabilities",
+        "incomplete risk assessments", "lack of segregation of duties"
+    ]
+    areas = [
+        "user management", "transaction processing", "backup procedures", "third-party integrations"
+    ]
+    actions = [
+        "immediate remediation", "further investigation", "policy update", "additional training"
+    ]
+    ratings = ["effective", "partially effective", "ineffective"]
+    reasons = [
+        "missing documentation", "manual overrides", "system misconfigurations", "delayed response"
+    ]
+    processes = ["incident response", "change management", "vendor risk review"]
+    recommendations = [
+        "implement automated controls", "conduct regular audits", "update procedures"
+    ]
+    systems = ["core banking", "payment gateway", "reporting platform"]
+
+    import random
+    template = random.choice(templates)
+    return template.format(
+        issue=random.choice(issues),
+        area=random.choice(areas),
+        action=random.choice(actions),
+        rating=random.choice(ratings),
+        reason=random.choice(reasons),
+        process=random.choice(processes),
+        recommendation=random.choice(recommendations),
+        system=random.choice(systems)
+    )
+
+def generate_lessons_learned_summary():
+    templates = [
+        "The incident highlighted the need for {action} in {area}, resulting in {change}.",
+        "Post-event analysis revealed {issue}, prompting {action} and {change}.",
+        "Lessons learned include {lesson}, which will be addressed by {action}.",
+        "The event demonstrated the importance of {area}, leading to {change}."
+    ]
+    actions = [
+        "enhanced monitoring", "regular training", "policy updates", "improved communication", "automation of controls"
+    ]
+    areas = [
+        "incident response", "data backup procedures", "third-party management", "change management", "access control"
+    ]
+    changes = [
+        "implementation of new controls", "revision of procedures", "staff awareness programs", "technology upgrades"
+    ]
+    issues = [
+        "gaps in escalation protocols", "delayed detection", "insufficient documentation", "manual errors"
+    ]
+    lessons = [
+        "the value of proactive risk management", "the need for clear escalation paths", "the importance of timely communication"
+    ]
+
+    import random
+    template = random.choice(templates)
+    return template.format(
+        action=random.choice(actions),
+        area=random.choice(areas),
+        change=random.choice(changes),
+        issue=random.choice(issues),
+        lesson=random.choice(lessons)
+    )
 
 
 # --- Main Event Generation Function ---
@@ -154,7 +244,7 @@ def generate_cps230_event(event_count, current_datetime_utc):
     # Required fields
     event_timestamp = current_datetime_utc.isoformat().replace("+00:00", "Z")
     critical_operation_id = f"CRITOP-{random.randint(1000,9999)}"
-    impact_description = f"Impact to {random.choice(CRITICAL_OPERATIONS)}: {fake.sentence(nb_words=8)}"
+    impact_description = f"Impact to {random.choice(CRITICAL_OPERATIONS)}: {random.choice(['service interruption', 'performance degradation', 'security incident', 'unexpected downtime'])} observed."
     estimated_downtime_minutes = random.randint(5, 720) if event_type == "operational_incident" else None
     service_provider_id = f"SP-{str(uuid.uuid4())[:6].upper()}" if event_type == "third_party_risk_event" else None
     control_id_failed = f"CTRL-{random.randint(1000,9999)}" if event_type in ["operational_incident", "control_assessment"] and random.random() > 0.7 else None
@@ -193,8 +283,6 @@ def generate_cps230_event(event_count, current_datetime_utc):
         details = generate_data_management_alert_details()
 
     event = {**base_event, **details}
-    event["_raw"] = json.dumps(event)  # Ensure _raw is always the last field
-
     return event
 
 
@@ -264,6 +352,12 @@ if __name__ == "__main__":
         default=None,
         help=f"Filename to save events as CSV. If not provided and --send-to-splunk is also absent, defaults to '{DEFAULT_CSV_FILENAME}'.",
     )
+    parser.add_argument(
+        "--output-json",
+        type=str,
+        default=None,
+        help=f"Filename to save events as JSON (one event per line - JSONL format).",
+    )
 
     # HEC Arguments
     hec_group = parser.add_argument_group('Splunk HEC Options (if --send-to-splunk is used)')
@@ -289,7 +383,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Determine if any output action is requested
-    if not args.send_to_splunk and not args.output_csv:
+    if not args.send_to_splunk and not args.output_csv and not args.output_json:
         args.output_csv = DEFAULT_CSV_FILENAME
         print(f"No explicit output specified. Defaulting to save to CSV: {args.output_csv}", file=sys.stderr)
 
@@ -361,6 +455,16 @@ if __name__ == "__main__":
             print(f"Successfully saved events to {args.output_csv}", file=sys.stderr)
         except Exception as e:
             print(f"Error saving CSV to {args.output_csv}: {e}", file=sys.stderr)
+
+    if args.output_json:
+        print(f"\nSaving {len(all_generated_events)} events to {args.output_json}...", file=sys.stderr)
+        try:
+            with open(args.output_json, 'w') as f:
+                for event in all_generated_events:
+                    f.write(json.dumps(event) + '\n')
+            print(f"Successfully saved events to {args.output_json}", file=sys.stderr)
+        except Exception as e:
+            print(f"Error saving JSON to {args.output_json}: {e}", file=sys.stderr)
 
     print(f"\nFinished generating {args.num_events} events.", file=sys.stderr)
     if args.send_to_splunk:

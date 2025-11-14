@@ -1,0 +1,69 @@
+import route from /splunk.ingest.commands
+import 'anz_critical_operations.csv' from /envs.splunk.'dmx-shw-2c53feabe860f8'.lookups
+
+$pipeline =
+| from $source
+
+    // Extract entity_id from _raw for lookup key building
+    | eval lookup_entity_id = json_extract(_raw, "entity_id")
+    
+    // Lookup enrichment: match on entity_id from events to entity_id in CSV
+    | lookup 'anz_critical_operations.csv' entity_id AS lookup_entity_id OUTPUT system_id, critical_operation_name, tolerance_level, business_unit
+    
+    // Inject lookup results into _raw so enrichment travels with the event
+    | eval _raw = if(isnotnull(system_id), json_set(_raw, "system_id", system_id), _raw)
+    | eval _raw = if(isnotnull(critical_operation_name), json_set(_raw, "critical_operation_name", critical_operation_name), _raw)
+    | eval _raw = if(isnotnull(tolerance_level), json_set(_raw, "tolerance_level", tolerance_level), _raw)
+    | eval _raw = if(isnotnull(business_unit), json_set(_raw, "business_unit", business_unit), _raw)
+    
+    // Remove temporary top-level lookup fields to avoid duplication (after injecting into _raw)
+    | fields - lookup_entity_id, system_id, critical_operation_name, tolerance_level, business_unit
+    
+    // Extract severity from _raw and convert to numeric for filtering
+    | eval cps230_incident_severity = json_extract(_raw, "cps230_incident_severity")
+    | eval severity_numeric = case(
+        cps230_incident_severity == "Critical", 4,
+        cps230_incident_severity == "High", 3,
+        cps230_incident_severity == "Medium", 2,
+        cps230_incident_severity == "Low", 1,
+        true, 0
+    )
+
+    // Filtering: keep events that are APRA notification candidates OR have high severity
+    | where json_extract(_raw, "apra_notification_candidate") == true OR severity_numeric >= 3
+
+    // Pseudonymize reporter_user_id
+    | eval reporter_user_id = json_extract(_raw, "reporter_user_id")
+    | eval hashed_reporter_id = if(isnotnull(reporter_user_id), sha256(reporter_user_id + "cps230_salt"), null)
+    | eval _raw = json_set(_raw, "reporter_user_id", hashed_reporter_id)
+    
+    // Mask vendor_name
+    | eval vendor_name = json_extract(_raw, "vendor_name")
+    | eval masked_vendor = if(isnotnull(vendor_name), "REDACTED", null)
+    | eval _raw = json_set(_raw, "vendor_name", masked_vendor)
+    
+    // Drop temporary fields used for processing
+    | fields - lookup_entity_id, system_id, critical_operation_name, tolerance_level, business_unit, reporter_user_id, hashed_reporter_id, vendor_name, masked_vendor, cps230_incident_severity, severity_numeric
+
+    // Send raw data to secure archive (e.g., Amazon S3 Bucket)
+    | thru [ | into $destination2 ]
+
+    | eval _raw = json_set(_raw, "participant", "hrobalin")
+
+    // Route to different indexes based on APRA notification status
+    // Route APRA notification candidate events to APRA notifications index
+    | route _raw.apra_notification_candidate == true, 
+    [
+        | eval index = "cps_apra_notify_events"
+        | into $destination3
+    ]
+
+    // Route non-APRA events to significant events index
+    | route _raw.apra_notification_candidate == false, 
+    [
+        | eval index = "cps_significant_events"
+        | into $destination4
+    ]  
+
+    | eval index = "cps_events"
+    |  into $destination;

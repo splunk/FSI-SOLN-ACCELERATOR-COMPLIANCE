@@ -1,5 +1,5 @@
 <dashboard version="1.1" theme="light" script="supertabs.js" stylesheet="tabs.css">
-    <label>Implement Ingest Actions</label>
+    <label>Implement Ingest Actions Pipelines</label>
     <description>Use Case - Ingest Actions </description>
     <row>
         <panel>

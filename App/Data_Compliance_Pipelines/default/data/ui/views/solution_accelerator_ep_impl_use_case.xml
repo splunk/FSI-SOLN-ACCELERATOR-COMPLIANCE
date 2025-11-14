@@ -1,5 +1,5 @@
 <dashboard version="1.1" theme="light" script="supertabs.js" stylesheet="tabs.css">
-    <label>Implement Edge Processor</label>
+    <label>Implement Edge Processor Pipelines</label>
     <description>Use Case - Edge Processor </description>
     <row>
         <panel>
@@ -134,8 +134,8 @@
                                         href="https://www.pcisecuritystandards.org/">PCI DSS</a>
                         (e.g., Requirement 10 for logging, Requirement 7 for access control), <a
                                         href="https://gdpr-info.eu/">GDPR</a> (e.g., data subject
-                        rights, breach notification), SOX (financial reporting controls), and a multitude of varied FSI regulations
-                        applicable in specific markets.</li>
+                        rights, breach notification), SOX (financial reporting controls), and a
+                        multitude of varied FSI regulations applicable in specific markets.</li>
                                 <li>
                                     <b>Protecting Sensitive Data:</b> Implementing robust security
                         controls (encryption, access management, vulnerability management) critical
@@ -238,7 +238,8 @@
                         </ul>
                     </ul>
                     <p>Centralizing and correlating these diverse data inputs is fundamental to the
-                        Solution Accelerator for Data Compliance Pipelines's ability to provide the necessary comprehensive
+                        Solution Accelerator for Data Compliance Pipelines's ability to provide the
+                        necessary comprehensive
                         visibility
                         for compliance across various regulations and to effectively monitor the
                         interactions between assets and identities in a globally distributed
@@ -993,7 +994,7 @@
                         <p><strong>Description:</strong> The Edge Processor ingests raw KYC events
                             from the source system (e.g., application logs, data feeds from
                             onboarding platforms).</p>
-                        <p><strong>Conceptual SPL2:</strong> <code>$source = FROM kyc_data_stream</code>
+                        <p><strong>Conceptual SPL2:</strong> <code>$pipeline = | from $source</code>
                             (This represents the data source configuration in Edge Processor)</p>
                     </div>
 
@@ -1008,14 +1009,12 @@
                         </p>
                         <pre
                             style="background-color: #e8e8e8; padding: 5px; border-radius: 4px; font-family: monospace; white-space: pre-wrap;">
-$kyc_events = SELECT * FROM $source;
-// Branch for S3 archival of original event
-$raw_for_s3 = SELECT * FROM $kyc_events;
-$raw_for_s3 | INTO s3_kyc_audit_archive_bucket OPTIONS (format="raw");
-
-// Main branch for processing
-$processed_kyc = SELECT * FROM $kyc_events;
-        </pre>
+                        <![CDATA[   
+// Clone the stream
+// Send raw data to secure archive (e.g., Amazon S3 Bucket)
+| thru [ | into $destination2 ] 
+                        ]]>
+                        </pre>
                         <p>
                             <em>Note: Actual Edge Processor SPL2 might use different constructs for
                                 branching or cloning, like multiple `INTO` statements from a single
@@ -1031,20 +1030,40 @@ $processed_kyc = SELECT * FROM $kyc_events;
                             fields in the clone destined for central Splunk analytics. This
                             minimizes PII exposure.</p>
                         <p>
-                            <strong>Conceptual SPL2 (applied to <code>$processed_kyc</code> stream):</strong>
+                            <strong>Conceptual SPL2 (applied to <code>$process_kyc_pii</code> stream):</strong>
                         </p>
-                        <pre
+                        <pre 
                             style="background-color: #e8e8e8; padding: 5px; border-radius: 4px; font-family: monospace; white-space: pre-wrap;">
-$processed_kyc
-| eval pii.full_name = "REDACTED_FOR_ANALYTICS"
-| eval pii.date_of_birth = "REDACTED_DOB"
-| eval pii.email_hash = sha256(pii.email)
-| eval pii.email = concat(substr(pii.email, 0, 1), "****", match_str(pii.email, /@.*/)) // Example partial mask
-| eval pii.phone_number_masked = replace(pii.phone_number, /(\d{3}-)\d{3}(-\d{4})/, "$1***$2")
-| eval address.street_address = "REDACTED_STREET"
-| eval documents.document_id_hash = sha256(documents.document_id)
-| eval documents.document_id_type = documents.document_type; // Keep type if needed
-        </pre>
+                        <![CDATA[
+...
+// Continue processing the other clone that will go to Splunk Index
+
+// Redact full_name within the 'pii' string
+| eval pii = replace(pii, /('full_name':\s*')[^']*(')/, "$1REDACTED_FOR_ANALYTICS$2")
+
+// Redact date_of_birth within the 'pii' string
+| eval pii = replace(pii, /('date_of_birth':\s*')[^']*(')/, "$1REDACTED_DOB$2")
+
+// Partially mask email within the 'pii' string: first char + **** + @domain
+// This regex captures the key, the first char of the email, and the @domain part.
+| eval pii = replace(pii, /('email':\s*')([^'])([^@']*?)(@.*?')/, "$1$2****$4")
+
+// Mask phone_number within the 'pii' string (assuming 'XXX-XXX-XXXX' 
+// This regex looks for 'phone_number': 'XXX-XXX-XXXX' and masks the middle XXX.
+| eval pii = replace(pii, /('phone_number':\s*')(\d{3}[.\-]?)(\d{3})([.\-]?\d{4}[xX\d]*')/, "$1$2***$4")
+
+// Redact street_address within the 'address' string
+| eval address = replace(address, /('street_address':\s*')[^']*(')/, "$1REDACTED_STREET$2")
+
+// Extract document_id and replace with hash
+| rex field=documents /'document_id':\s*'(?P<_temp_document_id>[^']+)'/
+| eval document_id_hash = sha256(_temp_document_id)
+| eval documents = replace(documents, /('document_id':\s*')[^']*(')/, "'document_id_hash': '" + document_id_hash + "'")
+
+// Drop the temp field
+| fields - _temp_document_id, document_id;
+                    ]]>
+                    </pre>
                     </div>
 
                     <div
@@ -1059,9 +1078,9 @@ $processed_kyc
                         <pre
                             style="background-color: #e8e8e8; padding: 5px; border-radius: 4px; font-family: monospace; white-space: pre-wrap;">
 ...
-| fields remove pii.email, pii.phone_number, documents.document_id 
-// Retain pii.email_hash, pii.phone_number_masked, documents.document_id_hash
-        </pre>
+// Drop the temp field
+| fields - _temp_document_id, document_id;
+                        </pre>
                     </div>
 
                     <div
@@ -1076,7 +1095,8 @@ $processed_kyc
                         <pre
                             style="background-color: #e8e8e8; padding: 5px; border-radius: 4px; font-family: monospace; white-space: pre-wrap;">
 ...
-| where event_status == "verification_successful_processed" OR (isnotnull(pii.email_hash) AND isnotnull(documents.document_id_hash))
+// Filter to only keep successful KYC event status and event type 
+| where event_type == "kyc_approved" AND event_status == "decision_approved"    
         </pre>
                     </div>
 
@@ -1093,7 +1113,11 @@ $processed_kyc
                         <pre
                             style="background-color: #e8e8e8; padding: 5px; border-radius: 4px; font-family: monospace; white-space: pre-wrap;">
 ...
-| INTO splunk_sample_kyc_index;
+// Set index for KYC events
+| eval index = "kyc_events"
+
+// Send preprocess_kyc_events to Splunk index: kyc_events
+| into $destination;
         </pre>
                     </div>
                     <p>This conceptual pipeline demonstrates how Edge Processor can be used to apply
@@ -1284,7 +1308,8 @@ $processed_kyc
             <html>
                 <ul>
                     <h1>
-                        <img width="35" src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
+                        <img width="35"
+                            src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                         <b>AMER REGULATIONS</b>
                     </h1>
                     <table>
@@ -1837,14 +1862,14 @@ $processed_kyc
                             irretrievably redacted immediately. The fields are set to null or
                             specific "REDACTED_SAD" strings, or removed entirely.</p>
                         <p>
-                            <strong>Conceptual SPL2 (applied to <code>$raw_transactions</code>
+                            <strong>Conceptual SPL2 (applied to <code>$pipeline = | from $source</code>
                                 stream):</strong>
                         </p>
                         <pre
                             style="background-color: #e8e8e8; padding: 5px; border-radius: 4px; font-family: monospace; white-space: pre-wrap;">
-$processed_transactions = SELECT * FROM $raw_transactions
-| eval cvv = null(), track1_data = null(), track2_data = null(), pin_block = null() 
-// Or use: | fields remove cvv, track1_data, track2_data, pin_block
+// Ensure all potential SAD fields are covered based on your specific data sources.
+| eval cvv = null, track1_data = null, track2_data = null, pin = null, pin_block = null 
+// Or use: | fields - cvv, track1_data, track2_data, pin, pin_block
 // Ensure all potential SAD fields are covered based on your specific data sources.
         </pre>
                     </div>
@@ -1887,9 +1912,8 @@ $processed_transactions = SELECT * FROM $raw_transactions
                         <pre
                             style="background-color: #e8e8e8; padding: 5px; border-radius: 4px; font-family: monospace; white-space: pre-wrap;">
 ...
-| where NOT (match(lower(message), "debug_verbose_level_5")) // Example filter
-| fields keep _time, _raw_extracted_fields, pan, cardholder_name, expiry_date, transaction_amount, approval_code, /* other essential fields */
-// Explicitly keep only necessary fields for the Splunk-bound event. _raw will be the transformed event.
+// Example: Filter out debug level logs or non-transactional events
+| where NOT (match(lower(message), "debug_verbose_level_5"))
         </pre>
                     </div>
 
@@ -1908,11 +1932,11 @@ $processed_transactions = SELECT * FROM $raw_transactions
                             style="background-color: #e8e8e8; padding: 5px; border-radius: 4px; font-family: monospace; white-space: pre-wrap;">
 ...
 // Route to central Splunk for Req 10 monitoring
-| INTO splunk_pci_monitoring_index;
+| into $destination
 
 // Optionally, if a separate archive of these sanitized logs is needed:
-// $archive_stream = SELECT * FROM $processed_transactions; // Assuming $processed_transactions is the final state
-// $archive_stream | INTO s3_pci_sanitized_archive_bucket OPTIONS (format="json");
+// Assuming all pre-processing is complete and SAD is removed: 
+| thru [ | into $destination2 ]
         </pre>
                         <p>
                             <em>Note: It's crucial that any "original" log archival strategy for PCI
@@ -2112,7 +2136,8 @@ $processed_transactions = SELECT * FROM $raw_transactions
             <html>
                 <ul>
                     <h1>
-                        <img width="35" src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
+                        <img width="35"
+                            src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                         <b>EMEA REGULATIONS</b>
                     </h1>
                     <table>
@@ -2885,7 +2910,8 @@ $processed_logs
             <html>
                 <ul>
                     <h1>
-                        <img width="35" src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
+                        <img width="35"
+                            src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                         <b>APJC REGULATIONS</b>
                     </h1>
                     <table>
@@ -3677,7 +3703,8 @@ $contextualized_logs = SELECT * FROM $raw_edge_logs
             <html>
                 <ul>
                     <h1>
-                        <img width="35" src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
+                        <img width="35"
+                            src="/static/app/Data_Compliance_Pipelines/SA_image_icon_target.png" />
                         <b>A/NZ REGULATIONS</b>
                     </h1>
                     <table>
@@ -4196,99 +4223,87 @@ $contextualized_logs = SELECT * FROM $raw_edge_logs
 
                     <div
                         style="border: 1px solid #eee; padding: 10px; margin-bottom:10px; background-color: #f9f9f9;">
-                        <h4>Stage 1: Ingest Operational Logs from Edge Systems</h4>
-                        <p><strong>Description:</strong> The Edge Processor collects logs from
-                            various systems supporting business operations in the A/NZ region,
-                            including critical applications, infrastructure, and service provider
-                            interfaces.</p>
+                        <h4>Stage 1: Ingest and Standardize CPS 230 Events</h4>
+                        <p><strong>Description:</strong> Ingest events from the CPS 230 simulator. Standardize key fields by trimming whitespace and converting to a consistent case for reliable processing.</p>
                         <p>
                             <strong>Conceptual SPL2:</strong>
-                            <code>$raw_op_logs = FROM anz_operational_systems_feed</code>
-                        </p>
-                    </div>
-
-                    <div
-                        style="border: 1px solid #eee; padding: 10px; margin-bottom:10px; background-color: #f9f9f9;">
-                        <h4>Stage 2: Enrich with Critical Operation (CO) and Tolerance Context</h4>
-                        <p><strong>Description:</strong> Enrich logs by mapping system IDs or event
-                            sources to defined Critical Operations (COs) and their associated
-                            disruption tolerance levels (e.g., Maximum Tolerable Outage from BCP).</p>
-                        <p>
-                            <strong>Conceptual SPL2 (applied to <code>$raw_op_logs</code> stream):</strong>
                         </p>
                         <pre
                             style="background-color: #e8e8e8; padding: 5px; border-radius: 4px; font-family: monospace; white-space: pre-wrap;">
-$enriched_logs = SELECT * FROM $raw_op_logs
-| eval critical_operation_id = lookup("anz_critical_operations_map.csv", source_system_id, "co_identifier") 
-| eval co_max_downtime_mins = tonumber(lookup("anz_critical_operations_map.csv", critical_operation_id, "max_downtime_tolerance_mins"))
-| eval co_description = lookup("anz_critical_operations_map.csv", critical_operation_id, "co_name");
-        </pre>
+$pipeline =
+| from splunk_hec("sample_cps")
+| eval entity_id = upper(trim(entity_id)),
+       critical_operation_id = upper(trim(critical_operation_id)),
+       status = lower(trim(status)),
+       risk_level = lower(trim(risk_level));
+                        </pre>
                     </div>
 
                     <div
                         style="border: 1px solid #eee; padding: 10px; margin-bottom:10px; background-color: #f9f9f9;">
-                        <h4>Stage 3: Identify Potential Tolerance Breaches and Significant Incidents</h4>
-                        <p><strong>Description:</strong> Analyze event data against enriched context
-                            to identify potential breaches of tolerance levels or other significant
-                            operational incidents relevant to CPS 230.</p>
+                        <h4>Stage 2: Enrich Events with Risk Context</h4>
+                        <p><strong>Description:</strong> Enrich events with a numeric severity score to facilitate threshold-based alerting and reporting. This helps quantify risk levels for easier analysis.</p>
+                        <p>
+                            <strong>Conceptual SPL2 (continuing from Stage 1):</strong>
+                        </p>
+                        <pre
+                            style="background-color: #e8e8e8; padding: 5px; border-radius: 4px; font-family: monospace; white-space: pre-wrap;">
+...
+| eval severity_numeric = case(
+    cps230_incident_severity == "Critical", 4,
+    cps230_incident_severity == "High", 3,
+    cps230_incident_severity == "Medium", 2,
+    cps230_incident_severity == "Low", 1,
+    true, 0
+  );
+                        </pre>
+                    </div>
+
+                    <div
+                        style="border: 1px solid #eee; padding: 10px; margin-bottom:10px; background-color: #f9f9f9;">
+                        <h4>Stage 3: Identify Significant Incidents and Filter Noise</h4>
+                        <p><strong>Description:</strong> Filter out low-value, informational events to reduce noise. This pipeline retains events that are explicitly marked as APRA notification candidates or have a high severity, ensuring focus on the most critical incidents.</p>
                         <p>
                             <strong>Conceptual SPL2 (continuing from Stage 2):</strong>
                         </p>
                         <pre
                             style="background-color: #e8e8e8; padding: 5px; border-radius: 4px; font-family: monospace; white-space: pre-wrap;">
 ...
-| eval estimated_impact_duration_mins = if(event_type == "SYSTEM_OUTAGE", parse_duration(message, "mins"), 0) // Example
-| eval tolerance_breach_imminent = if(isnotnull(co_max_downtime_mins) AND estimated_impact_duration_mins > (co_max_downtime_mins * 0.75) , "true", "false")
-| eval is_significant_incident = if(tolerance_breach_imminent == "true" OR severity_level IN ("CRITICAL", "HIGH") AND isnotnull(critical_operation_id), "true", "false");
-        </pre>
+| where apra_notification_candidate == true OR severity_numeric >= 3;
+                        </pre>
                     </div>
 
                     <div
                         style="border: 1px solid #eee; padding: 10px; margin-bottom:10px; background-color: #f9f9f9;">
-                        <h4>Stage 4: Filter Routine Logs, Keep Significant Events</h4>
-                        <p><strong>Description:</strong> Filter out routine, informational logs that
-                            do not indicate a risk to critical operations, while ensuring all
-                            significant incidents or events impacting COs are retained.</p>
+                        <h4>Stage 4: Pseudonymize User and Redact Sensitive Information</h4>
+                        <p><strong>Description:</strong> To protect privacy and sensitive data, pseudonymize the reporter's user ID using a salted hash and redact the vendor name from third-party risk events before forwarding.</p>
                         <p>
                             <strong>Conceptual SPL2 (continuing from Stage 3):</strong>
                         </p>
                         <pre
                             style="background-color: #e8e8e8; padding: 5px; border-radius: 4px; font-family: monospace; white-space: pre-wrap;">
 ...
-| where is_significant_incident == "true" OR (event_type == "SERVICE_PROVIDER_ALERT" AND isnotnull(service_provider_involved)) OR (match(message, /APRA_NOTIFY_KEYWORD/))
-// This ensures only events flagged as significant or related to specific CPS 230 concerns are passed on.
-// Routine "OK" status from non-COs would be dropped if not meeting these conditions.
-        </pre>
+| eval reporter_user_id = if(isnotnull(reporter_user_id), sha256(reporter_user_id + "cps230_salt"), null)
+| eval vendor_name = if(isnotnull(vendor_name), "REDACTED", null);
+                        </pre>
                     </div>
 
                     <div
                         style="border: 1px solid #eee; padding: 10px; margin-bottom:10px; background-color: #f9f9f9;">
-                        <h4>Stage 5: Route Processed Data for CPS 230 Monitoring and APRA
-                            Notification Assessment</h4>
-                        <p><strong>Description:</strong> Route the filtered and enriched operational
-                            risk events to specific Splunk indexes. Events flagged as potential APRA
-                            notification candidates could go to a priority queue/index.</p>
+                        <h4>Stage 5: Route Processed Data for Monitoring and Archival</h4>
+                        <p><strong>Description:</strong> Route the processed, significant events to different destinations. APRA notification candidates are sent to a high-priority index for immediate review, while other significant events are sent for operational monitoring. A copy is also sent to a long-term S3 archive.</p>
                         <p>
-                            <strong>Conceptual SPL2 (final stage for <code>$enriched_logs</code>
-                                stream after all processing):</strong>
+                            <strong>Conceptual SPL2 (final stage):</strong>
                         </p>
                         <pre
                             style="background-color: #e8e8e8; padding: 5px; border-radius: 4px; font-family: monospace; white-space: pre-wrap;">
 ...
-// Route events potentially requiring APRA notification
-| IF is_significant_incident == "true" AND (tolerance_breach_imminent == "true" OR /* other APRA notification criteria */ ) THEN
-    INTO splunk_anz_apra_notify_candidates_index;
-// Route other significant operational risk events
-| ELSE IF is_significant_incident == "true" THEN
-    INTO splunk_anz_cps230_significant_events_index;
-// Route material service provider related events
-| ELSE IF isnotnull(service_provider_involved) THEN
-    INTO splunk_anz_service_provider_monitoring_index;
-// Optionally, archive a copy of these processed, significant events
-// | CLONE dest_count=2 
-// | WHERE _clone_id == 1
-// | INTO s3_anz_cps230_processed_archive OPTIONS(format="json");
-        </pre>
+| into s3("s3://anz-cps230-processed-archive") where _ = true;
+
+| into splunk("splunk_anz_apra_notify_candidates") where apra_notification_candidate == true;
+
+| into splunk("splunk_anz_cps230_significant_events") where apra_notification_candidate == false;
+                        </pre>
                     </div>
                     <p>This Edge Processor pipeline helps A/NZ entities to proactively identify,
                         assess, and manage operational risks impacting critical operations, thereby

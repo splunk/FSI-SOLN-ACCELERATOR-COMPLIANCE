@@ -19,6 +19,7 @@ fake = Faker()
 # --- Configuration ---
 DEFAULT_NUM_EVENTS = 500
 DEFAULT_CSV_FILENAME = "rmit_malaysia_synthetic_events.csv"
+DEFAULT_JSON_FILENAME = "rmit_malaysia_synthetic_events.json"
 # HOURS_BACKFILL_PER_100_EVENTS = 168/9 # Each 100 events, go back 12 hours
 HOURS_BACKFILL_PER_100_EVENTS = 1.0  # Match PCI simulator default: 1 hour per 100 events
 
@@ -95,7 +96,14 @@ def generate_cybersecurity_event_details():
         "status": status,
         "impacted_systems": random.sample(CRITICAL_SYSTEMS_MY, k=random.randint(1,3)),
         "detection_source": random.choice(["SIEM_Alert", "IDS_IPS", "EDR_Alert", "User_Reported", "Threat_Intelligence_Feed"]),
-        "response_actions_taken": fake.sentence(nb_words=8) if status != "Detected" else None,
+        "response_actions_taken": (
+            random.choice([
+                "Isolated affected systems and initiated forensic analysis.",
+                "Reset user credentials and increased monitoring.",
+                "Applied emergency patch and notified stakeholders.",
+                "Blocked malicious IPs and updated firewall rules."
+            ]) if status not in ["Detected"] else None
+        ),
         "bnm_notification_sent": bnm_notified,
         "bnm_report_ref_id": f"BNMREP-{str(uuid.uuid4())[:6].upper()}" if bnm_notified else None,
     }
@@ -111,7 +119,12 @@ def generate_it_operations_event_details():
         "affected_service": random.choice(CRITICAL_SYSTEMS_MY),
         "severity": severity,
         "duration_minutes": random.randint(5, 720) if "Outage" in op_event_type or "Degradation" in op_event_type else None,
-        "resolution_details": fake.sentence(nb_words=10) if "Successful" not in op_event_type and random.random() > 0.2 else None,
+        "resolution_details": random.choice([
+            "System rebooted and services restored successfully.",
+            "Capacity increased to handle peak load.",
+            "Root cause identified and mitigated.",
+            "Backup restored after outage."
+        ]) if "Successful" not in op_event_type and random.random() > 0.2 else None,
         "technology_domain": random.choice(TECHNOLOGY_DOMAINS),
     }
 
@@ -122,7 +135,12 @@ def generate_data_governance_event_details():
         "data_sensitivity_level": random.choice(["Confidential", "Restricted", "Internal", "Public"]),
         "source_data_asset": random.choice(["Customer_Database", "Transaction_Logs", "Employee_Records", "Financial_Reports"]),
         "outcome_status": random.choice(["Investigating", "Action_Taken", "Resolved", "Completed", "Failed"]),
-        "details": fake.sentence(nb_words=12),
+        "details": random.choice([
+            "Unauthorized access attempt detected in customer database.",
+            "Data retention policy violation identified and reported.",
+            "Data loss prevention alert triggered by abnormal activity.",
+            "Quality anomaly found in transaction records."
+        ]),
     }
 
 def generate_bcm_dr_activity_details():
@@ -137,21 +155,25 @@ def generate_bcm_dr_activity_details():
     }
 
 def generate_third_party_risk_update_details():
-    vendor = fake.company()
+    vendor = random.choice([
+        "Acme Financial Services", "Global Data Solutions", "SecureTech Partners", "Prime Risk Advisors", "NextGen IT Solutions"
+    ])
     return {
         "third_party_id": f"TPRM-{str(uuid.uuid4())[:7].upper()}",
         "vendor_name": vendor,
         "service_type": random.choice(THIRD_PARTY_SERVICE_TYPES_MY),
         "risk_assessment_update_reason": random.choice(["Annual_Review", "New_Service_Onboarding", "Vendor_Incident_Reported", "Contract_Renewal"]),
         "overall_risk_rating": random.choice(RMIT_INCIDENT_SEVERITY[1:]), # Low to Critical
-        "key_risks_identified": [fake.bs() for _ in range(random.randint(1,3))],
+        "key_risks_identified": [random.choice([
+            "Data privacy concerns", "Service availability risk", "Compliance gap", "Third-party dependency", "Contractual ambiguity"
+        ]) for _ in range(random.randint(1,3))],
         "due_diligence_status": random.choice(["Completed", "In_Progress", "Pending_Information"]),
     }
 
 def generate_change_request_log_details():
     return {
         "change_request_id": f"CRQ{random.randint(100000, 999999)}",
-        "change_description": f"Update to {random.choice(CRITICAL_SYSTEMS_MY)} for {fake.bs()}",
+    "change_description": f"Update to {random.choice(CRITICAL_SYSTEMS_MY)} for {random.choice(['performance improvement', 'security enhancement', 'regulatory compliance', 'feature upgrade', 'bug fix'])}",
         "change_status": random.choice(["Submitted", "Approved", "Implementation_Scheduled", "In_Progress", "Completed_Successfully", "Failed", "Rolled_Back"]),
         "risk_impact_assessment": random.choice(RMIT_INCIDENT_SEVERITY),
         "planned_start_datetime_utc": (datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(days=random.randint(1,30))).isoformat().replace("+00:00", "Z"),
@@ -274,6 +296,10 @@ if __name__ == "__main__":
         "--output-csv", type=str, default=None,
         help=f"Filename to save events as CSV. If not provided and --send-to-splunk is also absent, defaults to '{DEFAULT_CSV_FILENAME}'.",
     )
+    parser.add_argument(
+        "--output-json", type=str, default=None,
+        help=f"Filename to save events as JSON (one event per line - JSONL format).",
+    )
     hec_group = parser.add_argument_group('Splunk HEC Options')
     hec_group.add_argument("--splunk-url", default=SPLUNK_HEC_URL_DEFAULT)
     hec_group.add_argument("--splunk-token", default=SPLUNK_HEC_TOKEN_DEFAULT)
@@ -288,7 +314,7 @@ if __name__ == "__main__":
     gen_group.add_argument("--hours-backfill-per-100", type=float, default=HOURS_BACKFILL_PER_100_EVENTS)  # Use the updated variable
     args = parser.parse_args()
 
-    if not args.send_to_splunk and not args.output_csv:
+    if not args.send_to_splunk and not args.output_csv and not args.output_json:
         args.output_csv = DEFAULT_CSV_FILENAME
         print(f"No explicit output specified. Defaulting to save to CSV: {args.output_csv}", file=sys.stderr)
     if args.send_to_splunk and args.splunk_token == "YOUR_SPLUNK_HEC_TOKEN":
@@ -342,6 +368,16 @@ if __name__ == "__main__":
             df.to_csv(args.output_csv, index=False)
             print(f"Successfully saved events to {args.output_csv}", file=sys.stderr)
         except Exception as e: print(f"Error saving CSV to {args.output_csv}: {e}", file=sys.stderr)
+
+    if args.output_json:
+        print(f"\nSaving {len(all_generated_events)} events to {args.output_json}...", file=sys.stderr)
+        try:
+            with open(args.output_json, 'w') as f:
+                for event in all_generated_events:
+                    f.write(json.dumps(event) + '\n')
+            print(f"Successfully saved events to {args.output_json}", file=sys.stderr)
+        except Exception as e:
+            print(f"Error saving JSON to {args.output_json}: {e}", file=sys.stderr)
 
     print(f"\nFinished generating {args.num_events} events.", file=sys.stderr)
     if args.send_to_splunk: print("Please check your Splunk instance for the ingested data.", file=sys.stderr)

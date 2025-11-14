@@ -1,0 +1,21 @@
+$pipeline =
+| from $source
+
+// REDACT cardholder_name completely
+| eval _raw = json_set(_raw, "cardholder_name", "REDACTED_NAME")
+
+// Mask the PAN according to PCI DSS Requirement 3.4 (e.g., first 6, last 4 digits visible)
+| eval masked_pan = replace(_raw.pan, /(\d{6})(\d+)(\d{4})/, "$1******$3")
+| eval _raw = json_set(_raw, "pan", masked_pan)
+
+// Mask account_number except last 4 digits, this is not the same as PAN
+| eval masked_acct_number = replace(_raw.account_number, /(\d{8})(\d{4})/, "XXXXXXXX $2")
+| eval _raw = json_set(_raw, "account_number", masked_acct_number)
+| fields - masked_pan, masked_acct_number
+
+// Drop sensitive fields that cannot be stored
+| eval _raw = json_delete(_raw, "cvv", "track1_data", "track2_data", "pin", "pin_block")
+
+// Set index for PCI events
+| eval index = "pci_events"
+| into $destination;

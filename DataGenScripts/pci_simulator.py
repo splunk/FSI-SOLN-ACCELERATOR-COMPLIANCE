@@ -7,7 +7,11 @@ from datetime import datetime, timedelta, timezone
 
 import pandas as pd # Added for CSV output
 import requests
+import urllib3
 from faker import Faker
+
+# --- Disable insecure request warnings for self-signed certs (if applicable) ---
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # --- Default Splunk HEC Configuration (can be overridden by flags) ---
 SPLUNK_HEC_URL_DEFAULT = "https://localhost:8088/services/collector/event"
@@ -94,6 +98,27 @@ def generate_expiration_date_raw():
     return f"{month:02d}/{year:02d}"
 def generate_track_data(pan_value, expiration_date_value):
     cleaned_pan = pan_value.replace(".", "").replace("-", "")
+    exp_parts = expiration_date_value.replace("/", "").replace(".", "").replace("-", "")
+    exp_yy = exp_parts[2:4]
+    exp_mm = exp_parts[0:2]
+    service_code = str(random.randint(200, 220))
+    discretionary_data = "".join(random.choices("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ", k=random.randint(10, 20)))
+    return f";{cleaned_pan}={exp_yy}{exp_mm}{service_code}{discretionary_data}?"
+def generate_track2_data(pan_value, expiration_date_value):
+    cleaned_pan = pan_value.replace(".", "").replace("-", "")
+    exp_parts = expiration_date_value.replace("/", "").replace(".", "").replace("-", "")
+    exp_yy = exp_parts[2:4]
+    exp_mm = exp_parts[0:2]
+    service_code = str(random.randint(200, 220))
+    discretionary_data = "".join(random.choices("0123456789", k=random.randint(3, 10)))
+    # Track 2 format: ;PAN=YYMMSSSdddd?
+    return f";{cleaned_pan}={exp_yy}{exp_mm}{service_code}{discretionary_data}?"
+
+def generate_pin_block(pin):
+    # Simulate a PIN block as a hex string (not real encryption)
+    pin_str = str(pin).ljust(16, 'F')
+    return pin_str.encode('utf-8').hex()[:16]
+    cleaned_pan = pan_value.replace(".", "").replace("-", "")
     exp_parts = (
         expiration_date_value.replace("/", "")
         .replace(".", "")
@@ -112,6 +137,7 @@ def generate_pci_event_for_processing(event_count, current_datetime):
     service_code = str(random.randint(200, 299))
     card_type = random.choice(["visa", "mastercard", "amex", "discover"])
     pan_raw = generate_full_pan_raw(card_type=card_type)
+    account_number = str(random.randint(10**11, 10**12 - 1))
     exp_date_raw = generate_expiration_date_raw()
     pan_formatted = pan_drift_manager.get_formatted_value(event_count, pan_raw)
     expiration_date_formatted = exp_date_drift_manager.get_formatted_value(
@@ -120,6 +146,8 @@ def generate_pci_event_for_processing(event_count, current_datetime):
     cvv = generate_cvv()
     pin = generate_pin()
     track = generate_track_data(pan_formatted, expiration_date_formatted)
+    track2 = generate_track2_data(pan_formatted, expiration_date_formatted)
+    pin_block = generate_pin_block(pin)
     event_data = {
         "event_type": "transaction_log_raw",
         "transaction_id": str(fake.uuid4()),
@@ -144,21 +172,19 @@ def generate_pci_event_for_processing(event_count, current_datetime):
             "POS_terminal", "ATM_machine",
         ]),
         "transaction_class": "domestic",
-        "account_number_full": pan_formatted,
+    "account_number": account_number,
         "pan": pan_raw,
         "expiry_date": expiration_date_formatted,
         "cvv": cvv,
         "pin": pin,
         "service_code": service_code,
-        "track1_data": track,
-        "message": f"Raw payment data received for account ending {pan_raw[-4:]}. "
-                   f"Full PAN: {pan_formatted}, Exp: {expiration_date_formatted}, "
-                   f"CVV: {cvv}, PIN: {pin}, Track: {track}. "
-                   f"Timestamp: {current_datetime.isoformat()}.",
+    "track1_data": track,
+    "track2_data": track2,
+    "pin_block": pin_block,
     }
     return event_data
 
-# --- HEC Sender (same as before) ---
+# --- HEC Sender ---
 def send_to_splunk_hec(event, hec_url, hec_token, hec_index, hec_sourcetype, hec_source, verify_ssl):
     headers = {
         "Authorization": f"Splunk {hec_token}",
@@ -206,6 +232,12 @@ if __name__ == "__main__":
         default=None,
         help=f"Filename to save logs as CSV (e.g., pci_logs.csv). If not provided and --send-to-splunk is also absent, defaults to '{DEFAULT_CSV_FILENAME}'.",
     )
+    parser.add_argument(
+        "--output-file",
+        type=str,
+        default=None,
+        help="Filename to save events as JSON (one event per line, same format as HEC payload).",
+    )
 
     # HEC Arguments (only relevant if --send-to-splunk is used)
     hec_group = parser.add_argument_group('Splunk HEC Options (if --send-to-splunk is used)')
@@ -232,7 +264,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Determine if any output action is requested
-    if not args.send_to_splunk and not args.output_csv:
+    if not args.send_to_splunk and not args.output_csv and not args.output_file:
         args.output_csv = DEFAULT_CSV_FILENAME # Default to CSV if no other action
         print(f"No explicit output specified. Defaulting to save to CSV: {args.output_csv}", file=sys.stderr)
 
@@ -245,8 +277,6 @@ if __name__ == "__main__":
         print(f"Splunk HEC sending enabled: URL={args.splunk_url}", file=sys.stderr)
         if not args.splunk_verify_ssl:
             print("SSL verification for HEC is DISABLED.", file=sys.stderr)
-            import urllib3
-            urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
     print(f"Generating {args.num_events} raw PCI events...", file=sys.stderr)
 
@@ -289,6 +319,16 @@ if __name__ == "__main__":
             print(f"Successfully saved events to {args.output_csv}", file=sys.stderr)
         except Exception as e:
             print(f"Error saving CSV to {args.output_csv}: {e}", file=sys.stderr)
+
+    if args.output_file:
+        print(f"\nSaving {len(all_generated_events)} events to {args.output_file} (JSON format)...", file=sys.stderr)
+        try:
+            with open(args.output_file, 'w') as f:
+                for event in all_generated_events:
+                    f.write(json.dumps(event) + '\n')
+            print(f"Successfully saved events to {args.output_file}", file=sys.stderr)
+        except Exception as e:
+            print(f"Error saving JSON to {args.output_file}: {e}", file=sys.stderr)
 
 
     print(f"\nFinished generating {args.num_events} events.", file=sys.stderr)

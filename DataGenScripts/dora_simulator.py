@@ -85,12 +85,33 @@ def generate_log_entry():
     )[0]
 
     component = random.choice(SYSTEM_COMPONENTS)
-    user_id = (
-        str(fake.unique.uuid4())
-        if random.random() > 0.3
-        else "SYSTEM"
-    )
-    ip_address = fake.ipv4() if user_id != "SYSTEM" else "N/A"
+    USER_ID_DICT = {
+        "u001": "alice.smith",
+        "u002": "bob.jones",
+        "u003": "carol.lee",
+        "u004": "daniel.kim",
+        "u005": "eve.williams",
+        "u006": "frank.miller",
+        "u007": "grace.hopper",
+        "u008": "henry.adams",
+        "u009": "irene.chen",
+        "u010": "jack.taylor",
+        "u011": "karen.murphy",
+        "u012": "luke.evans",
+        "u013": "mia.thompson",
+        "u014": "nina.patel",
+        "u015": "oliver.wood",
+        "u016": "paula.ramirez",
+        "u017": "quentin.brown",
+        "u018": "rachel.green",
+        "u019": "samuel.clark",
+        "u020": "tina.foster"
+    }
+    if random.random() > 0.3:
+        user_id = random.choice(list(USER_ID_DICT.values()))
+    else:
+        user_id = "SYSTEM"
+    ip_address = fake.ipv4() if user_id != "SYSTEM" else "000.000.000.000"
     source_hostname = f"srv-{component.replace('_', '-')}-{random.randint(1,5)}.prod.example.com"
 
     # DORA-specific event patterns
@@ -125,7 +146,12 @@ def generate_log_entry():
         dora_incident_classification = "Security Event"
         is_reportable_dora_incident = False
     elif log_level == "INFO":
-        description = f"Operation {fake.word()}_{fake.word()} completed successfully on {component}."
+        operation_names = [
+            "daily_backup", "user_sync", "transaction_post", "risk_scan", "api_refresh",
+            "settlement_run", "auth_token_rotation", "fraud_check", "config_update", "db_maintenance"
+        ]
+        op_name = random.choice(operation_names)
+        description = f"Operation {op_name} completed successfully on {component}."
         event_type = "operational_event"
         severity_level = log_level
         impacted_services = [component]
@@ -135,7 +161,11 @@ def generate_log_entry():
         dora_incident_classification = "Operational Event"
         is_reportable_dora_incident = False
     else:  # WARNING
-        description = f"Performance degradation detected in {component}. Metric: {fake.word()}_latency, Value: {random.randint(100,1000)}ms."
+        metric_names = [
+            "cpu", "memory", "disk", "network", "api", "db", "response", "latency", "throughput", "error_rate"
+        ]
+        metric = random.choice(metric_names)
+        description = f"Performance degradation detected in {component}. Metric: {metric}_latency, Value: {random.randint(100,1000)}ms."
         event_type = "performance_warning"
         severity_level = log_level
         impacted_services = [component]
@@ -170,6 +200,7 @@ def generate_log_entry():
         "incident_description": incident_description,
         "dora_incident_classification": dora_incident_classification,
         "is_reportable_dora_incident": is_reportable_dora_incident,
+
     }
     # Add _raw field as a JSON string of the event
     event["_raw"] = json.dumps(event)
@@ -242,6 +273,12 @@ def main():
         type=str,
         default=None,
         help="Filename to save logs as CSV (e.g., dora_logs.csv). If not provided, CSV is not saved unless --send-to-splunk is also absent.",
+    )
+    parser.add_argument(
+        "--output-file",
+        type=str,
+        default=None,
+        help="Filename to save events as JSON (one event per line, same format as HEC payload).",
     )
     parser.add_argument(
         "--send-to-splunk",
@@ -358,6 +395,16 @@ def main():
         df = pd.DataFrame(log_data_list)
         df.to_csv(csv_output_file, index=False)
         print(f"Successfully saved logs to {csv_output_file}", file=sys.stderr)
+
+    if args.output_file:
+        print(f"\nSaving {len(log_data_list)} events to {args.output_file} (JSON format)...", file=sys.stderr)
+        try:
+            with open(args.output_file, 'w') as f:
+                for event in log_data_list:
+                    f.write(json.dumps(event) + '\n')
+            print(f"Successfully saved events to {args.output_file}", file=sys.stderr)
+        except Exception as e:
+            print(f"Error saving JSON to {args.output_file}: {e}", file=sys.stderr)
 
     print(f"\nScript finished. Generated {args.num_events} total logs.", file=sys.stderr) # Uses args.num_events
 

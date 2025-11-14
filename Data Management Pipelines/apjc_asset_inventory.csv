@@ -1,0 +1,121 @@
+host,criticality,service_impacted,dc_location
+Maybank_MY,Tier1,Core Banking System,KUL-DC2
+Maybank_MY,Tier2,RENTAS Gateway,HKG-DC3
+Maybank_MY,Tier1,IBG Processing,HKG-DC3
+Maybank_MY,Tier1,SWIFT Interface,SGP-DC1
+Maybank_MY,Tier2,Online Banking Platform,SGP-DC1
+Maybank_MY,Tier1,Mobile Banking App,JPN-DC4
+Maybank_MY,Tier2,ATM Network Controller,SGP-DC1
+Maybank_MY,Tier1,Trade Finance System,JPN-DC4
+Maybank_MY,Tier1,Treasury Management System,HKG-DC3
+Maybank_MY,Tier1,Fraud Detection Engine,SGP-DC1
+Maybank_MY,Tier0,Regulatory Reporting System,HKG-DC3
+Maybank_MY,Tier1,Customer Data Hub,JPN-DC4
+CIMB_Group_MY,Tier3,Core Banking System,HKG-DC3
+CIMB_Group_MY,Tier1,RENTAS Gateway,JPN-DC4
+CIMB_Group_MY,Tier3,IBG Processing,SGP-DC1
+CIMB_Group_MY,Tier3,SWIFT Interface,JPN-DC4
+CIMB_Group_MY,Tier2,Online Banking Platform,SGP-DC1
+CIMB_Group_MY,Tier2,Mobile Banking App,HKG-DC3
+CIMB_Group_MY,Tier2,ATM Network Controller,JPN-DC4
+CIMB_Group_MY,Tier3,Trade Finance System,SGP-DC1
+CIMB_Group_MY,Tier1,Treasury Management System,KUL-DC2
+CIMB_Group_MY,Tier0,Fraud Detection Engine,JPN-DC4
+CIMB_Group_MY,Tier3,Regulatory Reporting System,KUL-DC2
+CIMB_Group_MY,Tier1,Customer Data Hub,KUL-DC2
+Public_Bank_MY,Tier3,Core Banking System,HKG-DC3
+Public_Bank_MY,Tier0,RENTAS Gateway,HKG-DC3
+Public_Bank_MY,Tier2,IBG Processing,SGP-DC1
+Public_Bank_MY,Tier1,SWIFT Interface,JPN-DC4
+Public_Bank_MY,Tier0,Online Banking Platform,JPN-DC4
+Public_Bank_MY,Tier1,Mobile Banking App,SGP-DC1
+Public_Bank_MY,Tier1,ATM Network Controller,JPN-DC4
+Public_Bank_MY,Tier2,Trade Finance System,HKG-DC3
+Public_Bank_MY,Tier3,Treasury Management System,HKG-DC3
+Public_Bank_MY,Tier1,Fraud Detection Engine,KUL-DC2
+Public_Bank_MY,Tier0,Regulatory Reporting System,KUL-DC2
+Public_Bank_MY,Tier1,Customer Data Hub,JPN-DC4
+RHB_Bank_MY,Tier0,Core Banking System,KUL-DC2
+RHB_Bank_MY,Tier3,RENTAS Gateway,KUL-DC2
+RHB_Bank_MY,Tier2,IBG Processing,HKG-DC3
+RHB_Bank_MY,Tier2,SWIFT Interface,HKG-DC3
+RHB_Bank_MY,Tier1,Online Banking Platform,JPN-DC4
+RHB_Bank_MY,Tier1,Mobile Banking App,KUL-DC2
+RHB_Bank_MY,Tier2,ATM Network Controller,SGP-DC1
+RHB_Bank_MY,Tier2,Trade Finance System,HKG-DC3
+RHB_Bank_MY,Tier2,Treasury Management System,SGP-DC1
+RHB_Bank_MY,Tier3,Fraud Detection Engine,SGP-DC1
+RHB_Bank_MY,Tier0,Regulatory Reporting System,HKG-DC3
+RHB_Bank_MY,Tier0,Customer Data Hub,HKG-DC3
+Hong_Leong_Bank_MY,Tier2,Core Banking System,JPN-DC4
+Hong_Leong_Bank_MY,Tier1,RENTAS Gateway,SGP-DC1
+Hong_Leong_Bank_MY,Tier2,IBG Processing,JPN-DC4
+Hong_Leong_Bank_MY,Tier0,SWIFT Interface,JPN-DC4
+Hong_Leong_Bank_MY,Tier1,Online Banking Platform,HKG-DC3
+Hong_Leong_Bank_MY,Tier2,Mobile Banking App,JPN-DC4
+Hong_Leong_Bank_MY,Tier3,ATM Network Controller,KUL-DC2
+Hong_Leong_Bank_MY,Tier3,Trade Finance System,JPN-DC4
+Hong_Leong_Bank_MY,Tier3,Treasury Management System,SGP-DC1
+Hong_Leong_Bank_MY,Tier2,Fraud Detection Engine,HKG-DC3
+Hong_Leong_Bank_MY,Tier0,Regulatory Reporting System,KUL-DC2
+Hong_Leong_Bank_MY,Tier3,Customer Data Hub,SGP-DC1
+AmBank_Group_MY,Tier0,Core Banking System,JPN-DC4
+AmBank_Group_MY,Tier3,RENTAS Gateway,SGP-DC1
+AmBank_Group_MY,Tier3,IBG Processing,KUL-DC2
+AmBank_Group_MY,Tier1,SWIFT Interface,SGP-DC1
+AmBank_Group_MY,Tier0,Online Banking Platform,JPN-DC4
+AmBank_Group_MY,Tier0,Mobile Banking App,KUL-DC2
+AmBank_Group_MY,Tier1,ATM Network Controller,KUL-DC2
+AmBank_Group_MY,Tier0,Trade Finance System,HKG-DC3
+AmBank_Group_MY,Tier2,Treasury Management System,JPN-DC4
+AmBank_Group_MY,Tier3,Fraud Detection Engine,JPN-DC4
+AmBank_Group_MY,Tier2,Regulatory Reporting System,JPN-DC4
+AmBank_Group_MY,Tier3,Customer Data Hub,KUL-DC2
+UOB_Malaysia_MY,Tier1,Core Banking System,JPN-DC4
+UOB_Malaysia_MY,Tier3,RENTAS Gateway,SGP-DC1
+UOB_Malaysia_MY,Tier0,IBG Processing,KUL-DC2
+UOB_Malaysia_MY,Tier1,SWIFT Interface,KUL-DC2
+UOB_Malaysia_MY,Tier1,Online Banking Platform,KUL-DC2
+UOB_Malaysia_MY,Tier1,Mobile Banking App,SGP-DC1
+UOB_Malaysia_MY,Tier2,ATM Network Controller,JPN-DC4
+UOB_Malaysia_MY,Tier2,Trade Finance System,JPN-DC4
+UOB_Malaysia_MY,Tier1,Treasury Management System,SGP-DC1
+UOB_Malaysia_MY,Tier3,Fraud Detection Engine,KUL-DC2
+UOB_Malaysia_MY,Tier0,Regulatory Reporting System,HKG-DC3
+UOB_Malaysia_MY,Tier2,Customer Data Hub,SGP-DC1
+OCBC_Bank_Malaysia_MY,Tier1,Core Banking System,SGP-DC1
+OCBC_Bank_Malaysia_MY,Tier0,RENTAS Gateway,JPN-DC4
+OCBC_Bank_Malaysia_MY,Tier1,IBG Processing,HKG-DC3
+OCBC_Bank_Malaysia_MY,Tier1,SWIFT Interface,JPN-DC4
+OCBC_Bank_Malaysia_MY,Tier0,Online Banking Platform,SGP-DC1
+OCBC_Bank_Malaysia_MY,Tier1,Mobile Banking App,HKG-DC3
+OCBC_Bank_Malaysia_MY,Tier1,ATM Network Controller,KUL-DC2
+OCBC_Bank_Malaysia_MY,Tier0,Trade Finance System,SGP-DC1
+OCBC_Bank_Malaysia_MY,Tier1,Treasury Management System,KUL-DC2
+OCBC_Bank_Malaysia_MY,Tier0,Fraud Detection Engine,KUL-DC2
+OCBC_Bank_Malaysia_MY,Tier3,Regulatory Reporting System,JPN-DC4
+OCBC_Bank_Malaysia_MY,Tier2,Customer Data Hub,KUL-DC2
+Affin_Bank_MY,Tier3,Core Banking System,JPN-DC4
+Affin_Bank_MY,Tier3,RENTAS Gateway,JPN-DC4
+Affin_Bank_MY,Tier1,IBG Processing,JPN-DC4
+Affin_Bank_MY,Tier2,SWIFT Interface,JPN-DC4
+Affin_Bank_MY,Tier3,Online Banking Platform,HKG-DC3
+Affin_Bank_MY,Tier3,Mobile Banking App,KUL-DC2
+Affin_Bank_MY,Tier3,ATM Network Controller,SGP-DC1
+Affin_Bank_MY,Tier0,Trade Finance System,KUL-DC2
+Affin_Bank_MY,Tier0,Treasury Management System,KUL-DC2
+Affin_Bank_MY,Tier1,Fraud Detection Engine,HKG-DC3
+Affin_Bank_MY,Tier0,Regulatory Reporting System,SGP-DC1
+Affin_Bank_MY,Tier3,Customer Data Hub,KUL-DC2
+Alliance_Bank_MY,Tier0,Core Banking System,KUL-DC2
+Alliance_Bank_MY,Tier2,RENTAS Gateway,KUL-DC2
+Alliance_Bank_MY,Tier2,IBG Processing,JPN-DC4
+Alliance_Bank_MY,Tier2,SWIFT Interface,JPN-DC4
+Alliance_Bank_MY,Tier3,Online Banking Platform,KUL-DC2
+Alliance_Bank_MY,Tier2,Mobile Banking App,SGP-DC1
+Alliance_Bank_MY,Tier0,ATM Network Controller,KUL-DC2
+Alliance_Bank_MY,Tier3,Trade Finance System,HKG-DC3
+Alliance_Bank_MY,Tier3,Treasury Management System,JPN-DC4
+Alliance_Bank_MY,Tier2,Fraud Detection Engine,KUL-DC2
+Alliance_Bank_MY,Tier3,Regulatory Reporting System,SGP-DC1
+Alliance_Bank_MY,Tier1,Customer Data Hub,HKG-DC3

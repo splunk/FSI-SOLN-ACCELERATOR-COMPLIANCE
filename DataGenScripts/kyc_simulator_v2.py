@@ -9,12 +9,16 @@ from typing import Any, Dict
 
 import pytz # For timezone handling
 import requests # For Splunk HEC
+import urllib3
 from faker import Faker
 try:
     import pandas as pd  # Optional dependency for CSV output
 except ImportError:  # We'll fall back to csv module if missing
     pd = None
 import csv
+
+# --- Disable insecure request warnings for self-signed certs (if applicable) ---
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # --- Configuration ---
 NUM_EVENTS_TOTAL = 1000  # Number of KYC events to generate

@@ -1,0 +1,9 @@
+system_id,entity_id,critical_operation_name,tolerance_level,business_unit
+sys_001,ENTITY_6885,Payments Processing,60,Operations
+sys_002,ENTITY_961C,Customer Account Management,180,Operations
+sys_003,ENTITY_1790,Regulatory Reporting,180,Operations
+sys_004,ENTITY_4FC0,Insurance Claims Processing,180,Operations
+sys_005,ENTITY_FA49,Superannuation Fund Administration,180,Operations
+sys_006,ENTITY_6885,Online Banking Services,120,Operations
+sys_007,ENTITY_961C,Trade Settlement,180,Operations
+sys_008,ENTITY_1790,Liquidity Management,180,Operations

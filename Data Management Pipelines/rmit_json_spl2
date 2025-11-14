@@ -1,0 +1,95 @@
+import route from /splunk.ingest.commands
+import 'apjc_asset_inventory.csv' from /envs.splunk.'dmx-shw-9cf6b5b1083388'.lookups
+
+$pipeline =
+| from $source
+ 
+    // Extract fields from _raw for lookup key building
+    | eval affected_service = json_extract(_raw, "affected_service")
+    | eval change_description = json_extract(_raw, "change_description")
+    | eval impacted_systems_array = json_extract(_raw, "impacted_systems")
+    | eval first_impacted = if(isnotnull(impacted_systems_array), mvindex(impacted_systems_array, 0), null)
+    
+    // Create lookup key: match on bank name only (lookup CSV has bank as the host key)
+    | eval lookup_host = json_extract(_raw, "financial_institution_id")
+    | lookup 'apjc_asset_inventory.csv' host AS lookup_host OUTPUT dc_location, criticality, service_impacted
+   
+    // Inject lookup results into _raw so enrichment travels with the event
+    | eval _raw = if(isnotnull(dc_location), json_set(_raw, "dc_location", dc_location), _raw)
+    | eval _raw = if(isnotnull(criticality), json_set(_raw, "criticality", criticality), _raw)
+    | eval _raw = if(isnotnull(service_impacted), json_set(_raw, "service_impacted", service_impacted), _raw)
+
+    // Remove temporary top-level lookup fields to avoid duplication (after injecting into _raw)
+    | fields - affected_service, change_description, impacted_systems_array, first_impacted, lookup_host, dc_location, criticality, service_impacted
+
+    // Extract criticality from _raw for enrichment logic
+    | eval criticality_from_raw = json_extract(_raw, "criticality")
+    | eval risk_level = case(criticality_from_raw == "Tier0", "High", criticality_from_raw == "Tier1", "Medium", true, "Low")
+    | eval _raw = json_set(_raw, "risk_level", risk_level)
+
+    // Mask IP addresses Source and Destination (last octet)
+    | eval masked_src_ip_address = replace(_raw.source_ip, /\.\d+$/, ".XXX")
+    | eval _raw = json_set(_raw, "source_ip", masked_src_ip_address)
+
+    | eval masked_dest_ip_address = replace(_raw.destination_ip, /\.\d+$/, ".XXX")
+    | eval _raw = json_set(_raw, "destination_ip", masked_dest_ip_address)
+
+    // Hash user_id with SHA256 and a salt
+    | eval hashed_user_id = if(isnotnull(_raw.user_id), sha256(_raw.user_id + "rmit_secret_salt"), null)
+    | eval _raw = json_set(_raw, "user_id", hashed_user_id)    
+
+   // Redact reporting_user_or_process
+    | eval masked_reporting = if(isnotnull(json_extract(_raw, "reporting_user_or_process")), "REDACTED", null)
+    | eval _raw = json_set(_raw, "reporting_user_or_process", masked_reporting)
+    
+    // Redact event_description if it contains PII (example: redact if contains 'user_')
+    | eval event_desc = json_extract(_raw, "event_description")
+    | eval redacted_desc = if(isnotnull(event_desc) and match(event_desc, /user_/), "REDACTED_EVENT_DESC", event_desc)
+    | eval _raw = json_set(_raw, "event_description", redacted_desc)
+    
+    // Drop Temporary fields used for processing
+    | fields - masked_src_ip_address, masked_dest_ip_address, hashed_user_id, masked_reporting, event_desc, redacted_desc, criticality_from_raw, risk_level
+
+    // Filter out events with status = "Closed" or "Resolved" unless criticality is "Tier0" or "Tier1"
+    | eval status_from_raw = coalesce(json_extract(_raw, "status_code"), json_extract(_raw, "status"))
+    | eval criticality_check = json_extract(_raw, "criticality")
+    | where (status_from_raw != "Closed" and status_from_raw != "Resolved") or (criticality_check == "Tier0" or criticality_check == "Tier1")
+
+    // Route based on event_type - extract from _raw and store in _raw for routing logic
+    | eval event_type_from_raw = json_extract(_raw, "event_type")
+    | eval event_route_value = case(event_type_from_raw == "cybersecurity_alert", "CYBER_ROUTE", event_type_from_raw == "change_request_log", "CHANGE_ROUTE", event_type_from_raw == "third_party_risk_update", "TPRM_ROUTE", true, "DEFAULT_ROUTE")
+    | eval _raw = json_set(_raw, "event_route", event_route_value)
+
+   // Drop Temporary fields used for processing
+    | fields - criticality_check, event_type_from_raw, status_from_raw,event_route_value
+
+     // Route to different indexes based on event_type
+    | route _raw.event_route == "CYBER_ROUTE", 
+    [
+        // Remove unwanted keys from `_raw` for cyber events so the archived payload is compact
+        | eval _raw = json_delete(_raw, "change_request_id", "change_description", "change_status", "risk_impact_assessment", "planned_start_datetime_utc", "actual_end_datetime_utc", "third_party_id", "vendor_name", "service_type", "risk_assessment_update_reason", "overall_risk_rating", "key_risks_identified", "due_diligence_status")
+        | eval index = "rmit_cyber_events"
+        | into $destination2
+    ]
+    | route _raw.event_route == "CHANGE_ROUTE", 
+    [
+        // Remove unwanted keys from `_raw` for change events so the archived payload is compact
+        | eval _raw = json_delete(_raw, "cyber_event_id", "threat_type", "severity", "status", "impacted_systems", "detection_source", "response_actions_taken", "bnm_notification_sent", "bnm_report_ref_id", "third_party_id", "vendor_name", "service_type", "risk_assessment_update_reason", "overall_risk_rating", "key_risks_identified", "due_diligence_status")
+        | eval index = "rmit_change_events"
+        | into $destination3
+    ]
+    | route _raw.event_route == "TPRM_ROUTE", 
+    [
+        // Remove unwanted keys from `_raw` for TPRM events so the archived payload is compact
+        | eval _raw = json_delete(_raw, "cyber_event_id", "threat_type", "severity", "status", "impacted_systems", "detection_source", "response_actions_taken", "bnm_notification_sent", "bnm_report_ref_id", "change_request_id", "change_description", "change_status", "risk_impact_assessment", "planned_start_datetime_utc", "actual_end_datetime_utc")
+        | eval index = "rmit_tprm_events"
+        | into $destination4
+    ]
+
+    // Drop fields associated with event_routes filtered before as they are empty
+    | eval _raw = json_delete(_raw, "cyber_event_id", "threat_type", "severity", "status", "impacted_systems", "detection_source", "response_actions_taken", "bnm_notification_sent", "bnm_report_ref_id", "change_request_id", "change_description", "change_status", "risk_impact_assessment", "planned_start_datetime_utc", "actual_end_datetime_utc", "third_party_id", "vendor_name", "service_type", "risk_assessment_update_reason", "overall_risk_rating", "key_risks_identified", "due_diligence_status")
+
+    | eval _raw = json_set(_raw, "participant", "hrobalin")
+
+    | eval index = "rmit_events"
+    | into $destination;

@@ -1,0 +1,49 @@
+import route from /splunk.ingest.commands
+
+$pipeline = | from $source
+
+// Initial Archive Routing
+| thru 
+[
+    | eval _raw = json_extract(_raw, "_raw")
+    | into $destination2
+]
+
+// Drop _raw field to reduce data size after initial archive routing
+| eval _raw=json_delete(_raw, "_raw")
+
+// Anonymize IP address (e.g., mask last octet)
+| eval masked_ip_address = replace(_raw.ip_address, /\.\d+$/, ".XXX")
+| eval _raw=json_set(_raw, "ip_address", masked_ip_address)
+
+// Pseudonymize user ID (e.g., using a salted hash if correlation is ever needed under strict controls)
+| eval hashed_user_id = if(isnotnull(_raw.user_id), sha256(_raw.user_id + "dora_secret_salt"), null)
+| eval _raw=json_set(_raw, "user_id", hashed_user_id)
+
+| fields - masked_ip_address, hashed_user_id
+
+// Filter for Error and Critical Severity Levels
+    | route _raw.severity_level == "ERROR" OR _raw.severity_level == "CRITICAL", 
+    [
+        | eval index="dora_errors_events"
+        | into $destination3
+    ]       
+
+// Filter for Warning Severity Levels
+    | route _raw.severity_level == "WARNING",
+    [
+        | eval index="dora_warning_events"
+        | into $destination4
+    ]   
+
+// Remove Unnecessary Fields for Info Events
+| eval _raw=json_delete(_raw, "incident_description", "description", "transaction_id", "session_id")
+
+| eval _raw = json_set(_raw, "participant", "hrobalin")
+
+// Finalize and Route Info Events
+| eval index = "dora_events"
+| into $destination;
+
+
+
