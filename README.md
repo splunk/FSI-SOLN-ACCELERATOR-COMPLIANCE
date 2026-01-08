@@ -1,4 +1,4 @@
-# Splunk Financial Services & Insurance Solution Accelerator
+# Splunk Financial Services Industry Solution Accelerator
 
 This repository provides resources, guides, synthetic data generators, and Splunk app content to help Financial Services and Insurance organizations accelerate implementation of key compliance and operational data practices. Releases can be directly installed in Splunk and are compatible with both Splunk Enterprise and Splunk Cloud.
 

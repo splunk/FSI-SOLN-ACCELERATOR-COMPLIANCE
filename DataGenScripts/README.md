@@ -1,6 +1,6 @@
 # DataGenScripts
 
-This folder contains Python scripts for generating synthetic data to support testing, validation, and demonstration of the Splunk Financial Services and Insurance Solution Accelerator - Data Compliance Pipelines content.
+This folder contains Python scripts for generating synthetic data to support testing, validation, and demonstration of the Splunk Financial Services Industry Solution Accelerator - Data Compliance Pipelines content.
 
 ## Overview
 
