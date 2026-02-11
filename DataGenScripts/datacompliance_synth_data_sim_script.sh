@@ -1,4 +1,4 @@
-python3 kyc_simulator_v2.py     --send-to-splunk \
+python3 kyc_simulator.py     --send-to-splunk \
                                 --splunk-url "https://localhost:8088/services/collector" \
                                 --splunk-token "0123456-789a-bcde-f012-3456789a" \
                                 --splunk-index "sample_kyc" \

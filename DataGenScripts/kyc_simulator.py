@@ -44,7 +44,7 @@ PHONE_FORMAT_DRIFT_THRESHOLD = 0.65
 # Use environment variables or a secure config management system.
 SPLUNK_HEC_URL = "YOUR_SPLUNK_HEC_URL"  # e.g., "https://splunk.example.com:8088/services/collector"
 SPLUNK_HEC_TOKEN = "YOUR_SPLUNK_HEC_TOKEN"
-SPLUNK_HEC_SOURCE = "kyc_simulator_v2"
+SPLUNK_HEC_SOURCE = "kyc_simulator"
 SPLUNK_HEC_SOURCETYPE = "kyc:synthetic:event"
 SPLUNK_HEC_INDEX = "sample_kyc" # Or your preferred index
 SPLUNK_HEC_VERIFY_SSL = False  # Set to False if using self-signed certs (not recommended for prod)
@@ -476,15 +476,21 @@ def main():
         print(f"  Failed to send:    {total_failed_splunk} events", file=sys.stderr)
 
 
-    # JSON output handling
+    # JSON/JSONL output handling
     if args.output_file:
         print(f"\nSaving {len(all_generated_events)} events to {args.output_file}...", file=sys.stderr)
         try:
-            with open(args.output_file, 'w', encoding='utf-8') as f:
-                json.dump(all_generated_events, f, indent=2, ensure_ascii=False)
-            print(f"Successfully saved events to {args.output_file}", file=sys.stderr)
+            if args.output_file.lower().endswith('.jsonl'):
+                with open(args.output_file, 'w', encoding='utf-8') as f:
+                    for event in all_generated_events:
+                        f.write(json.dumps(event, ensure_ascii=False) + '\n')
+                print(f"Successfully saved events to {args.output_file} (JSONL format)", file=sys.stderr)
+            else:
+                with open(args.output_file, 'w', encoding='utf-8') as f:
+                    json.dump(all_generated_events, f, indent=2, ensure_ascii=False)
+                print(f"Successfully saved events to {args.output_file} (JSON array)", file=sys.stderr)
         except Exception as e:
-            print(f"Error writing JSON file {args.output_file}: {e}", file=sys.stderr)
+            print(f"Error writing JSON/JSONL file {args.output_file}: {e}", file=sys.stderr)
 
     # CSV output handling (flatten nested structures)
     if args.output_csv:

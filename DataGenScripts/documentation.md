@@ -43,7 +43,7 @@ Where `<simulator_script>.py` is one of:
   - `cps230_drift_simulator.py`
   - `rmit_drift_simulator.py`
 - Non-drift simulators:
-  - `kyc_simulator_v2.py`
+  - `kyc_simulator.py`
   - `pci_simulator.py`
   - `dora_simulator.py`
   - `cps230_simulator.py`
@@ -141,12 +141,12 @@ python rmit_simulator.py --num-events 168000 --events-per-hour 1000 --output-csv
 
 **Generate 10,000 KYC events (no drift) and save to CSV:**
 ```sh
-python kyc_simulator_v2.py --num-events 10000 --output-csv my_kyc_logs.csv
+python kyc_simulator.py --num-events 10000 --output-csv my_kyc_logs.csv
 ```
 
 **Generate 10,000 KYC events (no drift) and send to Splunk:**
 ```sh
-python kyc_simulator_v2.py --num-events 10000 --send-to-splunk --splunk-url https://splunk.example.com:8088/services/collector --splunk-token YOUR_TOKEN --splunk-index my_index
+python kyc_simulator.py --num-events 10000 --send-to-splunk --splunk-url https://splunk.example.com:8088/services/collector --splunk-token YOUR_TOKEN --splunk-index my_index
 ```
 
 ---

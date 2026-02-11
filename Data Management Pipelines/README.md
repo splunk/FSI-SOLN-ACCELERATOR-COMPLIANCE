@@ -45,7 +45,7 @@ To test these pipelines in an Edge Processor environment you can generate repres
 | `cps230_simulator.py` | CPS230 Operational Risk & Third Parties | `cps_json_spl2` |
 | `dora_simulator.py`   | DORA Digital Resilience | `dora_json_spl2` |
 | `pci_simulator.py`    | PCI DSS Data Security | `pci_json_spl2` |
-| `kyc_simulator_v2.py` | KYC / Customer Risk Monitoring | `kyc_json_spl2` |
+| `kyc_simulator.py` | KYC / Customer Risk Monitoring | `kyc_json_spl2` |
 | `rmit_simulator.py`   | BNM RMiT Technology Risk | `rmit_json_spl2` |
 
 ### Common Flags
