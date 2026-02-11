@@ -67,4 +67,6 @@ These pipelines are not required for the app to function; they demonstrate:
 
 For more information and best practices on using Splunk within Financial Services and Insurance, visit [Splunk Lantern for Financial Services and Insurance](https://lantern.splunk.com/Splunk_Platform/UCE/Financial_Services_and_Insurance).
 
+To see a comprehensive demo on how to enable Data Compliance Pipelines using Splunk Data Management, reach out to your sales team!
+
 ---
